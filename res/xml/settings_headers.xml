@@ -66,6 +66,12 @@
         android:title="@string/launcher_settings_title"
         android:icon="@drawable/ic_settings_cmlauncher" />
 
+    <header
+        android:id="@+id/jbmp_settings"
+        android:fragment="com.android.settings.JBMiniSettings"
+        android:title="@string/jbmp_settings_title"
+        android:icon="@drawable/ic_settings_jbmp" />
+
     <!-- Lock screen -->
     <header
         android:id="@+id/lock_screen_settings"

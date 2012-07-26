@@ -4798,4 +4798,5 @@
     <string name="partition_info_sdext">/sd-ext (EXT)</string>
     <string name="partition_info_used_of">/</string>
 
+    <string name="jbmp_settings_title">JBMini Settings</string>
 </resources>

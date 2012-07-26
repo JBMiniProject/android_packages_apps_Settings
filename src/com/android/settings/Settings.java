@@ -819,4 +819,5 @@ public class Settings extends PreferenceActivity
     public static class AnonymousStatsActivity extends Settings { /* empty */ }
     public static class ApnSettingsActivity extends Settings { /* empty */ }
     public static class ApnEditorActivity extends Settings { /* empty */ }
+    public static class JBMiniSettingsActivity extends Settings { /* empty */ }
 }
