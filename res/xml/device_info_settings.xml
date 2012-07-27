@@ -41,14 +41,6 @@
                     android:targetClass="com.android.settings.deviceinfo.Status" />
         </PreferenceScreen>
 
-        <!-- Anonymous statistics - (CMStats) -->
-        <PreferenceScreen
-            android:key="cmstats"
-            android:title="@string/anonymous_statistics_title"
-            android:summary="@string/anonymous_statistics_summary"
-            android:fragment="com.android.settings.cmstats.AnonymousStats" >
-        </PreferenceScreen>
-
         <!-- Change Log -->
         <PreferenceScreen android:key="changelog"
                 android:title="@string/changelog_title">
@@ -61,7 +53,7 @@
         <PreferenceScreen
                 android:key="container"
                 android:title="@string/legal_information">
-                    
+
             <!-- Note: The titles given here probably won't be used.  Instead, we programmatically
                        fill the title with the label of the activity with the corresponding action.
                        If there is not an activity for an action, the item will be removed from the
