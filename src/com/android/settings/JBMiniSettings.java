@@ -16,63 +16,87 @@
 
 package com.android.settings;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.ActivityManagerNative;
-import android.app.ActivityThread;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.admin.DevicePolicyManager;
-import android.app.backup.IBackupManager;
+import java.io.IOException;
+
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.os.AsyncTask;
-import android.os.BatteryManager;
-import android.os.Build;
+import android.app.AlertDialog;
+import android.app.ActivityManagerNative;
+import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.Parcel;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.os.StrictMode;
-import android.os.SystemProperties;
-import android.os.Trace;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
-import android.preference.MultiCheckPreference;
 import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
-import android.provider.Settings;
-import android.text.Spannable;
-import android.text.TextUtils;
-import android.view.Gravity;
-import android.view.HardwareRenderer;
+import android.os.Handler;
+import android.util.Log;
+import android.net.Uri;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.view.IWindowManager;
-import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.Switch;
-import android.widget.TextView;
+import android.os.ServiceManager;
+import android.os.IBinder;
+import android.os.IPowerManager;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import android.provider.Settings;
+import android.os.SystemProperties;
+import com.android.settings.R;
+import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.Utils;
 
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class JBMiniSettings extends PreferenceFragment
-    implements DialogInterface.OnClickListener, DialogInterface.OnDismissListener, OnPreferenceChangeListener, CompoundButton.OnCheckedChangeListener {
+public class JBMiniSettings extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
 
     private static final String TAG = "JBMP_Settings";
     private static final boolean DEBUG = true;
+
+    private static final String DISABLE_BOOTANIMATION_PREF = "pref_disable_boot_animation";
+    private static final String DISABLE_BOOTANIMATION_PERSIST_PROP = "persist.sys.nobootanimation";
+
+    private final Configuration mCurrentConfig = new Configuration();
+
+    private CheckBoxPreference mDisableBootanimPref;
+
+    private Context mContext;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        addPreferencesFromResource(R.xml.jbmini_settings);
+
+        PreferenceScreen prefSet = getPreferenceScreen();
+
+        mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
+        mDisableBootanimPref.setChecked("1".equals(SystemProperties.get(DISABLE_BOOTANIMATION_PERSIST_PROP, "0")));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if (preference == mDisableBootanimPref) {
+            SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
+        }
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        return false;
+    }
 }
