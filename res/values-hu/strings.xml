@@ -1704,4 +1704,8 @@
 
     <string name="partition_info_title">Partítció infó</string>
     <string name="jbmp_settings_title">JBMini beállítások</string>
+
+    <string name="pref_disable_boot_animation_title">Boot animáció tiltása</string>
+    <string name="pref_disable_boot_animation_summary">Gyorsabb bootolás</string>
+
 </resources>

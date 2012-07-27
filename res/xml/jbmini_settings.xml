@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="jbmini_settings"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+
+    <CheckBoxPreference
+        android:key="pref_disable_boot_animation"
+        android:title="@string/pref_disable_boot_animation_title"
+        android:summary="@string/pref_disable_boot_animation_summary"
+        android:defaultValue="false" />
+
+</PreferenceScreen>

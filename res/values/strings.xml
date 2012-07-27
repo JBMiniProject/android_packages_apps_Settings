@@ -4799,4 +4799,6 @@
     <string name="partition_info_used_of">/</string>
 
     <string name="jbmp_settings_title">JBMini Settings</string>
+    <string name="pref_disable_boot_animation_title">Disable Bootanimation</string>
+    <string name="pref_disable_boot_animation_summary">For faster boot</string>
 </resources>
