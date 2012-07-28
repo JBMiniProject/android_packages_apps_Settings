@@ -60,9 +60,16 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String DISABLE_BOOTANIMATION_PREF = "pref_disable_boot_animation";
     private static final String DISABLE_BOOTANIMATION_PERSIST_PROP = "persist.sys.nobootanimation";
 
+    private static final String RAISED_BRIGHTNESS = "pref_raisedbrightness";
+    private static final String RAISED_BRIGHTNESS_PROP = "sys.raisedbrightness";
+    private static final String RAISED_BRIGHTNESS_PERSIST_PROP = "persist.sys.raisedbrightness";
+    private static final int RAISED_BRIGHTNESS_DEFAULT = 0;
+
     private final Configuration mCurrentConfig = new Configuration();
 
     private CheckBoxPreference mDisableBootanimPref;
+
+    private CheckBoxPreference mRaisedBrightnessPref;
 
     private Context mContext;
 
@@ -75,6 +82,9 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
         mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
         mDisableBootanimPref.setChecked("1".equals(SystemProperties.get(DISABLE_BOOTANIMATION_PERSIST_PROP, "0")));
+
+        mRaisedBrightnessPref = (CheckBoxPreference) prefSet.findPreference(RAISED_BRIGHTNESS);
+        mRaisedBrightnessPref.setChecked("1".equals(SystemProperties.get(RAISED_BRIGHTNESS_PERSIST_PROP, "0")));
     }
 
     @Override
@@ -91,6 +101,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mDisableBootanimPref) {
             SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
+        }
+        else if (preference == mRaisedBrightnessPref) {
+            SystemProperties.set(RAISED_BRIGHTNESS_PERSIST_PROP, mRaisedBrightnessPref.isChecked() ? "1" : "0");
+            Utils.fileWriteOneLine("/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode", mRaisedBrightnessPref.isChecked() ? "i2c_pwm" : "i2c_pwm_als");
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }

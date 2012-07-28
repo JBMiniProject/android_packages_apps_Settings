@@ -25,4 +25,10 @@
         android:summary="@string/pref_disable_boot_animation_summary"
         android:defaultValue="false" />
 
+    <CheckBoxPreference
+        android:key="pref_raised_brightness"
+        android:title="@string/pref_raised_brightness_title"
+        android:summary="@string/pref_raised_brightness_summary"
+        android:defaultValue="false" />
+
 </PreferenceScreen>

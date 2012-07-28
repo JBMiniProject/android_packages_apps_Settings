@@ -1707,5 +1707,7 @@
 
     <string name="pref_disable_boot_animation_title">Boot animáció tiltása</string>
     <string name="pref_disable_boot_animation_summary">Gyorsabb bootolás</string>
+    <string name="pref_raised_brightness_title">Extra fényerő</string>
+    <string name="pref_raised_brightness_summary">Magasabb fényerőt biztosít (Nagyobb akkuhasználat)</string>
 
 </resources>

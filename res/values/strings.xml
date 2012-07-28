@@ -4777,4 +4777,6 @@
     <string name="jbmp_settings_title">JBMini Settings</string>
     <string name="pref_disable_boot_animation_title">Disable Bootanimation</string>
     <string name="pref_disable_boot_animation_summary">For faster boot</string>
+    <string name="pref_raised_brightness_title">Raised brightness</string>
+    <string name="pref_raised_brightness_summary">Increases the brightness level (may increase battery consumption)</string>
 </resources>
