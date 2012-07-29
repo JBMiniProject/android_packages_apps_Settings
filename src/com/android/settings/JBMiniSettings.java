@@ -68,6 +68,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String BACK_BUTTON_ENDS_CALL_PROP = "pref_back_button_ends_call";
 
     private static final String DISABLE_REBOOT_PROP = "pref_disable_reboot";
+    private static final String DISABLE_SCREENSHOT_PROP = "pref_disable_screenshot";
 
     private final Configuration mCurrentConfig = new Configuration();
 
@@ -78,6 +79,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private CheckBoxPreference mBackButtonEndsCallPref;
 
     private CheckBoxPreference mDisableRebootPref;
+    private CheckBoxPreference mDisableScreenshotPref;
 
     private Context mContext;
 
@@ -99,11 +101,13 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mBackButtonEndsCallPref = (CheckBoxPreference) prefSet.findPreference(BACK_BUTTON_ENDS_CALL_PROP);
 
         mDisableRebootPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_REBOOT_PROP);
+        mDisableScreenshotPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_SCREENSHOT_PROP);
 
         updateDisableBootAnimation();
         updateRaisedBrightness();
         updateBackButtonEndsCall();
         updateDisableReboot();
+        updateDisableScreenshot();
     }
 
 
@@ -136,6 +140,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mDisableRebootPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_REBOOT, 1) == 1);
     }
 
+    private void updateDisableScreenshot() {
+        mDisableScreenshotPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_SCREENSHOT, 1) == 1);
+    }
+
 
     /* Write functions */
     private void writeDisableBootAnimation() {
@@ -155,6 +163,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_REBOOT, mDisableRebootPref.isChecked() ? 1 : 0);
     }
 
+    private void writeDisableScreenshot() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_SCREENSHOT, mDisableScreenshotPref.isChecked() ? 1 : 0);
+    }
+
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
@@ -166,7 +178,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeBackButtonEndsCall();
         } else if (preference == mDisableRebootPref) {
             writeDisableReboot();
+        } else if (preference == mDisableScreenshotPref) {
+            writeDisableScreenshot();
         }
+
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 

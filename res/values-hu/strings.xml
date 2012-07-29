@@ -1712,5 +1712,6 @@
     <string name="pref_back_button_ends_call_title">Hívás befejezés</string>
     <string name="pref_back_button_ends_call_summary">Vissza gomb megnyomása befejezi az aktuális hívást</string>
     <string name="pref_disable_reboot_title">Újraindítás mutatása</string>
+    <string name="pref_disable_screenshot_title">Képernyőmentés mutatása</string>
 
 </resources>

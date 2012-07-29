@@ -41,4 +41,8 @@
         android:key="pref_disable_reboot"
         android:title="@string/pref_disable_reboot_title" />
 
+    <CheckBoxPreference
+        android:key="pref_disable_screenshot"
+        android:title="@string/pref_disable_screenshot_title" />
+
 </PreferenceScreen>
