@@ -31,4 +31,10 @@
         android:summary="@string/pref_raised_brightness_summary"
         android:defaultValue="false" />
 
+    <CheckBoxPreference
+        android:key="pref_back_button_ends_call"
+        android:title="@string/pref_back_button_ends_call_title"
+        android:summary="@string/pref_back_button_ends_call_summary"
+        android:defaultValue="false" />
+
 </PreferenceScreen>

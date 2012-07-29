@@ -1709,5 +1709,7 @@
     <string name="pref_disable_boot_animation_summary">Gyorsabb bootolás</string>
     <string name="pref_raised_brightness_title">Extra fényerő</string>
     <string name="pref_raised_brightness_summary">Magasabb fényerőt biztosít (Nagyobb akkuhasználat)</string>
+    <string name="pref_back_button_ends_call_title">Hívás befejezés</string>
+    <string name="pref_back_button_ends_call_summary">Vissza gomb megnyomása befejezi az aktuális hívást</string>
 
 </resources>

@@ -4779,4 +4779,7 @@
     <string name="pref_disable_boot_animation_summary">For faster boot</string>
     <string name="pref_raised_brightness_title">Raised brightness</string>
     <string name="pref_raised_brightness_summary">Increases the brightness level (may increase battery consumption)</string>
+    <string name="pref_back_button_ends_call_title">Back button ends call</string>
+    <string name="pref_back_button_ends_call_summary">When pressed the Back button, the actual call ends</string>
+
 </resources>

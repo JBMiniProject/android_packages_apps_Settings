@@ -65,49 +65,94 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String RAISED_BRIGHTNESS_PERSIST_PROP = "persist.sys.raisedbrightness";
     private static final int RAISED_BRIGHTNESS_DEFAULT = 0;
 
+    private static final String BACK_BUTTON_ENDS_CALL_PROP = "pref_back_button_ends_call";
+
     private final Configuration mCurrentConfig = new Configuration();
 
     private CheckBoxPreference mDisableBootanimPref;
 
     private CheckBoxPreference mRaisedBrightnessPref;
 
+    private CheckBoxPreference mBackButtonEndsCallPref;
+
     private Context mContext;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.i(TAG, "\n\nWelcome in JB Mini Project's custom settings!!!\n\n");
+
         addPreferencesFromResource(R.xml.jbmini_settings);
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
         mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
-        mDisableBootanimPref.setChecked("1".equals(SystemProperties.get(DISABLE_BOOTANIMATION_PERSIST_PROP, "0")));
 
         mRaisedBrightnessPref = (CheckBoxPreference) prefSet.findPreference(RAISED_BRIGHTNESS);
-        mRaisedBrightnessPref.setChecked("1".equals(SystemProperties.get(RAISED_BRIGHTNESS_PERSIST_PROP, "0")));
+
+        mBackButtonEndsCallPref = (CheckBoxPreference) prefSet.findPreference(BACK_BUTTON_ENDS_CALL_PROP);
+
+        updateDisableBootAnimation();
+        updateRaisedBrightness();
+        updateBackButtonEndsCall();
     }
+
 
     @Override
     public void onResume() {
         super.onResume();
     }
 
+
     @Override
     public void onPause() {
         super.onPause();
     }
 
+
+    /* Update functions */
+    private void updateDisableBootAnimation() {
+        mDisableBootanimPref.setChecked("1".equals(SystemProperties.get(DISABLE_BOOTANIMATION_PERSIST_PROP, "0")));
+    }
+
+    private void updateRaisedBrightness() {
+        mRaisedBrightnessPref.setChecked("1".equals(SystemProperties.get(RAISED_BRIGHTNESS_PERSIST_PROP, "0")));
+    }
+
+    private void updateBackButtonEndsCall() {
+        mBackButtonEndsCallPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.BACK_BUTTON_ENDS_CALL, 0) == 1);
+    }
+
+
+    /* Write functions */
+    private void writeDisableBootAnimation() {
+        SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
+    }
+
+    private void writeRaisedBrightness() {
+        SystemProperties.set(RAISED_BRIGHTNESS_PERSIST_PROP, mRaisedBrightnessPref.isChecked() ? "1" : "0");
+        Utils.fileWriteOneLine("/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode", mRaisedBrightnessPref.isChecked() ? "i2c_pwm" : "i2c_pwm_als");
+    }
+
+    private void writeBackButtonEndsCall() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.BACK_BUTTON_ENDS_CALL, mBackButtonEndsCallPref.isChecked() ? 1 : 0);
+    }
+
+
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mDisableBootanimPref) {
-            SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
-        }
-        else if (preference == mRaisedBrightnessPref) {
-            SystemProperties.set(RAISED_BRIGHTNESS_PERSIST_PROP, mRaisedBrightnessPref.isChecked() ? "1" : "0");
-            Utils.fileWriteOneLine("/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode", mRaisedBrightnessPref.isChecked() ? "i2c_pwm" : "i2c_pwm_als");
+            writeDisableBootAnimation();
+        } else if (preference == mRaisedBrightnessPref) {
+            writeRaisedBrightness();
+        } else if (preference == mBackButtonEndsCallPref) {
+            writeBackButtonEndsCall();
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
+
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
