@@ -37,4 +37,8 @@
         android:summary="@string/pref_back_button_ends_call_summary"
         android:defaultValue="false" />
 
+    <CheckBoxPreference
+        android:key="pref_disable_reboot"
+        android:title="@string/pref_disable_reboot_title" />
+
 </PreferenceScreen>

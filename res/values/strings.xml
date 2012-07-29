@@ -4781,5 +4781,6 @@
     <string name="pref_raised_brightness_summary">Increases the brightness level (may increase battery consumption)</string>
     <string name="pref_back_button_ends_call_title">Back button ends call</string>
     <string name="pref_back_button_ends_call_summary">When pressed the Back button, the actual call ends</string>
+    <string name="pref_disable_reboot_title">Show Reboot</string>
 
 </resources>
