@@ -108,7 +108,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
         mDisableRebootPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_REBOOT_PROP);
         mDisableScreenshotPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_SCREENSHOT_PROP);
-        mDisableAirplanePref = (CheckBoxPreference) prefSet.findPreference(DISABELE_AIRPLANE_PROP);
+        mDisableAirplanePref = (CheckBoxPreference) prefSet.findPreference(DISABLE_AIRPLANE_PROP);
         mDisableRingerPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_RINGER_PROP);
         mDisableTitlePref = (CheckBoxPreference) prefSet.findPreference(DISABLE_TITLE_PROP);
 
