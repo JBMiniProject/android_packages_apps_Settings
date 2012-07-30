@@ -4783,5 +4783,6 @@
     <string name="pref_back_button_ends_call_summary">When pressed the Back button, the actual call ends</string>
     <string name="pref_disable_reboot_title">Show Reboot</string>
     <string name="pref_disable_screenshot_title">Show Screenshot</string>
+    <string name="pref_disable_airplane_title">Show Airplane Mode</string>
 
 </resources>

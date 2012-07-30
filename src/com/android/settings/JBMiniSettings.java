@@ -69,6 +69,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private static final String DISABLE_REBOOT_PROP = "pref_disable_reboot";
     private static final String DISABLE_SCREENSHOT_PROP = "pref_disable_screenshot";
+    private static final String DISABLE_AIRPLANE_PROP = "pref_disable_airplane";
 
     private final Configuration mCurrentConfig = new Configuration();
 
@@ -80,6 +81,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private CheckBoxPreference mDisableRebootPref;
     private CheckBoxPreference mDisableScreenshotPref;
+    private CheckBoxPreference mDisableAirplanePref;
 
     private Context mContext;
 
@@ -102,12 +104,14 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
         mDisableRebootPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_REBOOT_PROP);
         mDisableScreenshotPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_SCREENSHOT_PROP);
+        mDisableAirplanePref = (CheckBoxPreference) findPreference(DISABELE_AIRPLANE_PROP);
 
         updateDisableBootAnimation();
         updateRaisedBrightness();
         updateBackButtonEndsCall();
         updateDisableReboot();
         updateDisableScreenshot();
+        updateDisableAirplane();
     }
 
 
@@ -144,6 +148,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mDisableScreenshotPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_SCREENSHOT, 1) == 1);
     }
 
+    private void updateDisableAirplane() {
+        mDisableAirplanePref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_AIRPLANE, 1) == 1);
+    }
+
 
     /* Write functions */
     private void writeDisableBootAnimation() {
@@ -167,6 +175,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_SCREENSHOT, mDisableScreenshotPref.isChecked() ? 1 : 0);
     }
 
+    private void writeDisableAirplane() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_AIRPLANE, mDisableAirplanePref.isChecked() ? 1 : 0);
+    }
+
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
@@ -180,6 +192,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeDisableReboot();
         } else if (preference == mDisableScreenshotPref) {
             writeDisableScreenshot();
+        } else if (preference == mDisableAirplanePref) {
+            writeDisableAirplane();
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);

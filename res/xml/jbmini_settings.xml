@@ -45,4 +45,8 @@
         android:key="pref_disable_screenshot"
         android:title="@string/pref_disable_screenshot_title" />
 
+    <CheckBoxPreference
+        android:key="pref_disable_airplane"
+        android:title="@string/pref_disable_airplane_title" />
+
 </PreferenceScreen>
