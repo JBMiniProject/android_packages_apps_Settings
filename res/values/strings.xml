@@ -4784,5 +4784,6 @@
     <string name="pref_disable_reboot_title">Show Reboot</string>
     <string name="pref_disable_screenshot_title">Show Screenshot</string>
     <string name="pref_disable_airplane_title">Show Airplane Mode</string>
+    <string name="pref_disable_ringer_title">Show Ringer Mode</string>
 
 </resources>
