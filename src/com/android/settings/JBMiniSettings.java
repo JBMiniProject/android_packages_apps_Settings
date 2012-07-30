@@ -71,6 +71,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String DISABLE_SCREENSHOT_PROP = "pref_disable_screenshot";
     private static final String DISABLE_AIRPLANE_PROP = "pref_disable_airplane";
     private static final String DISABLE_RINGER_PROP = "pref_disable_ringer";
+    private static final String DISABLE_TITLE_PROP = "pref_disable_title";
 
     private final Configuration mCurrentConfig = new Configuration();
 
@@ -84,6 +85,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private CheckBoxPreference mDisableScreenshotPref;
     private CheckBoxPreference mDisableAirplanePref;
     private CheckBoxPreference mDisableRingerPref;
+    private CheckBoxPreference mDisableTitlePref;
 
     private Context mContext;
 
@@ -108,6 +110,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mDisableScreenshotPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_SCREENSHOT_PROP);
         mDisableAirplanePref = (CheckBoxPreference) prefSet.findPreference(DISABELE_AIRPLANE_PROP);
         mDisableRingerPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_RINGER_PROP);
+        mDisableTitlePref = (CheckBoxPreference) prefSet.findPreference(DISABLE_TITLE_PROP);
 
         updateDisableBootAnimation();
         updateRaisedBrightness();
@@ -116,6 +119,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         updateDisableScreenshot();
         updateDisableAirplane();
         updateDisableRinger();
+        updateDisableTitle();
     }
 
 
@@ -160,6 +164,11 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mDisableRingerPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_RINGER, 1) == 1);
     }
 
+    private void updateDisableTitle() {
+        mDisableTitlePref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_TITLE, 1) == 1);
+    }
+
+
     /* Write functions */
     private void writeDisableBootAnimation() {
         SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
@@ -190,6 +199,11 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_RINGER, mDisableRingerPref.isChecked() ? 1 : 0);
     }
 
+    private void writeDisableTitle() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_TITLE, mDisableTitlePref.isChecked() ? 1 : 0);
+    }
+
+
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mDisableBootanimPref) {
@@ -206,6 +220,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeDisableAirplane();
         } else if (preference == mDisableRingerPref) {
             writeDisableRinger();
+        } else if (preference == mDisableTitlePref) {
+            writeDisableTitle();
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);

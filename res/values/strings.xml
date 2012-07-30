@@ -4785,5 +4785,6 @@
     <string name="pref_disable_screenshot_title">Show Screenshot</string>
     <string name="pref_disable_airplane_title">Show Airplane Mode</string>
     <string name="pref_disable_ringer_title">Show Ringer Mode</string>
+    <string name="pref_disable_title_title">Show Title</string>
 
 </resources>
