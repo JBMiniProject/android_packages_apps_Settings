@@ -1716,5 +1716,7 @@
     <string name="pref_disable_airplane_title">Repülőgép üzemmód mutatása</string>
     <string name="pref_disable_ringer_title">Hangerő módok mutatása</string>
     <string name="pref_disable_title_title">Fejléc mutatása</string>
+    <string name="pref_center_clock_status_bar_title">Óra középen</string>
+    <string name="pref_center_clock_status_bar_summary">A státuszbáron középre igazítja az órát (Újraindítja a SystemUI-t)</string>
 
 </resources>

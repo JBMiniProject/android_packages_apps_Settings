@@ -26,6 +26,12 @@
         android:defaultValue="false" />
 
     <CheckBoxPreference
+        android:key="pref_center_clock_status_bar"
+        android:title="@string/pref_center_clock_status_bar_title"
+        android:summary="@string/pref_center_clock_status_bar_summary"
+        android:defaultValue="false" />
+
+    <CheckBoxPreference
         android:key="pref_raisedbrightness"
         android:title="@string/pref_raised_brightness_title"
         android:summary="@string/pref_raised_brightness_summary"

@@ -59,13 +59,12 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private static final String DISABLE_BOOTANIMATION_PREF = "pref_disable_boot_animation";
     private static final String DISABLE_BOOTANIMATION_PERSIST_PROP = "persist.sys.nobootanimation";
-
     private static final String RAISED_BRIGHTNESS = "pref_raisedbrightness";
     private static final String RAISED_BRIGHTNESS_PROP = "sys.raisedbrightness";
     private static final String RAISED_BRIGHTNESS_PERSIST_PROP = "persist.sys.raisedbrightness";
-    private static final int RAISED_BRIGHTNESS_DEFAULT = 0;
 
     private static final String BACK_BUTTON_ENDS_CALL_PROP = "pref_back_button_ends_call";
+    private static final String CENTER_CLOCK_STATUS_BAR_PROP = "pref_center_clock_status_bar";
 
     private static final String DISABLE_REBOOT_PROP = "pref_disable_reboot";
     private static final String DISABLE_SCREENSHOT_PROP = "pref_disable_screenshot";
@@ -76,10 +75,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private final Configuration mCurrentConfig = new Configuration();
 
     private CheckBoxPreference mDisableBootanimPref;
-
     private CheckBoxPreference mRaisedBrightnessPref;
 
     private CheckBoxPreference mBackButtonEndsCallPref;
+    private CheckBoxPreference mCenterClockStatusBar;
 
     private CheckBoxPreference mDisableRebootPref;
     private CheckBoxPreference mDisableScreenshotPref;
@@ -101,10 +100,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         PreferenceScreen prefSet = getPreferenceScreen();
 
         mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
-
         mRaisedBrightnessPref = (CheckBoxPreference) prefSet.findPreference(RAISED_BRIGHTNESS);
 
         mBackButtonEndsCallPref = (CheckBoxPreference) prefSet.findPreference(BACK_BUTTON_ENDS_CALL_PROP);
+        mCenterClockStatusBar = (CheckBoxPreference) prefSet.findPreference(CENTER_CLOCK_STATUS_BAR_PROP);
 
         mDisableRebootPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_REBOOT_PROP);
         mDisableScreenshotPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_SCREENSHOT_PROP);
@@ -115,6 +114,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         updateDisableBootAnimation();
         updateRaisedBrightness();
         updateBackButtonEndsCall();
+        updateCenterClockStatusBar();
         updateDisableReboot();
         updateDisableScreenshot();
         updateDisableAirplane();
@@ -146,6 +146,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void updateBackButtonEndsCall() {
         mBackButtonEndsCallPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.BACK_BUTTON_ENDS_CALL, 0) == 1);
+    }
+
+    private void updateCenterClockStatusBar() {
+        mCenterClockStatusBar.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, 0) == 1);
     }
 
     private void updateDisableReboot() {
@@ -183,6 +187,11 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.BACK_BUTTON_ENDS_CALL, mBackButtonEndsCallPref.isChecked() ? 1 : 0);
     }
 
+    private void writeCenterClockStatusBar() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, mCenterClockStatusBar.isChecked() ? 1 : 0);
+        restartSystemUI();
+    }
+
     private void writeDisableReboot() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_REBOOT, mDisableRebootPref.isChecked() ? 1 : 0);
     }
@@ -204,6 +213,15 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     }
 
 
+    private void restartSystemUI() {
+        try {
+            Runtime.getRuntime().exec("pkill -TERM -f  com.android.systemui");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mDisableBootanimPref) {
@@ -212,6 +230,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeRaisedBrightness();
         } else if (preference == mBackButtonEndsCallPref) {
             writeBackButtonEndsCall();
+        } else if (preference == mCenterClockStatusBar) {
+            writeCenterClockStatusBar();
         } else if (preference == mDisableRebootPref) {
             writeDisableReboot();
         } else if (preference == mDisableScreenshotPref) {
