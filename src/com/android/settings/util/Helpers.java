@@ -18,7 +18,7 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.aokp.romcontrol.util.CMDProcessor.CommandResult;
+import com.android.settings.util.CMDProcessor.CommandResult;
 
 public class Helpers {
 
