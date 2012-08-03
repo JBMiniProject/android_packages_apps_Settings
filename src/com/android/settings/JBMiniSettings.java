@@ -66,6 +66,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String RAISED_BRIGHTNESS_PERSIST_PROP = "persist.sys.raisedbrightness";
 
     private static final String BACK_BUTTON_ENDS_CALL_PROP = "pref_back_button_ends_call";
+    private static final String HOME_BUTTON_ANSWERS_CALL_PROP = "pref_home_button_answers_call";
     private static final String CENTER_CLOCK_STATUS_BAR_PROP = "pref_center_clock_status_bar";
     private static final String KEY_VOLUME_ADJUST_SOUNDS_PROP = "pref_volume_adjust_sounds";
 
@@ -81,6 +82,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private CheckBoxPreference mRaisedBrightnessPref;
 
     private CheckBoxPreference mBackButtonEndsCallPref;
+    private CheckBoxPreference mHomeButtonAnswersCall;
     private CheckBoxPreference mCenterClockStatusBar;
     private CheckBoxPreference mVolumeAdjustSounds;
 
@@ -107,6 +109,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mRaisedBrightnessPref = (CheckBoxPreference) prefSet.findPreference(RAISED_BRIGHTNESS);
 
         mBackButtonEndsCallPref = (CheckBoxPreference) prefSet.findPreference(BACK_BUTTON_ENDS_CALL_PROP);
+        mHomeButtonAnswersCall = (CheckBoxPreference) prefSet.findPreference(HOME_BUTTON_ANSWERS_CALL_PROP);
         mCenterClockStatusBar = (CheckBoxPreference) prefSet.findPreference(CENTER_CLOCK_STATUS_BAR_PROP);
         mVolumeAdjustSounds = (CheckBoxPreference) prefSet.findPreference(KEY_VOLUME_ADJUST_SOUNDS_PROP);
         mVolumeAdjustSounds.setPersistent(false);
@@ -120,6 +123,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         updateDisableBootAnimation();
         updateRaisedBrightness();
         updateBackButtonEndsCall();
+        updateHomeButtonAnswersCall();
         updateCenterClockStatusBar();
         updateVolumeAdjustSound();
         updateDisableReboot();
@@ -153,6 +157,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void updateBackButtonEndsCall() {
         mBackButtonEndsCallPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.BACK_BUTTON_ENDS_CALL, 0) == 1);
+    }
+
+    private void updateHomeButtonAnswersCall() {
+        mHomeButtonAnswersCall.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.HOME_BUTTON_ANSWERS_CALL, 0) == 1);
     }
 
     private void updateCenterClockStatusBar() {
@@ -198,6 +206,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.BACK_BUTTON_ENDS_CALL, mBackButtonEndsCallPref.isChecked() ? 1 : 0);
     }
 
+    private void writeHomeButtonAnswersCall() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.HOME_BUTTON_ANSWERS_CALL, mHomeButtonAnswersCall.isChecked() ? 1 : 0);
+    }
+
     private void writeCenterClockStatusBar() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, mCenterClockStatusBar.isChecked() ? 1 : 0);
         Helpers.restartSystemUI();
@@ -236,6 +248,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeRaisedBrightness();
         } else if (preference == mBackButtonEndsCallPref) {
             writeBackButtonEndsCall();
+        } else if (preference == mHomeButtonAnswersCall) {
+            writeHomeButtonAnswersCall();
         } else if (preference == mCenterClockStatusBar) {
             writeCenterClockStatusBar();
         } else if (preference == mVolumeAdjustSounds) {

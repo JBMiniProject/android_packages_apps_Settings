@@ -44,6 +44,12 @@
         android:defaultValue="false" />
 
     <CheckBoxPreference
+        android:key="pref_home_button_answers_call"
+        android:title="@string/pref_home_button_answers_call_title"
+        android:summary="@string/pref_home_button_answers_call_summary"
+        android:defaultValue="false" />
+
+    <CheckBoxPreference
         android:key="pref_disable_reboot"
         android:title="@string/pref_disable_reboot_title" />
 
