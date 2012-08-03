@@ -47,6 +47,8 @@ import android.os.SystemProperties;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
+import com.android.settings.util.CMDProcessor;
+import com.android.settings.util.Helpers;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -189,7 +191,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void writeCenterClockStatusBar() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, mCenterClockStatusBar.isChecked() ? 1 : 0);
-        restartSystemUI();
+        Helpers.restartSystemUI();
     }
 
     private void writeDisableReboot() {
@@ -210,15 +212,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void writeDisableTitle() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_TITLE, mDisableTitlePref.isChecked() ? 1 : 0);
-    }
-
-
-    private void restartSystemUI() {
-        try {
-            Runtime.getRuntime().exec("pkill -TERM -f  com.android.systemui");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 
