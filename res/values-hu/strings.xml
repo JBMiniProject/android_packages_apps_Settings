@@ -1718,5 +1718,7 @@
     <string name="pref_disable_title_title">Fejléc mutatása</string>
     <string name="pref_center_clock_status_bar_title">Óra középen</string>
     <string name="pref_center_clock_status_bar_summary">A státuszbáron középre igazítja az órát (Újraindítja a SystemUI-t)</string>
+    <string name="pref_volume_adjust_sounds_enable_title">Hangerő váltáskor hang</string>
+    <string name="pref_volume_adjust_sounds_enable_summary">Hangerő gombokkal történő váltáskor engedélyezi a pittyenést</string>
 
 </resources>

@@ -67,6 +67,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private static final String BACK_BUTTON_ENDS_CALL_PROP = "pref_back_button_ends_call";
     private static final String CENTER_CLOCK_STATUS_BAR_PROP = "pref_center_clock_status_bar";
+    private static final String KEY_VOLUME_ADJUST_SOUNDS_PROP = "pref_volume_adjust_sounds";
 
     private static final String DISABLE_REBOOT_PROP = "pref_disable_reboot";
     private static final String DISABLE_SCREENSHOT_PROP = "pref_disable_screenshot";
@@ -81,6 +82,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private CheckBoxPreference mBackButtonEndsCallPref;
     private CheckBoxPreference mCenterClockStatusBar;
+    private CheckBoxPreference mVolumeAdjustSounds;
 
     private CheckBoxPreference mDisableRebootPref;
     private CheckBoxPreference mDisableScreenshotPref;
@@ -106,6 +108,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
         mBackButtonEndsCallPref = (CheckBoxPreference) prefSet.findPreference(BACK_BUTTON_ENDS_CALL_PROP);
         mCenterClockStatusBar = (CheckBoxPreference) prefSet.findPreference(CENTER_CLOCK_STATUS_BAR_PROP);
+        mVolumeAdjustSounds = (CheckBoxPreference) prefSet.findPreference(KEY_VOLUME_ADJUST_SOUNDS_PROP);
+        mVolumeAdjustSounds.setPersistent(false);
 
         mDisableRebootPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_REBOOT_PROP);
         mDisableScreenshotPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_SCREENSHOT_PROP);
@@ -117,6 +121,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         updateRaisedBrightness();
         updateBackButtonEndsCall();
         updateCenterClockStatusBar();
+        updateVolumeAdjustSound();
         updateDisableReboot();
         updateDisableScreenshot();
         updateDisableAirplane();
@@ -152,6 +157,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void updateCenterClockStatusBar() {
         mCenterClockStatusBar.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, 0) == 1);
+    }
+
+    private void updateVolumeAdjustSound() {
+        mVolumeAdjustSounds.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 1) != 0);
     }
 
     private void updateDisableReboot() {
@@ -194,6 +203,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         Helpers.restartSystemUI();
     }
 
+    private void writeVolumeAdjustSound() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, mVolumeAdjustSounds.isChecked() ? 1 : 0);
+    }
+
     private void writeDisableReboot() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_REBOOT, mDisableRebootPref.isChecked() ? 1 : 0);
     }
@@ -225,6 +238,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeBackButtonEndsCall();
         } else if (preference == mCenterClockStatusBar) {
             writeCenterClockStatusBar();
+        } else if (preference == mVolumeAdjustSounds) {
+            writeVolumeAdjustSound();
         } else if (preference == mDisableRebootPref) {
             writeDisableReboot();
         } else if (preference == mDisableScreenshotPref) {

@@ -63,4 +63,10 @@
         android:key="pref_disable_title"
         android:title="@string/pref_disable_title_title" />
 
+    <CheckBoxPreference
+        android:key="pref_volume_adjust_sounds"
+        android:title="@string/pref_volume_adjust_sounds_enable_title"
+        android:summary="@string/pref_volume_adjust_sounds_enable_summary"
+        android:persistent="true" />
+
 </PreferenceScreen>

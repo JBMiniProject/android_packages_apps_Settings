@@ -4790,5 +4790,7 @@
     <string name="pref_disable_title_title">Show Title</string>
     <string name="pref_center_clock_status_bar_title">Center clock</string>
     <string name="pref_center_clock_status_bar_summary">On the status bar aligns the clock to center (Wait for restart SystemUI)</string>
+    <string name="pref_volume_adjust_sounds_enable_title">Volume adjust sound</string>
+    <string name="pref_volume_adjust_sounds_enable_summary">Play sound when adjusting volume with hard keys</string>
 
 </resources>
