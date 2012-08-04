@@ -72,15 +72,7 @@ public class CIDLogoActivity extends Activity {
         tv.setTextSize(1.25f*size);
         tv.setTextColor(0xFFFFFFFF);
         tv.setShadowLayer(4*metrics.density, 0, 2*metrics.density, 0x66000000);
-        tv.setText("CyanogenMod");
-        view.addView(tv, lp);
-   
-        tv = new TextView(this);
-        if (light != null) tv.setTypeface(light);
-        tv.setTextSize(size);
-        tv.setTextColor(0xFFFFFFFF);
-        tv.setShadowLayer(4*metrics.density, 0, 2*metrics.density, 0x66000000);
-        tv.setText(cmversion.replaceAll("(.+?)-.*","$1"));
+        tv.setText("Jelly Bean Mini Project");
         view.addView(tv, lp);
 
         return view;
