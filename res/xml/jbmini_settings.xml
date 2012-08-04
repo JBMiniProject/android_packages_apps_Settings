@@ -19,60 +19,84 @@
         android:key="jbmini_settings"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <CheckBoxPreference
-        android:key="pref_disable_boot_animation"
-        android:title="@string/pref_disable_boot_animation_title"
-        android:summary="@string/pref_disable_boot_animation_summary"
-        android:defaultValue="false" />
+    <PreferenceCategory
+        android:key="statbar"
+        android:title="@string/cat_status_bar">
 
-    <CheckBoxPreference
-        android:key="pref_center_clock_status_bar"
-        android:title="@string/pref_center_clock_status_bar_title"
-        android:summary="@string/pref_center_clock_status_bar_summary"
-        android:defaultValue="false" />
+        <CheckBoxPreference
+            android:key="pref_center_clock_status_bar"
+            android:title="@string/pref_center_clock_status_bar_title"
+            android:summary="@string/pref_center_clock_status_bar_summary"
+            android:defaultValue="false" />
 
-    <CheckBoxPreference
-        android:key="pref_raisedbrightness"
-        android:title="@string/pref_raised_brightness_title"
-        android:summary="@string/pref_raised_brightness_summary"
-        android:defaultValue="false" />
+    </PreferenceCategory>
 
-    <CheckBoxPreference
-        android:key="pref_back_button_ends_call"
-        android:title="@string/pref_back_button_ends_call_title"
-        android:summary="@string/pref_back_button_ends_call_summary"
-        android:defaultValue="false" />
+    <PreferenceCategory
+        android:key="hardkeys"
+        android:title="@string/cat_hard_keys">
 
-    <CheckBoxPreference
-        android:key="pref_home_button_answers_call"
-        android:title="@string/pref_home_button_answers_call_title"
-        android:summary="@string/pref_home_button_answers_call_summary"
-        android:defaultValue="false" />
+        <CheckBoxPreference
+            android:key="pref_back_button_ends_call"
+            android:title="@string/pref_back_button_ends_call_title"
+            android:summary="@string/pref_back_button_ends_call_summary"
+            android:defaultValue="false" />
 
-    <CheckBoxPreference
-        android:key="pref_disable_reboot"
-        android:title="@string/pref_disable_reboot_title" />
+        <CheckBoxPreference
+            android:key="pref_home_button_answers_call"
+            android:title="@string/pref_home_button_answers_call_title"
+            android:summary="@string/pref_home_button_answers_call_summary"
+            android:defaultValue="false" />
 
-    <CheckBoxPreference
-        android:key="pref_disable_screenshot"
-        android:title="@string/pref_disable_screenshot_title" />
-
-    <CheckBoxPreference
-        android:key="pref_disable_airplane"
-        android:title="@string/pref_disable_airplane_title" />
-
-    <CheckBoxPreference
-        android:key="pref_disable_ringer"
-        android:title="@string/pref_disable_ringer_title" />
-
-    <CheckBoxPreference
-        android:key="pref_disable_title"
-        android:title="@string/pref_disable_title_title" />
-
-    <CheckBoxPreference
+            <CheckBoxPreference
         android:key="pref_volume_adjust_sounds"
         android:title="@string/pref_volume_adjust_sounds_enable_title"
         android:summary="@string/pref_volume_adjust_sounds_enable_summary"
         android:persistent="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="globalactions"
+        android:title="@string/cat_globalactions">
+
+        <CheckBoxPreference
+            android:key="pref_disable_title"
+            android:title="@string/pref_disable_title_title" />
+
+        <CheckBoxPreference
+            android:key="pref_disable_reboot"
+            android:title="@string/pref_disable_reboot_title" />
+
+        <CheckBoxPreference
+            android:key="pref_disable_screenshot"
+            android:title="@string/pref_disable_screenshot_title" />
+
+        <CheckBoxPreference
+            android:key="pref_disable_airplane"
+            android:title="@string/pref_disable_airplane_title" />
+
+        <CheckBoxPreference
+            android:key="pref_disable_ringer"
+            android:title="@string/pref_disable_ringer_title" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="system"
+        android:title="@string/cat_system">
+
+        <CheckBoxPreference
+            android:key="pref_disable_boot_animation"
+            android:title="@string/pref_disable_boot_animation_title"
+            android:summary="@string/pref_disable_boot_animation_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="pref_raisedbrightness"
+            android:title="@string/pref_raised_brightness_title"
+            android:summary="@string/pref_raised_brightness_summary"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

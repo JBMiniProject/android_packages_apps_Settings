@@ -4800,5 +4800,9 @@
     <string name="pref_home_button_answers_call_title">Home button answers call</string>
     <string name="pref_home_button_answers_call_summary">When pressed the Home button when incoming call, the actual call answered</string>
     <string name="header_category_jbmp">Jelly Bean Mini Project</string>
+    <string name="cat_status_bar">Status bar</string>
+    <string name="cat_hard_keys">HW Key actions</string>
+    <string name="cat_globalactions">Reboot dialog</string>
+    <string name="cat_system">System properties</string>
 
 </resources>
