@@ -195,60 +195,47 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     /* Write functions */
     private void writeDisableBootAnimation() {
         SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
-        if (DEBUG) Log.i(TAG, "Boot animation: " + mDisableBootanimPref.isChecked() ? "disabled" : "enabled");
     }
 
     private void writeRaisedBrightness() {
         SystemProperties.set(RAISED_BRIGHTNESS_PERSIST_PROP, mRaisedBrightnessPref.isChecked() ? "1" : "0");
         Utils.fileWriteOneLine("/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode", mRaisedBrightnessPref.isChecked() ? "i2c_pwm" : "i2c_pwm_als");
-        if (DEBUG) Log.i(TAG, "Raised brightness: " + mRaisedBrightnessPref.isChecked() ? "enabled" : "disabled");
-    }
-
+}
     private void writeBackButtonEndsCall() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.BACK_BUTTON_ENDS_CALL, mBackButtonEndsCallPref.isChecked() ? 1 : 0);
-        if (DEBUG) Log.i(TAG, "Back button ends call: " + mBackButtonEndsCallPref.isChecked() ? "enabled" : "disabled");
     }
 
     private void writeHomeButtonAnswersCall() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.HOME_BUTTON_ANSWERS_CALL, mHomeButtonAnswersCall.isChecked() ? 1 : 0);
-        if (DEBUG) Log.i(TAG, "Home button answers call: " + mHomeButtonAnswersCall.isChecked() ? "enabled" : "disabled");
     }
 
     private void writeCenterClockStatusBar() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, mCenterClockStatusBar.isChecked() ? 1 : 0);
-        if (DEBUG) Log.i(TAG, "Center clock on status bar: " + mCenterClockStatusBar.isChecked() ? "enabled" : "disabled");
         Helpers.restartSystemUI();
-        if (DEBUG) Log.i(TAG, "Restarting SystemUI");
     }
 
     private void writeVolumeAdjustSound() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, mVolumeAdjustSounds.isChecked() ? 1 : 0);
-        if (DEBUG) Log.i(TAG, "Volume adjust sound: " + mVolumeAdjustSounds.isChecked() ? "enabled" : "disabled");
     }
 
     private void writeDisableReboot() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_REBOOT, mDisableRebootPref.isChecked() ? 1 : 0);
-        if (DEBUG) Log.i(TAG, "Show Reboot option in Reboot Dialog: " + mDisableRebootPref.isChecked() ? "enabled" : "disabled");
     }
 
     private void writeDisableScreenshot() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_SCREENSHOT, mDisableScreenshotPref.isChecked() ? 1 : 0);
-        if (DEBUG) Log.i(TAG, "Show Screenshot option in Reboot Dialog: " + mDisableScreenshotPref.isChecked() ? "enabled" : "disabled");
     }
 
     private void writeDisableAirplane() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_AIRPLANE, mDisableAirplanePref.isChecked() ? 1 : 0);
-        if (DEBUG) Log.i(TAG, "Show Airplane mode option in Reboot Dialog: " + mDisableAirplanePref.isChecked() ? "enabled" : "disabled");
     }
 
     private void writeDisableRinger() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_RINGER, mDisableRingerPref.isChecked() ? 1 : 0);
-        if (DEBUG) Log.i(TAG, "Show Ringer mode options in Reboot Dialog: " + mDisableRingerPref.isChecked() ? "enabled" : "disabled");
     }
 
     private void writeDisableTitle() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_TITLE, mDisableTitlePref.isChecked() ? 1 : 0);
-        if (DEBUG) Log.i(TAG, "Show Reboot Dialog title: " + mDisableTitlePref.isChecked() ? "enabled" : "disabled");
     }
 
 
