@@ -120,6 +120,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mDisableRingerPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_RINGER_PROP);
         mDisableTitlePref = (CheckBoxPreference) prefSet.findPreference(DISABLE_TITLE_PROP);
 
+        if (Settings.System.getInt(getActivity().getContentResolver(), Settings.System.ANSWERS_CALL_TRICK, 0) < 5) {
+            prefSet..removePreference(findPreference(HOME_BUTTON_ANSWERS_CALL_PROP));
+        }
+
         updateDisableBootAnimation();
         updateRaisedBrightness();
         updateBackButtonEndsCall();

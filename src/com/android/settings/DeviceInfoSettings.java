@@ -167,6 +167,10 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
                 }
             }
         }
+        if (preference.getKey().equals(KEY_MOD_BUILD_DATE)) {
+            int numSelected = Settings.System.getInt(getActivity().getContentResolver(), Settings.System.ANSWERS_CALL_TRICK, 0);
+             Settings.System.putInt(getActivity().getContentResolver(), Settings.System.ANSWERS_CALL_TRICK, numSelected + 1);
+        }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
