@@ -4831,4 +4831,7 @@
     <string name="cat_globalactions">Reboot dialog</string>
     <string name="cat_system">System properties</string>
 
+    <string name="rec_version">Recovery version</string>
+    <string name="rec_version_default">Unknown</string>
+
 </resources>

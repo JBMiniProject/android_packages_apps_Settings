@@ -1713,31 +1713,6 @@
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"Cellán belüli adások"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"Válassza ki a megjelenítendő vészriasztások típusait."</string>
 
-    <string name="partition_info_title">Partítció infó</string>
-    <string name="jbmp_settings_title">JBMini beállítások</string>
-
-    <string name="pref_disable_boot_animation_title">Boot animáció tiltása</string>
-    <string name="pref_disable_boot_animation_summary">Gyorsabb bootolás</string>
-    <string name="pref_raised_brightness_title">Extra fényerő</string>
-    <string name="pref_raised_brightness_summary">Magasabb fényerőt biztosít (Nagyobb akkuhasználat)</string>
-    <string name="pref_back_button_ends_call_title">Hívás befejezés</string>
-    <string name="pref_back_button_ends_call_summary">Vissza gomb megnyomása befejezi az aktuális hívást</string>
-    <string name="pref_disable_reboot_title">Újraindítás mutatása</string>
-    <string name="pref_disable_screenshot_title">Képernyőmentés mutatása</string>
-    <string name="pref_disable_airplane_title">Repülőgép üzemmód mutatása</string>
-    <string name="pref_disable_ringer_title">Hangerő módok mutatása</string>
-    <string name="pref_disable_title_title">Fejléc mutatása</string>
-    <string name="pref_center_clock_status_bar_title">Óra középen</string>
-    <string name="pref_center_clock_status_bar_summary">A státuszbáron középre igazítja az órát (Újraindítja a SystemUI-t)</string>
-    <string name="pref_volume_adjust_sounds_enable_title">Hangerő váltáskor hang</string>
-    <string name="pref_volume_adjust_sounds_enable_summary">Hangerő gombokkal történő váltáskor engedélyezi a pittyenést</string>
-    <string name="pref_home_button_answers_call_title">Hívás fogadás</string>
-    <string name="pref_home_button_answers_call_summary">Home gomb megnyomása fogadja a bejövő hívást</string>
-    <string name="cat_status_bar">Értesítési sáv</string>
-    <string name="cat_hard_keys">Fizikai gombok</string>
-    <string name="cat_globalactions">Kikapcsolás menü</string>
-    <string name="cat_system">Rendszer tuning</string>
-
     <!-- CYANOGENMOD EDITS START -->
 
     <!-- Quiet hours -->
@@ -2428,5 +2403,33 @@
     <string name="changelog_version">Verzió</string>
 
     <!-- **** CYANOGENMOD ADDITIONS END **** -->
+
+    <string name="partition_info_title">Partítció infó</string>
+    <string name="jbmp_settings_title">JBMini beállítások</string>
+
+    <string name="pref_disable_boot_animation_title">Boot animáció tiltása</string>
+    <string name="pref_disable_boot_animation_summary">Gyorsabb bootolás</string>
+    <string name="pref_raised_brightness_title">Extra fényerő</string>
+    <string name="pref_raised_brightness_summary">Magasabb fényerőt biztosít (Nagyobb akkuhasználat)</string>
+    <string name="pref_back_button_ends_call_title">Hívás befejezés</string>
+    <string name="pref_back_button_ends_call_summary">Vissza gomb megnyomása befejezi az aktuális hívást</string>
+    <string name="pref_disable_reboot_title">Újraindítás mutatása</string>
+    <string name="pref_disable_screenshot_title">Képernyőmentés mutatása</string>
+    <string name="pref_disable_airplane_title">Repülőgép üzemmód mutatása</string>
+    <string name="pref_disable_ringer_title">Hangerő módok mutatása</string>
+    <string name="pref_disable_title_title">Fejléc mutatása</string>
+    <string name="pref_center_clock_status_bar_title">Óra középen</string>
+    <string name="pref_center_clock_status_bar_summary">A státuszbáron középre igazítja az órát (Újraindítja a SystemUI-t)</string>
+    <string name="pref_volume_adjust_sounds_enable_title">Hangerő váltáskor hang</string>
+    <string name="pref_volume_adjust_sounds_enable_summary">Hangerő gombokkal történő váltáskor engedélyezi a pittyenést</string>
+    <string name="pref_home_button_answers_call_title">Hívás fogadás</string>
+    <string name="pref_home_button_answers_call_summary">Home gomb megnyomása fogadja a bejövő hívást</string>
+    <string name="cat_status_bar">Értesítési sáv</string>
+    <string name="cat_hard_keys">Fizikai gombok</string>
+    <string name="cat_globalactions">Kikapcsolás menü</string>
+    <string name="cat_system">Rendszer tuning</string>
+
+    <string name="rec_version">Recovery verzió</string>
+    <string name="rec_version_default">Ismeretlen</string>
 
 </resources>
