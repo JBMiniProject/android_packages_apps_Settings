@@ -38,11 +38,6 @@
                 android:persistent="false"/>
 
         <CheckBoxPreference
-                android:key="toggle_lock_screen_rotation_preference"
-                android:title="@string/accelerometer_title"
-                android:persistent="false"/>
-
-        <CheckBoxPreference
                 android:key="toggle_speak_password_preference"
                 android:title="@string/accessibility_speak_password_title"
                 android:persistent="false"/>
