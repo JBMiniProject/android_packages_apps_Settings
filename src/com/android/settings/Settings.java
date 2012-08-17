@@ -39,9 +39,6 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.INetworkManagementService;
-import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.os.UserId;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -413,17 +410,6 @@ public class Settings extends PreferenceActivity
                 // Remove Bluetooth Settings if Bluetooth service is not available.
                 if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH)) {
                     target.remove(header);
-                }
-            } else if (id == R.id.data_usage_settings) {
-                // Remove data usage when kernel module not enabled
-                final INetworkManagementService netManager = INetworkManagementService.Stub
-                        .asInterface(ServiceManager.getService(Context.NETWORKMANAGEMENT_SERVICE));
-                try {
-                    if (!netManager.isBandwidthControlEnabled()) {
-                        target.remove(header);
-                    }
-                } catch (RemoteException e) {
-                    // ignored
                 }
             } else if (id == R.id.account_settings) {
                 int headerIndex = i + 1;
