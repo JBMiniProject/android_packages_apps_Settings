@@ -23,11 +23,9 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.IWindowManager;
 
