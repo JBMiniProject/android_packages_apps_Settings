@@ -4820,9 +4820,6 @@
     <string name="stylus_icon_enabled_title">Show icon when using stylus</string>
     <string name="stylus_icon_enabled_summary">Show the pointer icon when hovering or drawing with the stylus</string>
 
-    <!-- Launches Dev Tools -->
-    <string name="development_tools_title">Launch Tools</string>
-
     <!-- **** CYANOGENMOD ADDITIONS END **** -->
 
     <!-- **** JBMINI PROJECT ADDITIONS START **** -->
