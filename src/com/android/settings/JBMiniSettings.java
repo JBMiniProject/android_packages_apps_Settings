@@ -16,8 +16,6 @@
 
 package com.android.settings;
 
-import java.io.IOException;
-
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -37,10 +35,12 @@ import android.os.Handler;
 import android.util.Log;
 import android.net.Uri;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.text.Spannable;
 import android.view.IWindowManager;
 import android.os.ServiceManager;
 import android.os.IBinder;
 import android.os.IPowerManager;
+import android.widget.EditText;
 
 import android.provider.Settings;
 import android.os.SystemProperties;
@@ -76,6 +76,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String DISABLE_RINGER_PROP = "pref_disable_ringer";
     private static final String DISABLE_TITLE_PROP = "pref_disable_title";
 
+    private static final String CUSTOM_CARRIER_LABEL_PROP = "pref_carrier_label";
+
     private final Configuration mCurrentConfig = new Configuration();
 
     private CheckBoxPreference mDisableBootanimPref;
@@ -91,6 +93,9 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private CheckBoxPreference mDisableAirplanePref;
     private CheckBoxPreference mDisableRingerPref;
     private CheckBoxPreference mDisableTitlePref;
+
+    private Preference mCustomCarrierLabel;
+    private String mCustomCarrierLabelSummary = null;
 
     private Context mContext;
 
@@ -120,6 +125,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mDisableRingerPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_RINGER_PROP);
         mDisableTitlePref = (CheckBoxPreference) prefSet.findPreference(DISABLE_TITLE_PROP);
 
+        mCustomCarrierLabel = prefSet.findPreference(CUSTOM_CARRIER_LABEL_PROP);
+
         updateDisableBootAnimation();
         updateRaisedBrightness();
         updateBackButtonEndsCall();
@@ -131,6 +138,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         updateDisableAirplane();
         updateDisableRinger();
         updateDisableTitle();
+        updateCustomCarrierLabel();
     }
 
 
@@ -191,6 +199,15 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mDisableTitlePref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_TITLE, 1) == 1);
     }
 
+    private void updateCustomCarrierLabel() {
+        mCustomCarrierLabelSummary = Settings.System.getString(getActivity().getContentResolver(), Settings.System.CUSTOM_CARRIER_LABEL);
+        if (mCustomCarrierLabelSummary == null || mCustomCarrierLabelSummary.length() == 0) {
+            mCustomCarrierLabel.setSummary(R.string.pref_carrier_label_notset);
+        } else {
+            mCustomCarrierLabel.setSummary(mCustomCarrierLabelSummary);
+        }
+    }
+
 
     /* Write functions */
     private void writeDisableBootAnimation() {
@@ -238,6 +255,31 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_TITLE, mDisableTitlePref.isChecked() ? 1 : 0);
     }
 
+    private void writeCustomCarrierLabel() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+
+        alert.setTitle(R.string.pref_carrier_label_title);
+        alert.setMessage(R.string.pref_carrier_label_subhead);
+
+                final EditText input = new EditText(getActivity());
+
+                input.setText(mCustomCarrierLabelSummary != null ? mCustomCarrierLabelSummary : "");
+                alert.setView(input);
+                alert.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        String value = ((Spannable) input.getText()).toString();
+                        Settings.System.putString(getActivity().getContentResolver(), Settings.System.CUSTOM_CARRIER_LABEL, value);
+                        updateCustomCarrierLabel();
+                    }
+                });
+
+                alert.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    }
+                });
+            alert.show();
+    }
+
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
@@ -263,6 +305,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeDisableRinger();
         } else if (preference == mDisableTitlePref) {
             writeDisableTitle();
+        } else if (preference == mCustomCarrierLabel) {
+            writeCustomCarrierLabel();
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);

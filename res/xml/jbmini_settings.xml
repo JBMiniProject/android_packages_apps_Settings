@@ -99,4 +99,14 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="lockscreen"
+        android:title="@string/cat_lockscreen">
+
+        <Preference
+            android:key="pref_carrier_label"
+            android:title="@string/pref_carrier_label_title" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>

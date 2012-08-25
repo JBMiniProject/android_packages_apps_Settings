@@ -4852,11 +4852,16 @@
     <string name="pref_volume_adjust_sounds_enable_summary">Play sound when adjusting volume with hard keys</string>
     <string name="pref_home_button_answers_call_title">Home button answers call</string>
     <string name="pref_home_button_answers_call_summary">When pressed the Home button when incoming call, the actual call answered</string>
+    <string name="pref_carrier_label_title">Custom carrier label</string>
+    <string name="pref_carrier_label_subhead">Please enter a new one!</string>
+    <string name="pref_carrier_label_notset">Custom label currently not set</string>
+
     <string name="header_category_jbmp">JB MINI PROJECT</string>
     <string name="cat_status_bar">STATUSBAR</string>
     <string name="cat_hard_keys">HW KEY ACTIONS</string>
     <string name="cat_globalactions">POWER MENU</string>
     <string name="cat_system">SYSTEM</string>
+    <string name="cat_lockscreen">LOCKSCREEN</string>
 
     <string name="rec_version">Recovery version</string>
     <string name="rec_version_default">Unknown</string>
