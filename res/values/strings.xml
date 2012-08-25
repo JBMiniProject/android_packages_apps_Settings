@@ -4860,6 +4860,16 @@
 
     <string name="rec_version">Recovery version</string>
     <string name="rec_version_default">Unknown</string>
+
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">Color Picker</string>
+    <string name="press_color_to_apply">Press on Color to apply</string>
+    <string name="arrow_right">-</string>
+    <string name="arrow_down">|</string>
+    <string name="hex">Hex:</string>
+    <string name="hex_hint">#FF000000</string>
+    <string name="set">Set</string>
+    <string name="ics_color">Holo</string>
     <!-- **** JBMINI PROJECT ADDITIONS END **** -->
 
 </resources>
