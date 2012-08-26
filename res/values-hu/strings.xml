@@ -2437,6 +2437,12 @@
     <!-- Power menu screenshot -->
     <string name="power_menu_screenshot_title">Képernyőmentés a kikapcs. menüben</string>
 
+    <!--- Volume key cursor control -->
+    <string name="volume_key_cursor_control_title">Kurzor mozgatása a hangerő gombokkal</string>
+    <string name="volume_key_cursor_control_off">Letiltva</string>
+    <string name="volume_key_cursor_control_on">Bekapcsolva (fel-balra, le-jobbra)</string>
+    <string name="volume_key_cursor_control_on_reverse">Bekapcsolva (fel-jobbra, le-balra)</string>
+
     <!-- **** CYANOGENMOD ADDITIONS END **** -->
 
     <!-- **** JBMINI PROJECT ADDITIONS START **** -->
