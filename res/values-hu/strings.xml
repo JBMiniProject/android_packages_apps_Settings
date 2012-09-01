@@ -2231,10 +2231,14 @@
     <string name="cpu_set_on_boot">Bekapcsoláskor érvénybe lép</string>
     <string name="cpu_set_on_boot_summary">Processzor beállítása indításkor</string>
 
-    <!-- Performance Settings : I/O scheduler settings -->
+    <!-- Performance Settings : I/O scheduler settings title -->
     <string name="io_scheds_title">I/O ütemező</string>
-    <string name="io_scheds_summary">I/O ütemező váltása</string>
+    <!-- Performance Settings : I/O scheduler settings summary. -->
+    <string name="io_scheds_summary">I/O módosítása</string>
+
+    <!-- Performance Settings : I/O scheduler settings sub items -->
     <string name="io_sched_title">I/O ütemező</string>
+    <string name="io_sched_summary">%S</string>
     <string name="io_sched_set_on_boot">Bekapcsoláskor érvénybe lép</string>
     <string name="io_sched_set_on_boot_summary">I/O ütemező beállítása indításkor</string>
 
