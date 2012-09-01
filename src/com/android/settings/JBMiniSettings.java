@@ -64,6 +64,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String RAISED_BRIGHTNESS = "pref_raisedbrightness";
     private static final String RAISED_BRIGHTNESS_PROP = "sys.raisedbrightness";
     private static final String RAISED_BRIGHTNESS_PERSIST_PROP = "persist.sys.raisedbrightness";
+    private static final String DISABLE_BOOTAUDIO_PROP = "pref_disable_bootaudio";
 
     private static final String BACK_BUTTON_ENDS_CALL_PROP = "pref_back_button_ends_call";
     private static final String HOME_BUTTON_ANSWERS_CALL_PROP = "pref_home_button_answers_call";
@@ -82,6 +83,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private CheckBoxPreference mDisableBootanimPref;
     private CheckBoxPreference mRaisedBrightnessPref;
+    private CheckBoxPreference mDisableBootAudioPref;
 
     private CheckBoxPreference mBackButtonEndsCallPref;
     private CheckBoxPreference mHomeButtonAnswersCall;
@@ -112,6 +114,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
         mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
         mRaisedBrightnessPref = (CheckBoxPreference) prefSet.findPreference(RAISED_BRIGHTNESS);
+        mDisableBootAudioPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTAUDIO_PROP);
 
         mBackButtonEndsCallPref = (CheckBoxPreference) prefSet.findPreference(BACK_BUTTON_ENDS_CALL_PROP);
         mHomeButtonAnswersCall = (CheckBoxPreference) prefSet.findPreference(HOME_BUTTON_ANSWERS_CALL_PROP);
@@ -129,6 +132,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
         updateDisableBootAnimation();
         updateRaisedBrightness();
+        updateDisableBootAudio();
         updateBackButtonEndsCall();
         updateHomeButtonAnswersCall();
         updateCenterClockStatusBar();
@@ -161,6 +165,15 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void updateRaisedBrightness() {
         mRaisedBrightnessPref.setChecked("1".equals(SystemProperties.get(RAISED_BRIGHTNESS_PERSIST_PROP, "0")));
+    }
+
+    private void updateDisableBootAudio() {
+        if(!new File("/system/media/boot_audio.mp3").exists() && !new File("/system/media/boot_audio.jbmp").exists() ) {
+            mDisableBootAudioPref.setEnabled(false);
+            mDisableBootAudioPref.setSummary(R.string.pref_disable_bootaudio_summary_disabled);
+        } else {
+            mDisableBootAudioPref.setChecked(!new File("/system/media/boot_audio.mp3").exists());
+        }
     }
 
     private void updateBackButtonEndsCall() {
@@ -217,7 +230,21 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private void writeRaisedBrightness() {
         SystemProperties.set(RAISED_BRIGHTNESS_PERSIST_PROP, mRaisedBrightnessPref.isChecked() ? "1" : "0");
         Utils.fileWriteOneLine("/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode", mRaisedBrightnessPref.isChecked() ? "i2c_pwm" : "i2c_pwm_als");
-}
+    }
+
+    private void writeDisableBootAudio() {
+        boolean status = mDisableBootAudioPref.isChecked();
+        if (status) {
+            Helpers.getMount("rw");
+            new CMDProcessor().su.runWaitFor("mv /system/media/boot_audio.mp3 /system/media/boot_audio.jbmp");
+            Helpers.getMount("ro");
+        } else {
+            Helpers.getMount("rw");
+            new CMDProcessor().su.runWaitFor("mv /system/media/boot_audio.jbmp /system/media/boot_audio.mp3");
+            Helpers.getMount("ro");
+        }
+    }
+
     private void writeBackButtonEndsCall() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.BACK_BUTTON_ENDS_CALL, mBackButtonEndsCallPref.isChecked() ? 1 : 0);
     }
@@ -287,6 +314,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeDisableBootAnimation();
         } else if (preference == mRaisedBrightnessPref) {
             writeRaisedBrightness();
+        } else if (preference == mDisableBootAudioPref) {
+            writeDisableBootAudio();
         } else if (preference == mBackButtonEndsCallPref) {
             writeBackButtonEndsCall();
         } else if (preference == mHomeButtonAnswersCall) {

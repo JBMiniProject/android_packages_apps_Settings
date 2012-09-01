@@ -2497,6 +2497,8 @@
     <string name="pref_carrier_label_title">Egyéni szolgáltató szöveg</string>
     <string name="pref_carrier_label_subhead">Írj be egy új szöveget!</string>
     <string name="pref_carrier_label_notset">Nincs beállítva egyedi szöveg</string>
+    <string name="pref_disable_bootaudio_title">Boot audió tiltása</string>
+    <string name="pref_disable_bootaudio_summary_disabled">Az engedélyezéshez lennie kell egy boot_audio.mp3 nevű filenak a \nsystem/media könyvtárban</string>
 
     <string name="cat_status_bar">ÉRTESÍTÉSI SÁV</string>
     <string name="cat_hard_keys">FIZIKAI GOMBOK</string>
