@@ -4892,6 +4892,7 @@
     <string name="pref_carrier_label_notset">Custom label currently not set</string>
     <string name="pref_disable_bootaudio_title">Disable boot audio</string>
     <string name="pref_disable_bootaudio_summary_disabled">To enable boot audio, you must have an MP3 file at \n/system/media/boot_audio.mp3</string>
+    <string name="pref_clock_color_title">Clock color</string>
 
     <string name="header_category_jbmp">JB MINI PROJECT</string>
     <string name="cat_status_bar">STATUSBAR</string>

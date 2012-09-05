@@ -54,6 +54,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
+
 public class JBMiniSettings extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
 
     private static final String TAG = "JBMP_Settings";
@@ -79,6 +81,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private static final String CUSTOM_CARRIER_LABEL_PROP = "pref_carrier_label";
 
+    private static final String CLOCK_COLOR_PICKER_PROP = "pref_clock_color";
+
     private final Configuration mCurrentConfig = new Configuration();
 
     private CheckBoxPreference mDisableBootanimPref;
@@ -98,6 +102,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private Preference mCustomCarrierLabel;
     private String mCustomCarrierLabelSummary = null;
+
+    private ColorPickerPreference mClockColorPicker;
 
     private Context mContext;
 
@@ -129,6 +135,9 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mDisableTitlePref = (CheckBoxPreference) prefSet.findPreference(DISABLE_TITLE_PROP);
 
         mCustomCarrierLabel = prefSet.findPreference(CUSTOM_CARRIER_LABEL_PROP);
+
+        mClockColorPicker = (ColorPickerPreference) prefSet.findPreference(CLOCK_COLOR_PICKER_PROP);
+        mClockColorPicker.setOnPreferenceChangeListener(this);
 
         updateDisableBootAnimation();
         updateRaisedBrightness();
@@ -344,6 +353,13 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (preference == mClockColorPicker) {
+            String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_CLOCK_COLOR, intHex);
+        }
+
         return false;
     }
 }
