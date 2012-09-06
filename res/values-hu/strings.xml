@@ -2475,6 +2475,7 @@
     <string name="pref_disable_bootaudio_title">Boot audió tiltása</string>
     <string name="pref_disable_bootaudio_summary_disabled">Az engedélyezéshez lennie kell egy boot_audio.mp3 nevű filenak a \nsystem/media könyvtárban</string>
     <string name="pref_clock_color_title">Óra színe</string>
+    <string name="pref_lockscreen_text_color_title">Zárképernyő szöveg színe</string>
 
     <string name="cat_status_bar">ÉRTESÍTÉSI SÁV</string>
     <string name="cat_hard_keys">FIZIKAI GOMBOK</string>

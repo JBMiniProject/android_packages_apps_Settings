@@ -116,6 +116,11 @@
             android:key="pref_carrier_label"
             android:title="@string/pref_carrier_label_title" />
 
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="pref_lockscreen_text_color"
+            android:title="@string/pref_lockscreen_text_color_title"
+            android:defaultValue="#ffffffff" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

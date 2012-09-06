@@ -82,6 +82,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String CUSTOM_CARRIER_LABEL_PROP = "pref_carrier_label";
 
     private static final String CLOCK_COLOR_PICKER_PROP = "pref_clock_color";
+    private static final String LOCKSCREEN_TEXT_COLOR_PROP = "pref_lockscreen_text_color";
 
     private final Configuration mCurrentConfig = new Configuration();
 
@@ -104,6 +105,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private String mCustomCarrierLabelSummary = null;
 
     private ColorPickerPreference mClockColorPicker;
+    private ColorPickerPreference mLockscreenTextColor;
 
     private Context mContext;
 
@@ -138,6 +140,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
         mClockColorPicker = (ColorPickerPreference) prefSet.findPreference(CLOCK_COLOR_PICKER_PROP);
         mClockColorPicker.setOnPreferenceChangeListener(this);
+        mLockscreenTextColor = (ColorPickerPreference) prefSet.findPreference(LOCKSCREEN_TEXT_COLOR_PROP);
+        mLockscreenTextColor.setOnPreferenceChangeListener(this);
 
         updateDisableBootAnimation();
         updateRaisedBrightness();
@@ -358,8 +362,13 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             preference.setSummary(hex);
             int intHex = ColorPickerPreference.convertToColorInt(hex);
             Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_CLOCK_COLOR, intHex);
+        } else if (preference == mLockscreenTextColor) {
+            String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue
+            )));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_CUSTOM_TEXT_COLOR, intHex);
         }
-
         return false;
     }
 }
