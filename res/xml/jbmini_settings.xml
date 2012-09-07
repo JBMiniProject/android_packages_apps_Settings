@@ -101,6 +101,10 @@
             android:title="@string/pref_disable_bootaudio_title" />
 
         <CheckBoxPreference
+            android:key="pref_disable_bugmailer"
+            android:title="@string/pref_disable_bugmailer_title" />
+
+        <CheckBoxPreference
             android:key="pref_raisedbrightness"
             android:title="@string/pref_raised_brightness_title"
             android:summary="@string/pref_raised_brightness_summary"

@@ -4894,6 +4894,7 @@
     <string name="pref_disable_bootaudio_summary_disabled">To enable boot audio, you must have an MP3 file at \n/system/media/boot_audio.mp3</string>
     <string name="pref_clock_color_title">Clock color</string>
     <string name="pref_lockscreen_text_color_title">Lockscreen text color</string>
+    <string name="pref_disable_bugmailer_title">Disable bugmailer</string>
 
     <string name="header_category_jbmp">JB MINI PROJECT</string>
     <string name="cat_status_bar">STATUSBAR</string>

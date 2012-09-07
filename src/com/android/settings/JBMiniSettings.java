@@ -67,6 +67,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String RAISED_BRIGHTNESS_PROP = "sys.raisedbrightness";
     private static final String RAISED_BRIGHTNESS_PERSIST_PROP = "persist.sys.raisedbrightness";
     private static final String DISABLE_BOOTAUDIO_PROP = "pref_disable_bootaudio";
+    private static final String DISABLE_BUGMAILER_PROP = "pref_disable_bugmailer";
 
     private static final String BACK_BUTTON_ENDS_CALL_PROP = "pref_back_button_ends_call";
     private static final String HOME_BUTTON_ANSWERS_CALL_PROP = "pref_home_button_answers_call";
@@ -89,6 +90,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private CheckBoxPreference mDisableBootanimPref;
     private CheckBoxPreference mRaisedBrightnessPref;
     private CheckBoxPreference mDisableBootAudioPref;
+    private CheckBoxPreference mDisableBugmailerPref;
 
     private CheckBoxPreference mBackButtonEndsCallPref;
     private CheckBoxPreference mHomeButtonAnswersCall;
@@ -123,6 +125,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
         mRaisedBrightnessPref = (CheckBoxPreference) prefSet.findPreference(RAISED_BRIGHTNESS);
         mDisableBootAudioPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTAUDIO_PROP);
+        mDisableBugmailerPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BUGMAILER_PROP);
 
         mBackButtonEndsCallPref = (CheckBoxPreference) prefSet.findPreference(BACK_BUTTON_ENDS_CALL_PROP);
         mHomeButtonAnswersCall = (CheckBoxPreference) prefSet.findPreference(HOME_BUTTON_ANSWERS_CALL_PROP);
@@ -146,6 +149,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         updateDisableBootAnimation();
         updateRaisedBrightness();
         updateDisableBootAudio();
+        updateDisableBugmailer();
         updateBackButtonEndsCall();
         updateHomeButtonAnswersCall();
         updateCenterClockStatusBar();
@@ -187,6 +191,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         } else {
             mDisableBootAudioPref.setChecked(!new File("/system/media/boot_audio.mp3").exists());
         }
+    }
+
+    private void updateDisableBugmailer() {
+        mDisableBugmailerPref.setChecked(!new File("/system/bin/bugmailer.sh").exists());
     }
 
     private void updateBackButtonEndsCall() {
@@ -254,6 +262,19 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         } else {
             Helpers.getMount("rw");
             new CMDProcessor().su.runWaitFor("mv /system/media/boot_audio.jbmp /system/media/boot_audio.mp3");
+            Helpers.getMount("ro");
+        }
+    }
+
+    private void writeDisableBugmailer() {
+        boolean status = mDisableBugmailerPref.isChecked();
+        if (status) {
+            Helpers.getMount("rw");
+            new CMDProcessor().su.runWaitFor("mv /system/bin/bugmailer.sh /system/bin/bugmailer.jbmp");
+            Helpers.getMount("ro");
+        } else {
+            Helpers.getMount("rw");
+            new CMDProcessor().su.runWaitFor("mv /system/bin/bugmailer.jbmp /system/bin/bugmailer.sh");
             Helpers.getMount("ro");
         }
     }
@@ -329,6 +350,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeRaisedBrightness();
         } else if (preference == mDisableBootAudioPref) {
             writeDisableBootAudio();
+        } else if (preference == mDisableBugmailerPref) {
+            writeDisableBugmailer();
         } else if (preference == mBackButtonEndsCallPref) {
             writeBackButtonEndsCall();
         } else if (preference == mHomeButtonAnswersCall) {
