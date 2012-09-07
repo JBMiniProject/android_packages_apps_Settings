@@ -2473,7 +2473,7 @@
     <string name="pref_carrier_label_subhead">Írj be egy új szöveget!</string>
     <string name="pref_carrier_label_notset">Nincs beállítva egyedi szöveg</string>
     <string name="pref_disable_bootaudio_title">Boot audió tiltása</string>
-    <string name="pref_disable_bootaudio_summary_disabled">Az engedélyezéshez lennie kell egy boot_audio.mp3 nevű filenak a \nsystem/media könyvtárban</string>
+    <string name="pref_disable_bootaudio_summary_disabled">Az engedélyezéshez lennie kell egy boot_audio.mp3 nevű filenak a system/media könyvtárban</string>
     <string name="pref_clock_color_title">Óra színe</string>
     <string name="pref_lockscreen_text_color_title">Zárképernyő szöveg színe</string>
 
@@ -2485,6 +2485,17 @@
 
     <string name="rec_version">Recovery verzió</string>
     <string name="rec_version_default">Ismeretlen</string>
+
+     <!-- A2SD -->
+    <string name="a2sd_settings_title">A2SD (ext) beállítások</string>
+    <string name="a2sd_title">A2SD (ext) beállítások</string>
+    <string name="a2sd_summary">App to SD card (ext) beállítások</string>    
+    <string name="a2sd_mode_summary">Aktuális mód: %S\n(újraindítás szükséges változtatáskor)</string>
+    <string name="a2sd_modes_title">Elérhető módok</string>
+    <string name="a2sd_info_title">A2SD Információ</string>
+    <string name="a2sd_dialog">A2SD Információ</string>
+    <string name="a2sd_loading">A2SD információk betzöltése\u2026</string>
+    <string name="a2sd_error">Hiba az információk betöltésekor\u2026</string>
     <!-- **** JBMINI PROJECT ADDITIONS END **** -->
 
 </resources>
