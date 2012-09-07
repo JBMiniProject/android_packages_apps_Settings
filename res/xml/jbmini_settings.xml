@@ -106,6 +106,12 @@
             android:summary="@string/pref_raised_brightness_summary"
             android:defaultValue="false" />
 
+        <PreferenceScreen android:key="a2sd_settings" android:title="@string/a2sd_title" android:summary="@string/a2sd_summary">
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="com.android.settings"
+                    android:targetClass="com.android.settings.cyanogenmod.A2SDActivity" />
+        </PreferenceScreen>
+
     </PreferenceCategory>
 
     <PreferenceCategory
