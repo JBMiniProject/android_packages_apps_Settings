@@ -2440,12 +2440,6 @@
     <string name="stylus_icon_enabled_title">Ikon megjelenítése stylus használatakor</string>
     <string name="stylus_icon_enabled_summary">Mutató mutatása rajzoláskor stylus használata esetén</string>
 
-    <!--- Volume key cursor control -->
-    <string name="volume_key_cursor_control_title">Kurzor mozgatása a hangerő gombokkal</string>
-    <string name="volume_key_cursor_control_off">Letiltva</string>
-    <string name="volume_key_cursor_control_on">Bekapcsolva (fel-balra, le-jobbra)</string>
-    <string name="volume_key_cursor_control_on_reverse">Bekapcsolva (fel-jobbra, le-balra)</string>
-
     <!-- USB Mass Storage -->
     <string name="usb_mass_storage_title">Háttértár</string>
     <string name="usb_mass_storage_summary">Lehetővé teszi a fájlok átvitelét úgy, hogy a memóriakártyá(ka)t meghajtóként csatlakoztatja a számítógépéhez</string>
