@@ -58,8 +58,6 @@ public class CIDLogoActivity extends Activity {
         Typeface light = Typeface.create("sans-serif-light", Typeface.NORMAL);
         Typeface normal = Typeface.create("sans-serif", Typeface.BOLD);
 
-        String cmversion = SystemProperties.get("ro.modversion");
-
         final float size = 14 * metrics.density;
         final LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
