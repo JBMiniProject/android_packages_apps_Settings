@@ -407,14 +407,6 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
                     saveInputMethodSelectorVisibility((String)value);
                 }
             }
-        } else if (preference == mVolumeKeyCursorControl) {
-            String volumeKeyCursorControl = (String) value;
-            int val = Integer.parseInt(volumeKeyCursorControl);
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.VOLUME_KEY_CURSOR_CONTROL, val);
-            int index = mVolumeKeyCursorControl.findIndexOfValue(volumeKeyCursorControl);
-            mVolumeKeyCursorControl.setSummary(mVolumeKeyCursorControl.getEntries()[index]);
-            return true;
         }
         if (preference == mVolumeKeyCursorControl) {
             String volumeKeyCursorControl = (String) value;
