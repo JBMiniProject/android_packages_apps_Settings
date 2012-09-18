@@ -183,6 +183,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     /* Update functions */
     private void updateDisableBootAnimation() {
         mDisableBootanimPref.setChecked("1".equals(SystemProperties.get(DISABLE_BOOTANIMATION_PERSIST_PROP, "0")));
+        boolean status = mDisableBootanimPref.isChecked();
+        if (status) {
+            mDisableBootAudioPref.setEnabled(false);
+        }
     }
 
     private void updateRaisedBrightness() {
@@ -251,6 +255,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     /* Write functions */
     private void writeDisableBootAnimation() {
         SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
+        updateDisableBootAnimation();
     }
 
     private void writeRaisedBrightness() {
