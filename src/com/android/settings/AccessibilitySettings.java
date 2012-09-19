@@ -243,13 +243,6 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
                 || !Utils.isVoiceCapable(getActivity())) {
             mSystemsCategory.removePreference(mTogglePowerButtonEndsCallPreference);
         }
-        // Home button answers calls.
-        mToggleHomeButtonAnswersCallPreference =
-            (CheckBoxPreference) findPreference(TOGGLE_HOME_BUTTON_ANSWERS_CALL_PREFERENCE);
-        if (!KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_HOME)
-                || !Utils.isVoiceCapable(getActivity())) {
-            mSystemsCategory.removePreference(mToggleHomeButtonAnswersCallPreference);
-        }
 
         // Speak passwords.
         mToggleSpeakPasswordPreference =
