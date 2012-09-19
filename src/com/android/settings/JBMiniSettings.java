@@ -186,6 +186,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         boolean status = mDisableBootanimPref.isChecked();
         if (status) {
             mDisableBootAudioPref.setEnabled(false);
+        } else {
+            mDisableBootAudioPref.setEnabled(true);
         }
     }
 
