@@ -2398,8 +2398,6 @@ Schakel het scherm uit om de geselecteerde melding in actie te zien of annuleer 
     <!-- Title for the accessibility preference to home button to answers a call. [CHAR LIMIT=35] -->
     <string name="accessibility_home_button_answers_call_title">Oproep aannemen met thuis-knop</string>
 
-    <string name="font_size_preview_text">Bas wil zelf gympjes kopen van de extra cheque.</string>
-
     <string name="lockscreen_clock_align_title">Plaatsing klok</string>
     <string name="lockscreen_clock_align_left">Links</string>
     <string name="lockscreen_clock_align_center">Midden</string>
