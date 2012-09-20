@@ -4889,6 +4889,9 @@
     <string name="pref_clock_color_title">Clock color</string>
     <string name="pref_lockscreen_text_color_title">Lockscreen text color</string>
     <string name="pref_disable_bugmailer_title">Disable bugmailer</string>
+    <string name="pref_disable_alarm_title">Show alarm icon</string>
+    <string name="pref_disable_alarm_summary">After disabling/enabling, you must toggle your alarms for it to show up again. Or reboot</string>
+
 
     <string name="header_category_jbmp">JB MINI PROJECT</string>
     <string name="cat_status_bar">STATUSBAR</string>

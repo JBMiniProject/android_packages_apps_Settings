@@ -2487,6 +2487,8 @@
     <string name="pref_clock_color_title">Óra színe</string>
     <string name="pref_lockscreen_text_color_title">Zárképernyő szöveg színe</string>
     <string name="pref_disable_bugmailer_title">Hibajelentő letiltása</string>
+    <string name="pref_disable_alarm_title">Ébresztő ikon mutatása</string>
+    <string name="pref_disable_alarm_summary">Elrejti az ébresztőóra ikonját a státuszbáron. (Ébresztés be/átállítása szükséges!)</string>
 
     <string name="cat_status_bar">ÉRTESÍTÉSI SÁV</string>
     <string name="cat_hard_keys">FIZIKAI GOMBOK</string>

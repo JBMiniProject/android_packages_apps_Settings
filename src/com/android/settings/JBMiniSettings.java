@@ -66,6 +66,9 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String TAG = "JBMP_Settings";
     private static final boolean DEBUG = true;
 
+    private static final String CENTER_CLOCK_STATUS_BAR_PROP = "pref_center_clock_status_bar";
+    private static final String DISABLE_ALARM_PROP = "pref_disable_alarm";
+
     private static final String DISABLE_BOOTANIMATION_PREF = "pref_disable_boot_animation";
     private static final String DISABLE_BOOTANIMATION_PERSIST_PROP = "persist.sys.nobootanimation";
     private static final String RAISED_BRIGHTNESS = "pref_raisedbrightness";
@@ -76,7 +79,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private static final String BACK_BUTTON_ENDS_CALL_PROP = "pref_back_button_ends_call";
     private static final String HOME_BUTTON_ANSWERS_CALL_PROP = "pref_home_button_answers_call";
-    private static final String CENTER_CLOCK_STATUS_BAR_PROP = "pref_center_clock_status_bar";
     private static final String KEY_VOLUME_ADJUST_SOUNDS_PROP = "pref_volume_adjust_sounds";
 
     private static final String DISABLE_REBOOT_PROP = "pref_disable_reboot";
@@ -92,6 +94,9 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private final Configuration mCurrentConfig = new Configuration();
 
+    private CheckBoxPreference mCenterClockStatusBar;
+    private CheckBoxPreference mDisableAlarmPref;
+
     private CheckBoxPreference mDisableBootanimPref;
     private CheckBoxPreference mRaisedBrightnessPref;
     private CheckBoxPreference mDisableBootAudioPref;
@@ -99,7 +104,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private CheckBoxPreference mBackButtonEndsCallPref;
     private CheckBoxPreference mHomeButtonAnswersCall;
-    private CheckBoxPreference mCenterClockStatusBar;
     private CheckBoxPreference mVolumeAdjustSounds;
 
     private CheckBoxPreference mDisableRebootPref;
@@ -127,6 +131,9 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
+        mCenterClockStatusBar = (CheckBoxPreference) prefSet.findPreference(CENTER_CLOCK_STATUS_BAR_PROP);
+        mDisableAlarmPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_ALARM_PROP);
+
         mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
         mRaisedBrightnessPref = (CheckBoxPreference) prefSet.findPreference(RAISED_BRIGHTNESS);
         mDisableBootAudioPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTAUDIO_PROP);
@@ -134,7 +141,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
         mBackButtonEndsCallPref = (CheckBoxPreference) prefSet.findPreference(BACK_BUTTON_ENDS_CALL_PROP);
         mHomeButtonAnswersCall = (CheckBoxPreference) prefSet.findPreference(HOME_BUTTON_ANSWERS_CALL_PROP);
-        mCenterClockStatusBar = (CheckBoxPreference) prefSet.findPreference(CENTER_CLOCK_STATUS_BAR_PROP);
         mVolumeAdjustSounds = (CheckBoxPreference) prefSet.findPreference(KEY_VOLUME_ADJUST_SOUNDS_PROP);
         mVolumeAdjustSounds.setPersistent(false);
 
@@ -151,13 +157,14 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mLockscreenTextColor = (ColorPickerPreference) prefSet.findPreference(LOCKSCREEN_TEXT_COLOR_PROP);
         mLockscreenTextColor.setOnPreferenceChangeListener(this);
 
+        updateCenterClockStatusBar();
+        updateDisableAlarm();
         updateDisableBootAnimation();
         updateRaisedBrightness();
         updateDisableBootAudio();
         updateDisableBugmailer();
         updateBackButtonEndsCall();
         updateHomeButtonAnswersCall();
-        updateCenterClockStatusBar();
         updateVolumeAdjustSound();
         updateDisableReboot();
         updateDisableScreenshot();
@@ -181,6 +188,14 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
 
     /* Update functions */
+    private void updateCenterClockStatusBar() {
+        mCenterClockStatusBar.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, 0) == 1);
+    }
+
+    private void updateDisableAlarm() {
+        mDisableAlarmPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_SHOW_ALARM, 1) == 1);
+    }
+
     private void updateDisableBootAnimation() {
         mDisableBootanimPref.setChecked("1".equals(SystemProperties.get(DISABLE_BOOTANIMATION_PERSIST_PROP, "0")));
         boolean status = mDisableBootanimPref.isChecked();
@@ -214,10 +229,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void updateHomeButtonAnswersCall() {
         mHomeButtonAnswersCall.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.HOME_BUTTON_ANSWERS_CALL, 0) == 1);
-    }
-
-    private void updateCenterClockStatusBar() {
-        mCenterClockStatusBar.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, 0) == 1);
     }
 
     private void updateVolumeAdjustSound() {
@@ -255,6 +266,15 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
 
     /* Write functions */
+    private void writeDisableAlarm() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_SHOW_ALARM, mDisableAlarmPref.isChecked() ? 1 : 0);
+    }
+
+    private void writeCenterClockStatusBar() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, mCenterClockStatusBar.isChecked() ? 1 : 0);
+        Helpers.restartSystemUI();
+    }
+
     private void writeDisableBootAnimation() {
         SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
         updateDisableBootAnimation();
@@ -297,11 +317,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void writeHomeButtonAnswersCall() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.HOME_BUTTON_ANSWERS_CALL, mHomeButtonAnswersCall.isChecked() ? 1 : 0);
-    }
-
-    private void writeCenterClockStatusBar() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, mCenterClockStatusBar.isChecked() ? 1 : 0);
-        Helpers.restartSystemUI();
     }
 
     private void writeVolumeAdjustSound() {
@@ -356,7 +371,11 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mDisableBootanimPref) {
+        if (preference == mCenterClockStatusBar) {
+            writeCenterClockStatusBar();
+        } else if (preference == mDisableAlarmPref) {
+            writeDisableAlarm();
+        } else if (preference == mDisableBootanimPref) {
             writeDisableBootAnimation();
         } else if (preference == mRaisedBrightnessPref) {
             writeRaisedBrightness();
@@ -368,8 +387,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeBackButtonEndsCall();
         } else if (preference == mHomeButtonAnswersCall) {
             writeHomeButtonAnswersCall();
-        } else if (preference == mCenterClockStatusBar) {
-            writeCenterClockStatusBar();
         } else if (preference == mVolumeAdjustSounds) {
             writeVolumeAdjustSound();
         } else if (preference == mDisableRebootPref) {
