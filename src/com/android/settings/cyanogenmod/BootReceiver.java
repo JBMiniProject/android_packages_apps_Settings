@@ -39,6 +39,8 @@ public class BootReceiver extends BroadcastReceiver {
     private static final String KSM_SETTINGS_PROP = "sys.ksm.restored";
     private static final String RAISED_BRIGHTNESS_PROP = "persist.sys.raisedbrightness";
 
+    private static Intent mBkService = null;
+
     @Override
     public void onReceive(Context ctx, Intent intent) {
         if (SystemProperties.getBoolean(CPU_SETTINGS_PROP, false) == false
@@ -64,6 +66,14 @@ public class BootReceiver extends BroadcastReceiver {
                 configureKSM(ctx);
             } else {
                 SystemProperties.set(KSM_SETTINGS_PROP, "false");
+            }
+        }
+
+        if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
+            if (mBkService == null) {
+                Log.d(TAG, "Display and Keyboard Service started");
+                mBkService = new Intent(ctx, com.android.settings.cyanogenmod.BkService.class);
+                ctx.startService(mBkService);
             }
         }
 
