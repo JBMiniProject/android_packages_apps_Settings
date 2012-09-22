@@ -69,6 +69,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String CENTER_CLOCK_STATUS_BAR_PROP = "pref_center_clock_status_bar";
     private static final String CLOCK_WEEKDAY_PROP = "pref_clock_weekday";
     private static final String DISABLE_ALARM_PROP = "pref_disable_alarm";
+    private static final String CLOCK_COLOR_PICKER_PROP = "pref_clock_color";
 
     private static final String BATT_BAR_PROP = "pref_battery_bar_list";
     private static final String BATT_BAR_STYLE_PROP = "pref_battery_bar_style";
@@ -78,11 +79,11 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private static final String DISABLE_BOOTANIMATION_PREF = "pref_disable_boot_animation";
     private static final String DISABLE_BOOTANIMATION_PERSIST_PROP = "persist.sys.nobootanimation";
+    private static final String DISABLE_BOOTAUDIO_PROP = "pref_disable_bootaudio";
+    private static final String DISABLE_BUGMAILER_PROP = "pref_disable_bugmailer";
     private static final String RAISED_BRIGHTNESS = "pref_raisedbrightness";
     private static final String RAISED_BRIGHTNESS_PROP = "sys.raisedbrightness";
     private static final String RAISED_BRIGHTNESS_PERSIST_PROP = "persist.sys.raisedbrightness";
-    private static final String DISABLE_BOOTAUDIO_PROP = "pref_disable_bootaudio";
-    private static final String DISABLE_BUGMAILER_PROP = "pref_disable_bugmailer";
 
     private static final String BACK_BUTTON_ENDS_CALL_PROP = "pref_back_button_ends_call";
     private static final String HOME_BUTTON_ANSWERS_CALL_PROP = "pref_home_button_answers_call";
@@ -95,8 +96,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String DISABLE_TITLE_PROP = "pref_disable_title";
 
     private static final String CUSTOM_CARRIER_LABEL_PROP = "pref_carrier_label";
-
-    private static final String CLOCK_COLOR_PICKER_PROP = "pref_clock_color";
     private static final String LOCKSCREEN_TEXT_COLOR_PROP = "pref_lockscreen_text_color";
 
     private final Configuration mCurrentConfig = new Configuration();
@@ -104,6 +103,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private CheckBoxPreference mCenterClockStatusBar;
     private ListPreference mClockWeekday;
     private CheckBoxPreference mDisableAlarmPref;
+    private ColorPickerPreference mClockColorPicker;
 
     private ListPreference mBatteryBar;
     private ListPreference mBatteryBarStyle;
@@ -112,9 +112,9 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private ColorPickerPreference mBatteryBarColor;
 
     private CheckBoxPreference mDisableBootanimPref;
-    private CheckBoxPreference mRaisedBrightnessPref;
     private CheckBoxPreference mDisableBootAudioPref;
     private CheckBoxPreference mDisableBugmailerPref;
+    private CheckBoxPreference mRaisedBrightnessPref;
 
     private CheckBoxPreference mBackButtonEndsCallPref;
     private CheckBoxPreference mHomeButtonAnswersCall;
@@ -128,8 +128,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private Preference mCustomCarrierLabel;
     private String mCustomCarrierLabelSummary = null;
-
-    private ColorPickerPreference mClockColorPicker;
     private ColorPickerPreference mLockscreenTextColor;
 
     private Context mContext;
@@ -149,6 +147,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mClockWeekday = (ListPreference) prefSet.findPreference(CLOCK_WEEKDAY_PROP);
         mClockWeekday.setOnPreferenceChangeListener(this);
         mDisableAlarmPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_ALARM_PROP);
+        mClockColorPicker = (ColorPickerPreference) prefSet.findPreference(CLOCK_COLOR_PICKER_PROP);
+        mClockColorPicker.setOnPreferenceChangeListener(this);
 
         mBatteryBar = (ListPreference) prefSet.findPreference(BATT_BAR_PROP);
         mBatteryBar.setOnPreferenceChangeListener(this);
@@ -161,9 +161,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mBatteryBarThickness.setOnPreferenceChangeListener(this);
 
         mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
-        mRaisedBrightnessPref = (CheckBoxPreference) prefSet.findPreference(RAISED_BRIGHTNESS);
+
         mDisableBootAudioPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTAUDIO_PROP);
         mDisableBugmailerPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BUGMAILER_PROP);
+        mRaisedBrightnessPref = (CheckBoxPreference) prefSet.findPreference(RAISED_BRIGHTNESS);
 
         mBackButtonEndsCallPref = (CheckBoxPreference) prefSet.findPreference(BACK_BUTTON_ENDS_CALL_PROP);
         mHomeButtonAnswersCall = (CheckBoxPreference) prefSet.findPreference(HOME_BUTTON_ANSWERS_CALL_PROP);
@@ -177,32 +178,34 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mDisableTitlePref = (CheckBoxPreference) prefSet.findPreference(DISABLE_TITLE_PROP);
 
         mCustomCarrierLabel = prefSet.findPreference(CUSTOM_CARRIER_LABEL_PROP);
-
-        mClockColorPicker = (ColorPickerPreference) prefSet.findPreference(CLOCK_COLOR_PICKER_PROP);
-        mClockColorPicker.setOnPreferenceChangeListener(this);
         mLockscreenTextColor = (ColorPickerPreference) prefSet.findPreference(LOCKSCREEN_TEXT_COLOR_PROP);
         mLockscreenTextColor.setOnPreferenceChangeListener(this);
 
         updateCenterClockStatusBar();
         updateClockWeekday();
         updateDisableAlarm();
+
         updateBatteryBar();
         updateBatteryBarStyle();
         updateBatteryBarColor();
         updateBatteryBarChargAnim();
         updateBatteryBarThickness();
+
         updateDisableBootAnimation();
-        updateRaisedBrightness();
         updateDisableBootAudio();
         updateDisableBugmailer();
+        updateRaisedBrightness();
+
         updateBackButtonEndsCall();
         updateHomeButtonAnswersCall();
         updateVolumeAdjustSound();
+
         updateDisableReboot();
         updateDisableScreenshot();
         updateDisableAirplane();
         updateDisableRinger();
         updateDisableTitle();
+
         updateCustomCarrierLabel();
     }
 
@@ -258,10 +261,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         }
     }
 
-    private void updateRaisedBrightness() {
-        mRaisedBrightnessPref.setChecked("1".equals(SystemProperties.get(RAISED_BRIGHTNESS_PERSIST_PROP, "0")));
-    }
-
     private void updateDisableBootAudio() {
         if(!new File("/system/media/boot_audio.mp3").exists() && !new File("/system/media/boot_audio.jbmp").exists() ) {
             mDisableBootAudioPref.setEnabled(false);
@@ -273,6 +272,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void updateDisableBugmailer() {
         mDisableBugmailerPref.setChecked(!new File("/system/bin/bugmailer.sh").exists());
+    }
+
+    private void updateRaisedBrightness() {
+        mRaisedBrightnessPref.setChecked("1".equals(SystemProperties.get(RAISED_BRIGHTNESS_PERSIST_PROP, "0")));
     }
 
     private void updateBackButtonEndsCall() {
@@ -362,11 +365,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         updateDisableBootAnimation();
     }
 
-    private void writeRaisedBrightness() {
-        SystemProperties.set(RAISED_BRIGHTNESS_PERSIST_PROP, mRaisedBrightnessPref.isChecked() ? "1" : "0");
-        Utils.fileWriteOneLine("/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode", mRaisedBrightnessPref.isChecked() ? "i2c_pwm" : "i2c_pwm_als");
-    }
-
     private void writeDisableBootAudio() {
         boolean status = mDisableBootAudioPref.isChecked();
         if (status) {
@@ -391,6 +389,11 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             new CMDProcessor().su.runWaitFor("mv /system/bin/bugmailer.jbmp /system/bin/bugmailer.sh");
             Helpers.getMount("ro");
         }
+    }
+
+    private void writeRaisedBrightness() {
+        SystemProperties.set(RAISED_BRIGHTNESS_PERSIST_PROP, mRaisedBrightnessPref.isChecked() ? "1" : "0");
+        Utils.fileWriteOneLine("/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode", mRaisedBrightnessPref.isChecked() ? "i2c_pwm" : "i2c_pwm_als");
     }
 
     private void writeBackButtonEndsCall() {
@@ -461,12 +464,12 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeBatteryBarChargAnim();
         } else if (preference == mDisableBootanimPref) {
             writeDisableBootAnimation();
-        } else if (preference == mRaisedBrightnessPref) {
-            writeRaisedBrightness();
         } else if (preference == mDisableBootAudioPref) {
             writeDisableBootAudio();
         } else if (preference == mDisableBugmailerPref) {
             writeDisableBugmailer();
+        } else if (preference == mRaisedBrightnessPref) {
+            writeRaisedBrightness();
         } else if (preference == mBackButtonEndsCallPref) {
             writeBackButtonEndsCall();
         } else if (preference == mHomeButtonAnswersCall) {
@@ -498,12 +501,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             preference.setSummary(hex);
             int intHex = ColorPickerPreference.convertToColorInt(hex);
             Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_CLOCK_COLOR, intHex);
-        } else if (preference == mLockscreenTextColor) {
-            String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue
-            )));
-            preference.setSummary(hex);
-            int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_CUSTOM_TEXT_COLOR, intHex);
         } else if (preference == mClockWeekday) {
             writeClockWeekday(newValue);
         } else if (preference == mBatteryBarColor) {
@@ -514,6 +511,12 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeBatteryBarStyle(newValue);
         } else if (preference == mBatteryBarThickness) {
             writeBatteryBarThickness(newValue);
+        } else if (preference == mLockscreenTextColor) {
+            String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue
+            )));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_CUSTOM_TEXT_COLOR, intHex);
         }
         return false;
     }
