@@ -187,7 +187,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
         updateBatteryBar();
         updateBatteryBarStyle();
-        updateBatteryBarColor();
         updateBatteryBarChargAnim();
         updateBatteryBarThickness();
 
@@ -336,7 +335,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void writeClockColorPicker(Object NewVal) {
         String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(NewVal)));
-        preference.setSummary(hex);
+        mClockColorPicker.setSummary(hex);
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_CLOCK_COLOR, ColorPickerPreference.convertToColorInt(hex));
     }
 
@@ -350,7 +349,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void writeBatteryBarColor(Object NewVal) {
         String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(NewVal)));
-        preference.setSummary(hex);
+        mBatteryBarColor.setSummary(hex);
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_COLOR, ColorPickerPreference.convertToColorInt(hex));
     }
 
@@ -457,7 +456,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void writeLockscreenTextColor(Object NewVal) {
         String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(NewVal)));
-        preference.setSummary(hex);
+        mLockscreenTextColor.setSummary(hex);
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_CUSTOM_TEXT_COLOR, ColorPickerPreference.convertToColorInt(hex));
     }
 
