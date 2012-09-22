@@ -2489,6 +2489,11 @@
     <string name="pref_disable_bugmailer_title">Hibajelentő letiltása</string>
     <string name="pref_disable_alarm_title">Ébresztő ikon mutatása</string>
     <string name="pref_disable_alarm_summary">Elrejti az ébresztőóra ikonját a státuszbáron. (Ébresztés be/átállítása szükséges!)</string>
+    <string name="pref_clock_weekday">Hét napjai</string>
+    <string name="pref_clock_weekday_summary">Megjeleníti az aktuális nap nevét az óra előtt</string>
+    <string name="clock_weekday_none">Elrejtés</string>
+    <string name="clock_weekday_small">Kicsi</string>
+    <string name="clock_weekday_regular">Normál</string>
 
     <string name="cat_status_bar">ÉRTESÍTÉSI SÁV</string>
     <string name="cat_hard_keys">FIZIKAI GOMBOK</string>

@@ -1444,4 +1444,20 @@
     </string-array>
 
     <!-- **** CYANOGENMOD EDITS END **** -->
+
+    <!-- **** JBMINI PROJECT ADDITIONS START **** -->
+
+    <string-array name="clock_weekday_entries">
+        <item>@string/clock_weekday_none</item>
+        <item>@string/clock_weekday_small</item>
+        <item>@string/clock_weekday_regular</item>
+    </string-array>
+
+    <string-array name="clock_weekday_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!-- **** JBMINI PROJECT ADDITIONS END **** -->
 </resources>

@@ -29,6 +29,13 @@
             android:summary="@string/pref_center_clock_status_bar_summary"
             android:defaultValue="false" />
 
+        <ListPreference
+            android:key="pref_clock_weekday"
+            android:title="@string/pref_clock_weekday"
+            android:summary="@string/pref_clock_weekday_summary"
+            android:entries="@array/clock_weekday_entries"
+            android:entryValues="@array/clock_weekday_values" />
+
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="pref_clock_color"
             android:title="@string/pref_clock_color_title"
