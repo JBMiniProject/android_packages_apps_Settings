@@ -334,21 +334,24 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_SHOW_ALARM, mDisableAlarmPref.isChecked() ? 1 : 0);
     }
 
+    private void writeClockColorPicker(Object NewVal) {
+        String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(NewVal)));
+        preference.setSummary(hex);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_CLOCK_COLOR, ColorPickerPreference.convertToColorInt(hex));
+    }
+
     private void writeBatteryBar(Object NewVal) {
-        int val = Integer.parseInt((String) NewVal);
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR, val);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR, Integer.parseInt((String) NewVal));
     }
 
     private void writeBatteryBarStyle(Object NewVal) {
-        int val = Integer.parseInt((String) NewVal);
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_STYLE, val);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_STYLE, Integer.parseInt((String) NewVal));
     }
 
     private void writeBatteryBarColor(Object NewVal) {
         String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(NewVal)));
         preference.setSummary(hex);
-        int intHex = ColorPickerPreference.convertToColorInt(hex);
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_COLOR, intHex);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_COLOR, ColorPickerPreference.convertToColorInt(hex));
     }
 
     private void writeBatteryBarChargAnim() {
@@ -356,8 +359,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     }
 
     private void writeBatteryBarThickness(Object NewVal) {
-        int val = Integer.parseInt((String) NewVal);
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, val);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, Integer.parseInt((String) NewVal));
     }
 
     private void writeDisableBootAnimation() {
@@ -453,6 +455,12 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             alert.show();
     }
 
+    private void writeLockscreenTextColor(Object NewVal) {
+        String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(NewVal)));
+        preference.setSummary(hex);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_CUSTOM_TEXT_COLOR, ColorPickerPreference.convertToColorInt(hex));
+    }
+
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
@@ -497,10 +505,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference == mClockColorPicker) {
-            String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue)));
-            preference.setSummary(hex);
-            int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_CLOCK_COLOR, intHex);
+            writeClockColorPicker(newValue);
         } else if (preference == mClockWeekday) {
             writeClockWeekday(newValue);
         } else if (preference == mBatteryBarColor) {
@@ -512,11 +517,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         } else if (preference == mBatteryBarThickness) {
             writeBatteryBarThickness(newValue);
         } else if (preference == mLockscreenTextColor) {
-            String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue
-            )));
-            preference.setSummary(hex);
-            int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_CUSTOM_TEXT_COLOR, intHex);
+            writeLockscreenTextColor(newValue);
         }
         return false;
     }
