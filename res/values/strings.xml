@@ -4893,9 +4893,11 @@
     <string name="pref_disable_alarm_summary">After disabling/enabling, you must toggle your alarms for it to show up again. Or reboot</string>
     <string name="pref_clock_weekday">Day of the week</string>
     <string name="pref_clock_weekday_summary">Abbreviated day of the week before the time</string>
-    <string name="clock_weekday_none">Don\'t show</string>
-    <string name="clock_weekday_small">Small</string>
-    <string name="clock_weekday_regular">Normal</string>
+    <string name="pref_dont_show">Don\'t show</string>
+    <string name="pref_small">Small</string>
+    <string name="pref_regular">Normal</string>
+    <string name="pref_show">Show</string>
+    <string name="pref_center_mirror">Center-mirrored</string>
 
     <string name="header_category_jbmp">JB MINI PROJECT</string>
     <string name="cat_status_bar">STATUSBAR</string>
@@ -4903,6 +4905,7 @@
     <string name="cat_globalactions">POWER MENU</string>
     <string name="cat_system">SYSTEM</string>
     <string name="cat_lockscreen">LOCKSCREEN</string>
+    <string name="cat_batterybar">BATTERY BAR</string>
 
     <string name="rec_version">Recovery version</string>
     <string name="rec_version_default">Unknown</string>
@@ -4927,6 +4930,15 @@
     <string name="a2sd_dialog">A2SD Information</string>
     <string name="a2sd_loading">Loading A2SD information\u2026</string>
     <string name="a2sd_error">Error loading A2SD information\u2026</string>
+
+    <!-- Battery Bar -->
+    <string name="pref_battery_bar">Battery bar</string>
+    <string name="pref_battery_bar_color">Battery bar color</string>
+    <string name="pref_battery_bar_style_title">Battery bar style</string>
+    <string name="pref_battery_bar_thickness_title">Battery bar thickness</string>
+    <string name="pref_battery_bar_animate_title">Charging animation</string>
+    <string name="pref_battery_bar_animate_summary">The charging animation may result in a poor user experience. Enable at your own discretion.</string>
+
     <!-- **** JBMINI PROJECT ADDITIONS END **** -->
 
 </resources>

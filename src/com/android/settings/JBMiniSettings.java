@@ -70,6 +70,12 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String CLOCK_WEEKDAY_PROP = "pref_clock_weekday";
     private static final String DISABLE_ALARM_PROP = "pref_disable_alarm";
 
+    private static final String BATT_BAR_PROP = "pref_battery_bar_list";
+    private static final String BATT_BAR_STYLE_PROP = "pref_battery_bar_style";
+    private static final String BATT_BAR_COLOR_PROP = "pref_battery_bar_color";
+    private static final String BATT_BAR_WIDTH_PROP = "pref_battery_bar_thickness";
+    private static final String BATT_ANIMATE_PROP = "pref_battery_bar_animate";
+
     private static final String DISABLE_BOOTANIMATION_PREF = "pref_disable_boot_animation";
     private static final String DISABLE_BOOTANIMATION_PERSIST_PROP = "persist.sys.nobootanimation";
     private static final String RAISED_BRIGHTNESS = "pref_raisedbrightness";
@@ -98,6 +104,12 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private CheckBoxPreference mCenterClockStatusBar;
     private ListPreference mClockWeekday;
     private CheckBoxPreference mDisableAlarmPref;
+
+    private ListPreference mBatteryBar;
+    private ListPreference mBatteryBarStyle;
+    private ListPreference mBatteryBarThickness;
+    private CheckBoxPreference mBatteryBarChargingAnimation;
+    private ColorPickerPreference mBatteryBarColor;
 
     private CheckBoxPreference mDisableBootanimPref;
     private CheckBoxPreference mRaisedBrightnessPref;
@@ -136,8 +148,17 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mCenterClockStatusBar = (CheckBoxPreference) prefSet.findPreference(CENTER_CLOCK_STATUS_BAR_PROP);
         mClockWeekday = (ListPreference) prefSet.findPreference(CLOCK_WEEKDAY_PROP);
         mClockWeekday.setOnPreferenceChangeListener(this);
-
         mDisableAlarmPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_ALARM_PROP);
+
+        mBatteryBar = (ListPreference) prefSet.findPreference(BATT_BAR_PROP);
+        mBatteryBar.setOnPreferenceChangeListener(this);
+        mBatteryBarStyle = (ListPreference) prefSet.findPreference(BATT_BAR_STYLE_PROP);
+        mBatteryBarStyle.setOnPreferenceChangeListener(this);
+        mBatteryBarColor = (ColorPickerPreference) prefSet.findPreference(BATT_BAR_COLOR_PROP);
+        mBatteryBarColor.setOnPreferenceChangeListener(this);
+        mBatteryBarChargingAnimation = (CheckBoxPreference) findPreference(BATT_ANIMATE_PROP);
+        mBatteryBarThickness = (ListPreference) prefSet.findPreference(BATT_BAR_WIDTH_PROP);
+        mBatteryBarThickness.setOnPreferenceChangeListener(this);
 
         mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
         mRaisedBrightnessPref = (CheckBoxPreference) prefSet.findPreference(RAISED_BRIGHTNESS);
@@ -165,6 +186,11 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         updateCenterClockStatusBar();
         updateClockWeekday();
         updateDisableAlarm();
+        updateBatteryBar();
+        updateBatteryBarStyle();
+        updateBatteryBarColor();
+        updateBatteryBarChargAnim();
+        updateBatteryBarThickness();
         updateDisableBootAnimation();
         updateRaisedBrightness();
         updateDisableBootAudio();
@@ -204,6 +230,22 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void updateDisableAlarm() {
         mDisableAlarmPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_SHOW_ALARM, 1) == 1);
+    }
+
+    private void updateBatteryBar() {
+        mBatteryBar.setValue((Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR, 0)) + "");
+    }
+
+    private void updateBatteryBarStyle() {
+        mBatteryBarStyle.setValue((Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_STYLE, 0)) + "");
+    }
+
+    private void updateBatteryBarChargAnim() {
+        mBatteryBarChargingAnimation.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE, 0) == 1);
+    }
+
+    private void updateBatteryBarThickness() {
+        mBatteryBarThickness.setValue((Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, 1)) + "");
     }
 
     private void updateDisableBootAnimation() {
@@ -287,6 +329,32 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void writeDisableAlarm() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_SHOW_ALARM, mDisableAlarmPref.isChecked() ? 1 : 0);
+    }
+
+    private void writeBatteryBar(Object NewVal) {
+        int val = Integer.parseInt((String) NewVal);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR, val);
+    }
+
+    private void writeBatteryBarStyle(Object NewVal) {
+        int val = Integer.parseInt((String) NewVal);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_STYLE, val);
+    }
+
+    private void writeBatteryBarColor(Object NewVal) {
+        String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(NewVal)));
+        preference.setSummary(hex);
+        int intHex = ColorPickerPreference.convertToColorInt(hex);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_COLOR, intHex);
+    }
+
+    private void writeBatteryBarChargAnim() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE, mBatteryBarChargingAnimation.isChecked() ? 1 : 0);
+    }
+
+    private void writeBatteryBarThickness(Object NewVal) {
+        int val = Integer.parseInt((String) NewVal);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, val);
     }
 
     private void writeDisableBootAnimation() {
@@ -389,6 +457,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeCenterClockStatusBar();
         } else if (preference == mDisableAlarmPref) {
             writeDisableAlarm();
+        } else if (preference == mBatteryBarChargingAnimation) {
+            writeBatteryBarChargAnim();
         } else if (preference == mDisableBootanimPref) {
             writeDisableBootAnimation();
         } else if (preference == mRaisedBrightnessPref) {
@@ -436,6 +506,14 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_CUSTOM_TEXT_COLOR, intHex);
         } else if (preference == mClockWeekday) {
             writeClockWeekday(newValue);
+        } else if (preference == mBatteryBarColor) {
+            writeBatteryBarColor(newValue);
+        } else if (preference == mBatteryBar) {
+            writeBatteryBar(newValue);
+        } else if (preference == mBatteryBarStyle) {
+            writeBatteryBarStyle(newValue);
+        } else if (preference == mBatteryBarThickness) {
+            writeBatteryBarThickness(newValue);
         }
         return false;
     }

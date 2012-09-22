@@ -2491,15 +2491,18 @@
     <string name="pref_disable_alarm_summary">Elrejti az ébresztőóra ikonját a státuszbáron. (Ébresztés be/átállítása szükséges!)</string>
     <string name="pref_clock_weekday">Hét napjai</string>
     <string name="pref_clock_weekday_summary">Megjeleníti az aktuális nap nevét az óra előtt</string>
-    <string name="clock_weekday_none">Elrejtés</string>
-    <string name="clock_weekday_small">Kicsi</string>
-    <string name="clock_weekday_regular">Normál</string>
+    <string name="pref_dont_show">Elrejtés</string>
+    <string name="pref_small">Kicsi</string>
+    <string name="pref_regular">Normál</string>
+    <string name="pref_show">Mutat</string>
+    <string name="pref_center_mirror">Középről tükrözött</string>
 
     <string name="cat_status_bar">ÉRTESÍTÉSI SÁV</string>
     <string name="cat_hard_keys">FIZIKAI GOMBOK</string>
     <string name="cat_globalactions">KIKAPCSOLÁS MENÜ</string>
     <string name="cat_system">RENDSZER TUNING</string>
     <string name="cat_lockscreen">ZÁRKÉPERNYŐ</string>
+    <string name="cat_batterybar">AKKUMULÁTOR SÁV</string>
 
     <string name="rec_version">Recovery verzió</string>
     <string name="rec_version_default">Ismeretlen</string>
@@ -2514,6 +2517,14 @@
     <string name="a2sd_dialog">A2SD Információ</string>
     <string name="a2sd_loading">A2SD információk betzöltése\u2026</string>
     <string name="a2sd_error">Hiba az információk betöltésekor\u2026</string>
+
+    <!-- Battery Bar -->
+    <string name="pref_battery_bar">Akkumulátor sáv</string>
+    <string name="pref_battery_bar_color">Sáv színe</string>
+    <string name="pref_battery_bar_style_title">Sáv stílusa</string>
+    <string name="pref_battery_bar_thickness_title">Sáv vastagsága</string>
+    <string name="pref_battery_bar_animate_title">Töltési animáció</string>
+
     <!-- **** JBMINI PROJECT ADDITIONS END **** -->
 
 </resources>
