@@ -238,15 +238,15 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mBatteryBarPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR, 0) == 1);
         boolean status = mBatteryBarPref.isChecked();
         if (status) {
-            mBatteryBarStylePref.setEnabled(false);
-            mBatteryBarChargingAnimationPref.setEnabled(false);
-            mBatteryBarThicknessPref.setEnabled(false);
-            mBatteryBarColor.setEnabled(false);
-        } else {
             mBatteryBarStylePref.setEnabled(true);
             mBatteryBarChargingAnimationPref.setEnabled(true);
             mBatteryBarThicknessPref.setEnabled(true);
             mBatteryBarColor.setEnabled(true);
+        } else {
+            mBatteryBarStylePref.setEnabled(false);
+            mBatteryBarChargingAnimationPref.setEnabled(false);
+            mBatteryBarThicknessPref.setEnabled(false);
+            mBatteryBarColor.setEnabled(false);
         }
     }
 
