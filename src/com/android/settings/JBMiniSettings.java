@@ -145,14 +145,20 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
         mCenterClockStatusBar = (CheckBoxPreference) prefSet.findPreference(CENTER_CLOCK_STATUS_BAR_PROP);
         mClockWeekday = (ListPreference) prefSet.findPreference(CLOCK_WEEKDAY_PROP);
+        mClockWeekday.setOnPreferenceChangeListener(this);
         mDisableAlarmPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_ALARM_PROP);
         mClockColorPicker = (ColorPickerPreference) prefSet.findPreference(CLOCK_COLOR_PICKER_PROP);
+        mClockColorPicker.setOnPreferenceChangeListener(this);
 
         mBatteryBar = (ListPreference) prefSet.findPreference(BATT_BAR_PROP);
+        mBatteryBar.setOnPreferenceChangeListener(this);
         mBatteryBarStyle = (ListPreference) prefSet.findPreference(BATT_BAR_STYLE_PROP);
+        mBatteryBarStyle.setOnPreferenceChangeListener(this);
         mBatteryBarColor = (ColorPickerPreference) prefSet.findPreference(BATT_BAR_COLOR_PROP);
+        mBatteryBarColor.setOnPreferenceChangeListener(this);
         mBatteryBarChargingAnimation = (CheckBoxPreference) findPreference(BATT_ANIMATE_PROP);
         mBatteryBarThickness = (ListPreference) prefSet.findPreference(BATT_BAR_WIDTH_PROP);
+        mBatteryBarThickness.setOnPreferenceChangeListener(this);
 
         mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
         mDisableBootAudioPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTAUDIO_PROP);
@@ -172,6 +178,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
         mCustomCarrierLabel = prefSet.findPreference(CUSTOM_CARRIER_LABEL_PROP);
         mLockscreenTextColor = (ColorPickerPreference) prefSet.findPreference(LOCKSCREEN_TEXT_COLOR_PROP);
+        mLockscreenTextColor.setOnPreferenceChangeListener(this);
 
 
         updateCenterClockStatusBar();
@@ -221,6 +228,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void updateClockWeekday() {
         mClockWeekday.setValue(Integer.toString(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_CLOCK_WEEKDAY, 0)));
+        mClockWeekday.setOnPreferenceChangeListener(this);
     }
 
     private void updateDisableAlarm() {
@@ -229,10 +237,12 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void updateBatteryBar() {
         mBatteryBar.setValue((Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR, 0)) + "");
+        mBatteryBar.setOnPreferenceChangeListener(this);
     }
 
     private void updateBatteryBarStyle() {
         mBatteryBarStyle.setValue((Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_STYLE, 0)) + "");
+        mBatteryBarStyle.setOnPreferenceChangeListener(this);
     }
 
     private void updateBatteryBarChargAnim() {
@@ -241,6 +251,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void updateBatteryBarThickness() {
         mBatteryBarThickness.setValue((Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, 1)) + "");
+        mBatteryBarThickness.setOnPreferenceChangeListener(this);
     }
 
     private void updateDisableBootAnimation() {
@@ -320,7 +331,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void writeClockWeekday(Object NewVal) {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_CLOCK_WEEKDAY, Integer.parseInt((String) NewVal));
-        mClockWeekday.setOnPreferenceChangeListener(this);
+        updateClockWeekday();
     }
 
     private void writeDisableAlarm() {
@@ -336,12 +347,12 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void writeBatteryBar(Object NewVal) {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR, Integer.parseInt((String) NewVal));
-        mBatteryBar.setOnPreferenceChangeListener(this);
+        updateBatteryBar();
     }
 
     private void writeBatteryBarStyle(Object NewVal) {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_STYLE, Integer.parseInt((String) NewVal));
-        mBatteryBarStyle.setOnPreferenceChangeListener(this);
+        updateBatteryBarStyle();
     }
 
     private void writeBatteryBarColor(Object NewVal) {
@@ -357,7 +368,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void writeBatteryBarThickness(Object NewVal) {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, Integer.parseInt((String) NewVal));
-        mBatteryBarThickness.setOnPreferenceChangeListener(this);
+        updateBatteryBarThickness();
     }
 
     private void writeDisableBootAnimation() {
