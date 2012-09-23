@@ -231,7 +231,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     }
 
     private void updateDisableAlarm() {
-        mDisableAlarmPrefPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_SHOW_ALARM, 1) == 1);
+        mDisableAlarmPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_SHOW_ALARM, 1) == 1);
     }
 
     private void updateBatteryBar() {
@@ -239,12 +239,12 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         boolean status = mBatteryBarPref.isChecked();
         if (status) {
             mBatteryBarStylePref.setEnabled(false);
-            mBatteryBarChargAnimPref.setEnabled(false);
+            mBatteryBarChargingAnimationPref.setEnabled(false);
             mBatteryBarThicknessPref.setEnabled(false);
             mBatteryBarColor.setEnabled(false);
         } else {
             mBatteryBarStylePref.setEnabled(true);
-            mBatteryBarChargAnimPref.setEnabled(true);
+            mBatteryBarChargingAnimationPref.setEnabled(true);
             mBatteryBarThicknessPref.setEnabled(true);
             mBatteryBarColor.setEnabled(true);
         }
