@@ -71,7 +71,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String DISABLE_ALARM_PROP = "pref_disable_alarm";
     private static final String CLOCK_COLOR_PICKER_PROP = "pref_clock_color";
 
-    private static final String BATT_BAR_PROP = "pref_battery_bar_list";
+    private static final String BATT_BAR_PROP = "pref_battery_bar";
     private static final String BATT_BAR_STYLE_PROP = "pref_battery_bar_style";
     private static final String BATT_BAR_COLOR_PROP = "pref_battery_bar_color";
     private static final String BATT_BAR_WIDTH_PROP = "pref_battery_bar_thickness";
@@ -100,15 +100,15 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private final Configuration mCurrentConfig = new Configuration();
 
-    private CheckBoxPreference mCenterClockStatusBar;
-    private ListPreference mClockWeekday;
+    private CheckBoxPreference mCenterClockStatusBarPref;
+    private ListPreference mClockWeekdayPref;
     private CheckBoxPreference mDisableAlarmPref;
     private ColorPickerPreference mClockColorPicker;
 
-    private ListPreference mBatteryBar;
-    private ListPreference mBatteryBarStyle;
-    private ListPreference mBatteryBarThickness;
-    private CheckBoxPreference mBatteryBarChargingAnimation;
+    private CheckBoxPreference mBatteryBarPref;
+    private ListPreference mBatteryBarStylePref;
+    private ListPreference mBatteryBarThicknessPref;
+    private CheckBoxPreference mBatteryBarChargingAnimationPref;
     private ColorPickerPreference mBatteryBarColor;
 
     private CheckBoxPreference mDisableBootanimPref;
@@ -117,8 +117,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private CheckBoxPreference mRaisedBrightnessPref;
 
     private CheckBoxPreference mBackButtonEndsCallPref;
-    private CheckBoxPreference mHomeButtonAnswersCall;
-    private CheckBoxPreference mVolumeAdjustSounds;
+    private CheckBoxPreference mHomeButtonAnswersCallPref;
+    private CheckBoxPreference mVolumeAdjustSoundsPref;
 
     private CheckBoxPreference mDisableRebootPref;
     private CheckBoxPreference mDisableScreenshotPref;
@@ -143,22 +143,21 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
-        mCenterClockStatusBar = (CheckBoxPreference) prefSet.findPreference(CENTER_CLOCK_STATUS_BAR_PROP);
-        mClockWeekday = (ListPreference) prefSet.findPreference(CLOCK_WEEKDAY_PROP);
-        mClockWeekday.setOnPreferenceChangeListener(this);
+        mCenterClockStatusBarPref = (CheckBoxPreference) prefSet.findPreference(CENTER_CLOCK_STATUS_BAR_PROP);
+        mClockWeekdayPref = (ListPreference) prefSet.findPreference(CLOCK_WEEKDAY_PROP);
+        mClockWeekdayPref.setOnPreferenceChangeListener(this);
         mDisableAlarmPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_ALARM_PROP);
         mClockColorPicker = (ColorPickerPreference) prefSet.findPreference(CLOCK_COLOR_PICKER_PROP);
         mClockColorPicker.setOnPreferenceChangeListener(this);
 
-        mBatteryBar = (ListPreference) prefSet.findPreference(BATT_BAR_PROP);
-        mBatteryBar.setOnPreferenceChangeListener(this);
-        mBatteryBarStyle = (ListPreference) prefSet.findPreference(BATT_BAR_STYLE_PROP);
-        mBatteryBarStyle.setOnPreferenceChangeListener(this);
+        mBatteryBarPref = (CheckBoxPreference) prefSet.findPreference(BATT_BAR_PROP);
+        mBatteryBarStylePref = (ListPreference) prefSet.findPreference(BATT_BAR_STYLE_PROP);
+        mBatteryBarStylePref.setOnPreferenceChangeListener(this);
         mBatteryBarColor = (ColorPickerPreference) prefSet.findPreference(BATT_BAR_COLOR_PROP);
         mBatteryBarColor.setOnPreferenceChangeListener(this);
-        mBatteryBarChargingAnimation = (CheckBoxPreference) findPreference(BATT_ANIMATE_PROP);
-        mBatteryBarThickness = (ListPreference) prefSet.findPreference(BATT_BAR_WIDTH_PROP);
-        mBatteryBarThickness.setOnPreferenceChangeListener(this);
+        mBatteryBarChargingAnimationPref = (CheckBoxPreference) findPreference(BATT_ANIMATE_PROP);
+        mBatteryBarThicknessPref = (ListPreference) prefSet.findPreference(BATT_BAR_WIDTH_PROP);
+        mBatteryBarThicknessPref.setOnPreferenceChangeListener(this);
 
         mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
         mDisableBootAudioPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTAUDIO_PROP);
@@ -166,9 +165,9 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mRaisedBrightnessPref = (CheckBoxPreference) prefSet.findPreference(RAISED_BRIGHTNESS);
 
         mBackButtonEndsCallPref = (CheckBoxPreference) prefSet.findPreference(BACK_BUTTON_ENDS_CALL_PROP);
-        mHomeButtonAnswersCall = (CheckBoxPreference) prefSet.findPreference(HOME_BUTTON_ANSWERS_CALL_PROP);
-        mVolumeAdjustSounds = (CheckBoxPreference) prefSet.findPreference(KEY_VOLUME_ADJUST_SOUNDS_PROP);
-        mVolumeAdjustSounds.setPersistent(false);
+        mHomeButtonAnswersCallPref = (CheckBoxPreference) prefSet.findPreference(HOME_BUTTON_ANSWERS_CALL_PROP);
+        mVolumeAdjustSoundsPref = (CheckBoxPreference) prefSet.findPreference(KEY_VOLUME_ADJUST_SOUNDS_PROP);
+        mVolumeAdjustSoundsPref.setPersistent(false);
 
         mDisableRebootPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_REBOOT_PROP);
         mDisableScreenshotPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_SCREENSHOT_PROP);
@@ -223,35 +222,46 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     /* Update functions */
     private void updateCenterClockStatusBar() {
-        mCenterClockStatusBar.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, 0) == 1);
+        mCenterClockStatusBarPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, 0) == 1);
     }
 
     private void updateClockWeekday() {
-        mClockWeekday.setValue(Integer.toString(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_CLOCK_WEEKDAY, 0)));
-        mClockWeekday.setOnPreferenceChangeListener(this);
+        mClockWeekdayPref.setValue(Integer.toString(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_CLOCK_WEEKDAY, 0)));
+        mClockWeekdayPref.setOnPreferenceChangeListener(this);
     }
 
     private void updateDisableAlarm() {
-        mDisableAlarmPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_SHOW_ALARM, 1) == 1);
+        mDisableAlarmPrefPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_SHOW_ALARM, 1) == 1);
     }
 
     private void updateBatteryBar() {
-        mBatteryBar.setValue((Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR, 0)) + "");
-        mBatteryBar.setOnPreferenceChangeListener(this);
+        mBatteryBarPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR, 0) == 1);
+        boolean status = mBatteryBarPref.isChecked();
+        if (status) {
+            mBatteryBarStylePref.setEnabled(false);
+            mBatteryBarChargAnimPref.setEnabled(false);
+            mBatteryBarThicknessPref.setEnabled(false);
+            mBatteryBarColor.setEnabled(false);
+        } else {
+            mBatteryBarStylePref.setEnabled(true);
+            mBatteryBarChargAnimPref.setEnabled(true);
+            mBatteryBarThicknessPref.setEnabled(true);
+            mBatteryBarColor.setEnabled(true);
+        }
     }
 
     private void updateBatteryBarStyle() {
-        mBatteryBarStyle.setValue((Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_STYLE, 0)) + "");
-        mBatteryBarStyle.setOnPreferenceChangeListener(this);
+        mBatteryBarStylePref.setValue((Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_STYLE, 0)) + "");
+        mBatteryBarStylePref.setOnPreferenceChangeListener(this);
     }
 
     private void updateBatteryBarChargAnim() {
-        mBatteryBarChargingAnimation.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE, 0) == 1);
+        mBatteryBarChargingAnimationPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE, 0) == 1);
     }
 
     private void updateBatteryBarThickness() {
-        mBatteryBarThickness.setValue((Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, 1)) + "");
-        mBatteryBarThickness.setOnPreferenceChangeListener(this);
+        mBatteryBarThicknessPref.setValue((Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, 1)) + "");
+        mBatteryBarThicknessPref.setOnPreferenceChangeListener(this);
     }
 
     private void updateDisableBootAnimation() {
@@ -286,11 +296,11 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     }
 
     private void updateHomeButtonAnswersCall() {
-        mHomeButtonAnswersCall.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.HOME_BUTTON_ANSWERS_CALL, 0) == 1);
+        mHomeButtonAnswersCallPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.HOME_BUTTON_ANSWERS_CALL, 0) == 1);
     }
 
     private void updateVolumeAdjustSound() {
-        mVolumeAdjustSounds.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 1) != 0);
+        mVolumeAdjustSoundsPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 1) != 0);
     }
 
     private void updateDisableReboot() {
@@ -325,7 +335,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     /* Write functions */
     private void writeCenterClockStatusBar() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, mCenterClockStatusBar.isChecked() ? 1 : 0);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, mCenterClockStatusBarPref.isChecked() ? 1 : 0);
         Helpers.restartSystemUI();
     }
 
@@ -345,8 +355,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mClockColorPicker.setOnPreferenceChangeListener(this);
     }
 
-    private void writeBatteryBar(Object NewVal) {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR, Integer.parseInt((String) NewVal));
+    private void writeBatteryBar() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR, mBatteryBarPref.isChecked() ? 1 : 0);
         updateBatteryBar();
     }
 
@@ -363,7 +373,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     }
 
     private void writeBatteryBarChargAnim() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE, mBatteryBarChargingAnimation.isChecked() ? 1 : 0);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE, mBatteryBarChargingAnimationPref.isChecked() ? 1 : 0);
     }
 
     private void writeBatteryBarThickness(Object NewVal) {
@@ -412,11 +422,11 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     }
 
     private void writeHomeButtonAnswersCall() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.HOME_BUTTON_ANSWERS_CALL, mHomeButtonAnswersCall.isChecked() ? 1 : 0);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.HOME_BUTTON_ANSWERS_CALL, mHomeButtonAnswersCallPref.isChecked() ? 1 : 0);
     }
 
     private void writeVolumeAdjustSound() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, mVolumeAdjustSounds.isChecked() ? 1 : 0);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, mVolumeAdjustSoundsPref.isChecked() ? 1 : 0);
     }
 
     private void writeDisableReboot() {
@@ -474,11 +484,13 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mCenterClockStatusBar) {
+        if (preference == mCenterClockStatusBarPref) {
             writeCenterClockStatusBar();
         } else if (preference == mDisableAlarmPref) {
             writeDisableAlarm();
-        } else if (preference == mBatteryBarChargingAnimation) {
+        } else if (preference == mBatteryBarPref) {
+            writeBatteryBar();
+        } else if (preference == mBatteryBarChargingAnimationPref) {
             writeBatteryBarChargAnim();
         } else if (preference == mDisableBootanimPref) {
             writeDisableBootAnimation();
@@ -490,9 +502,9 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeRaisedBrightness();
         } else if (preference == mBackButtonEndsCallPref) {
             writeBackButtonEndsCall();
-        } else if (preference == mHomeButtonAnswersCall) {
+        } else if (preference == mHomeButtonAnswersCallPref) {
             writeHomeButtonAnswersCall();
-        } else if (preference == mVolumeAdjustSounds) {
+        } else if (preference == mVolumeAdjustSoundsPref) {
             writeVolumeAdjustSound();
         } else if (preference == mDisableRebootPref) {
             writeDisableReboot();
@@ -516,15 +528,13 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference == mClockColorPicker) {
             writeClockColorPicker(newValue);
-        } else if (preference == mClockWeekday) {
+        } else if (preference == mClockWeekdayPref) {
             writeClockWeekday(newValue);
         } else if (preference == mBatteryBarColor) {
             writeBatteryBarColor(newValue);
-        } else if (preference == mBatteryBar) {
-            writeBatteryBar(newValue);
-        } else if (preference == mBatteryBarStyle) {
+        } else if (preference == mBatteryBarStylePref) {
             writeBatteryBarStyle(newValue);
-        } else if (preference == mBatteryBarThickness) {
+        } else if (preference == mBatteryBarThicknessPref) {
             writeBatteryBarThickness(newValue);
         } else if (preference == mLockscreenTextColor) {
             writeLockscreenTextColor(newValue);

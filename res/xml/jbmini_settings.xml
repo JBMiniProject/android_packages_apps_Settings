@@ -52,11 +52,9 @@
         android:key="batterybar"
         android:title="@string/cat_batterybar">
 
-        <ListPreference
-            android:key="pref_battery_bar_list"
-            android:title="@string/pref_battery_bar"
-            android:entries="@array/battery_bar_entries"
-            android:entryValues="@array/battery_bar_values" />
+        <CheckBoxPreference
+            android:key="pref_battery_bar"
+            android:title="@string/pref_battery_bar" />
 
         <ListPreference
             android:key="pref_battery_bar_style"
