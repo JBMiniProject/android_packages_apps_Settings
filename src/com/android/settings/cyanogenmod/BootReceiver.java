@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.SystemProperties;
 import android.provider.Settings;
+import android.provider.Settings.SettingNotFoundException;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -77,7 +78,7 @@ public class BootReceiver extends BroadcastReceiver {
             }
         }
 
-        if (SystemProperties.getBoolean(RAISED_BRIGHTNESS_PROP, false) == true) {
+        if (getRaisedBrightness(ctx, 0) == 1) {
             Utils.fileWriteOneLine("/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode", "i2c_pwm");
             Log.d(TAG, "Brightness: Raised");
         }
@@ -125,6 +126,14 @@ public class BootReceiver extends BroadcastReceiver {
             }
             Log.d(TAG, "CPU settings restored.");
         }
+    }
+
+    private int getRaisedBrightness(Context ctx, int defVal) {
+        int mode = defVal;
+        try {
+            mode = Settings.System.getInt(ctx.getContentResolver(), Settings.System.SCREEN_RAISED_BRIGHTNESS);
+        } catch (SettingNotFoundException snfe) {}
+        return mode;
     }
 
     private void configureIOSched(Context ctx) {
