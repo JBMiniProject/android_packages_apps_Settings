@@ -19,6 +19,7 @@ package com.android.settings;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ActivityManagerNative;
 import android.content.Context;
@@ -43,6 +44,7 @@ import android.os.IPowerManager;
 import android.widget.EditText;
 
 import android.provider.Settings;
+import android.provider.Settings.SettingNotFoundException;
 import android.os.SystemProperties;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -95,6 +97,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private static final String CUSTOM_CARRIER_LABEL_PROP = "pref_carrier_label";
     private static final String LOCKSCREEN_TEXT_COLOR_PROP = "pref_lockscreen_text_color";
+    private static final String LOCKSCREEN_STYLES_PROP = "pref_lockscreen_styles";
+    private static final String ROTARY_ARROWS_PROP = "pref_rotary_arrows";
 
     private final Configuration mCurrentConfig = new Configuration();
 
@@ -127,6 +131,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private Preference mCustomCarrierLabel;
     private String mCustomCarrierLabelSummary = null;
     private ColorPickerPreference mLockscreenTextColor;
+    private ListPreference mLockStylePref;
+    private CheckBoxPreference mRotaryArrowsPref;
 
     private Context mContext;
 
@@ -176,6 +182,9 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mCustomCarrierLabel = prefSet.findPreference(CUSTOM_CARRIER_LABEL_PROP);
         mLockscreenTextColor = (ColorPickerPreference) prefSet.findPreference(LOCKSCREEN_TEXT_COLOR_PROP);
         mLockscreenTextColor.setOnPreferenceChangeListener(this);
+        mLockStylePref = (ListPreference) prefSet.findPreference(LOCKSCREEN_STYLES_PROP);
+        mLockStylePref.setOnPreferenceChangeListener(this);
+        mRotaryArrowsPref = (CheckBoxPreference) prefSet.findPreference(ROTARY_ARROWS_PROP);
 
 
         updateCenterClockStatusBar();
@@ -203,6 +212,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         updateDisableTitle();
 
         updateCustomCarrierLabel();
+        updateLockscreenStyle();
+        updateLockscreenArrows();
     }
 
 
@@ -328,6 +339,15 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         } else {
             mCustomCarrierLabel.setSummary(mCustomCarrierLabelSummary);
         }
+    }
+
+    private void updateLockscreenStyle() {
+        mLockStylePref.setValue(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_STYLE, 0) + "");
+        mLockStylePref.setOnPreferenceChangeListener(this);
+    }
+
+    private void updateLockscreenArrows() {
+        mRotaryArrowsPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_HIDE_ARROWS, 0) == 1);
     }
 
 
@@ -479,6 +499,14 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mLockscreenTextColor.setOnPreferenceChangeListener(this);
     }
 
+    private void writeLockscreenStyle(Object NewVal) {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_STYLE, Integer.parseInt((String) NewVal));
+    }
+
+    private void writeLockscreenArrows() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_HIDE_ARROWS, mRotaryArrowsPref.isChecked() ? 1 : 0);
+    }
+
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
@@ -516,6 +544,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeDisableTitle();
         } else if (preference == mCustomCarrierLabel) {
             writeCustomCarrierLabel();
+        } else if (preference == mRotaryArrowsPref) {
+            writeLockscreenArrows();
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -536,6 +566,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeBatteryBarThickness(newValue);
         } else if (preference == mLockscreenTextColor) {
             writeLockscreenTextColor(newValue);
+        } else if (preference == mLockStylePref) {
+            writeLockscreenStyle(newValue);
         }
         return false;
     }

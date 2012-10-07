@@ -1485,5 +1485,17 @@
         <item>4</item>
     </string-array>
 
+    <string-array name="lockscreen_styles_entries">
+        <item>@string/pref_lockscreen_style_jb</item>
+        <item>@string/pref_lockscreen_style_slider</item>
+        <item>@string/pref_lockscreen_style_rotary</item>
+    </string-array>
+
+    <string-array name="lockscreen_styles_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
     <!-- **** JBMINI PROJECT ADDITIONS END **** -->
 </resources>

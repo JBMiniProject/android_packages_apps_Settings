@@ -175,6 +175,17 @@
             android:title="@string/pref_lockscreen_text_color_title"
             android:defaultValue="#ffffffff" />
 
+        <ListPreference
+            android:key="pref_lockscreen_styles"
+            android:entries="@array/lockscreen_styles_entries"
+            android:entryValues="@array/lockscreen_styles_values"
+            android:title="@string/pref_lockscreen_styles_title"
+            android:summary="@string/pref_lockscreen_styles_summary" />
+
+        <CheckBoxPreference
+            android:key="pref_rotary_arrows"
+            android:title="@string/pref_rotary_arrows_title" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

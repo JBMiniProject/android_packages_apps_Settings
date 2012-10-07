@@ -2501,6 +2501,12 @@
     <string name="pref_small">Kicsi</string>
     <string name="pref_regular">Normál</string>
     <string name="pref_center_mirror">Középről tükrözött</string>
+    <string name="pref_lockscreen_styles_title">Képernyőzár stílus</string>
+    <string name="pref_lockscreen_styles_summary">Válaszd ki, melyik stílust akarod használni</string>
+    <string name="pref_rotary_arrows_title">Nyilak elrejtése</string>
+    <string name="pref_lockscreen_style_jb">Jelly Bean</string>
+    <string name="pref_lockscreen_style_slider">Csúsztatás</string>
+    <string name="pref_lockscreen_style_rotary">Forgó</string>
 
     <string name="cat_status_bar">ÉRTESÍTÉSI SÁV</string>
     <string name="cat_hard_keys">FIZIKAI GOMBOK</string>
