@@ -145,7 +145,7 @@ public class ApnSettings extends SettingsPreferenceFragment implements
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
 
         if (mRestoreDefaultApnThread != null) {

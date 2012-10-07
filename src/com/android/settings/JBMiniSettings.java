@@ -501,6 +501,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void writeLockscreenStyle(Object NewVal) {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_STYLE, Integer.parseInt((String) NewVal));
+        updateLockscreenStyle();
     }
 
     private void writeLockscreenArrows() {
