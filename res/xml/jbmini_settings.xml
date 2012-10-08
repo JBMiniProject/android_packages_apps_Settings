@@ -186,6 +186,10 @@
             android:key="pref_rotary_arrows"
             android:title="@string/pref_rotary_arrows_title" />
 
+        <CheckBoxPreference
+            android:key="pref_slider_text"
+            android:title="@string/pref_slider_text_title" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
