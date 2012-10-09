@@ -190,6 +190,10 @@
             android:key="pref_slider_text"
             android:title="@string/pref_slider_text_title" />
 
+        <CheckBoxPreference
+            android:key="pref_rotary_down"
+            android:title="@string/pref_rotary_down_title" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

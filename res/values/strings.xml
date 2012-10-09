@@ -4952,9 +4952,12 @@
     <string name="pref_lockscreen_styles_summary">Pick what Lockscreen Style you would like to use</string>
     <string name="pref_rotary_arrows_title">Hide Rotary Arrows</string>
     <string name="pref_slider_text_title">Hide Slider Hint</string>
+    <string name="pref_rotary_down_title">Rotary Pulldown Unlock</string>
     <string name="pref_lockscreen_style_jb">Jelly Bean</string>
     <string name="pref_lockscreen_style_slider">Slider</string>
     <string name="pref_lockscreen_style_rotary">Rotary</string>
+    <string name="pref_lockscreen_style_rotary_revamp">Rotary Revamp</string>
+
 
     <string name="header_category_jbmp">JB MINI PROJECT</string>
     <string name="cat_status_bar">STATUSBAR</string>
