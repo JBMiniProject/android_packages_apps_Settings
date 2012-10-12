@@ -189,7 +189,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mLockStylePref = (ListPreference) prefSet.findPreference(LOCKSCREEN_STYLES_PROP);
         mLockStylePref.setOnPreferenceChangeListener(this);
         mRotaryArrowsPref = (CheckBoxPreference) prefSet.findPreference(ROTARY_ARROWS_PROP);
-        mRotaryDownPref = (CheckBoxPreference) prefSet.findPreference(ROTARY_DOWN);
+        mRotaryDownPref = (CheckBoxPreference) prefSet.findPreference(ROTARY_DOWN_PROP);
         mSliderTextPref = (CheckBoxPreference) prefSet.findPreference(SLIDER_TEXT_PROP);
 
 
