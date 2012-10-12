@@ -2522,7 +2522,7 @@
     <string name="pref_lockscreen_style_jb">Jelly Bean</string>
     <string name="pref_lockscreen_style_slider">Csúsztatás</string>
     <string name="pref_lockscreen_style_rotary">Forgó</string>
-    <string name="pref_lockscreen_style_rotary">Átalakított forgó</string>
+    <string name="pref_lockscreen_style_rotary_revamp">Átalakított forgó</string>
 
     <string name="cat_status_bar">ÉRTESÍTÉSI SÁV</string>
     <string name="cat_hard_keys">FIZIKAI GOMBOK</string>
