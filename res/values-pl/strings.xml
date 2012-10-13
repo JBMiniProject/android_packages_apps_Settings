@@ -572,17 +572,6 @@
     <string name="wifi_secured_second_item" msgid="1326000076939056265">", zabezpieczona za pomocą protokołu <xliff:g id="WIFI_SECURITY_SHORT">%1$s</xliff:g>"</string>
     <string name="wifi_security_none" msgid="7985461072596594400">"Brak"</string>
 
-
-
-
-
-
-
-
-
-
-
-
     <string name="wifi_connect" msgid="1076622875777072845">"Połącz"</string>
     <string name="wifi_failed_connect_message" msgid="8491902558970292871">"Nie można nawiązać połączenia z siecią"</string>
     <string name="wifi_forget" msgid="8168174695608386644">"Zapomnij"</string>
@@ -631,34 +620,6 @@
     <string name="wifi_tether_configure_ap_text" msgid="61237027772641155">"Skonfiguruj hotspot Wi-Fi"</string>
     <string name="wifi_tether_configure_subtext" msgid="1927454307836232128">"Przenośny punkt Wi-Fi <xliff:g id="NETWORK_SSID">%1$s</xliff:g> <xliff:g id="NETWORK_SECURITY">%2$s</xliff:g>"</string>
     <string name="wifi_tether_configure_ssid_default" msgid="8467525402622138547">"Punkt dostępu Android"</string>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <string name="display_settings_title" msgid="1708697328627382561">"Wyświetlacz"</string>
     <string name="sound_settings" msgid="5534671337768745343">"Dźwięk"</string>
@@ -1263,7 +1224,6 @@
     <string name="keep_screen_on" msgid="1146389631208760344">"Zostaw włączony"</string>
     <string name="keep_screen_on_summary" msgid="2173114350754293009">"Ekran nie będzie gaszony podczas ładowania telefonu"</string>
     <string name="allow_mock_location" msgid="2787962564578664888">"Pozorowanie lokalizacji"</string>
-    <string name="allow_mock_location_summary" msgid="317615105156345626">"Zezwalaj na pozorowanie lokalizacji"</string>
     <string name="adb_warning_title" msgid="6234463310896563253">"Czy zezwalać na debugowanie USB?"</string>
     <string name="adb_warning_message" msgid="7316799925425402244">"Debugowanie USB jest przeznaczone wyłącznie do celów programistycznych. Może służyć do kopiowania danych między komputerem a urządzeniem, instalowania aplikacji na urządzeniu bez powiadamiania, a także odczytu danych dziennika."</string>
     <string name="dev_settings_warning_title" msgid="7244607768088540165">"Zezwolić na ustawienia programistyczne?"</string>
@@ -2337,7 +2297,7 @@
 
     <string name="device_hostname">Nazwa hosta urządzenia</string>
 
-    <string name="mod_version">Wersja CyanogenMod</string>
+    <string name="mod_version">Wersja Mod</string>
     <string name="mod_version_default">Nieznana</string>
     <string name="build_date">Data kompilacji</string>
     <string name="build_date_default">2012-01-01-0000</string>
