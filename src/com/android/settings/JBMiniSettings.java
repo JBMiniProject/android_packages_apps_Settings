@@ -99,7 +99,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String LOCKSCREEN_TEXT_COLOR_PROP = "pref_lockscreen_text_color";
     private static final String LOCKSCREEN_STYLES_PROP = "pref_lockscreen_styles";
     private static final String ROTARY_ARROWS_PROP = "pref_rotary_arrows";
-    private static final String ROTARY_DOWN_PROP = "pref_rotary_down";
+//    private static final String ROTARY_DOWN_PROP = "pref_rotary_down";
     private static final String SLIDER_TEXT_PROP = "pref_slider_text";
 
     private final Configuration mCurrentConfig = new Configuration();
@@ -135,7 +135,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private ColorPickerPreference mLockscreenTextColor;
     private ListPreference mLockStylePref;
     private CheckBoxPreference mRotaryArrowsPref;
-    private CheckBoxPreference mRotaryDownPref;
+//    private CheckBoxPreference mRotaryDownPref;
     private CheckBoxPreference mSliderTextPref;
 
     private Context mContext;
@@ -189,7 +189,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mLockStylePref = (ListPreference) prefSet.findPreference(LOCKSCREEN_STYLES_PROP);
         mLockStylePref.setOnPreferenceChangeListener(this);
         mRotaryArrowsPref = (CheckBoxPreference) prefSet.findPreference(ROTARY_ARROWS_PROP);
-        mRotaryDownPref = (CheckBoxPreference) prefSet.findPreference(ROTARY_DOWN_PROP);
+//        mRotaryDownPref = (CheckBoxPreference) prefSet.findPreference(ROTARY_DOWN_PROP);
         mSliderTextPref = (CheckBoxPreference) prefSet.findPreference(SLIDER_TEXT_PROP);
 
 
@@ -220,7 +220,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         updateCustomCarrierLabel();
         updateLockscreenStyle();
         updateLockscreenArrows();
-        updateLockscreenRotaryDown();
+//        updateLockscreenRotaryDown();
         updateLockscreenSliderT();
     }
 
@@ -358,9 +358,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mRotaryArrowsPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_HIDE_ARROWS, 0) == 1);
     }
 
-    private void updateLockscreenRotaryDown() {
+/*    private void updateLockscreenRotaryDown() {
         mRotaryDownPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_ROTARY_UNLOCK_DOWN, 0) == 1);
     }
+*/
 
     private void updateLockscreenSliderT() {
         mSliderTextPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_HIDE_HINT, 0) == 1);
@@ -524,9 +525,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_HIDE_ARROWS, mRotaryArrowsPref.isChecked() ? 1 : 0);
     }
 
-    private void writeLockscreenRotaryDown() {
+/*    private void writeLockscreenRotaryDown() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_ROTARY_UNLOCK_DOWN, mRotaryDownPref.isChecked() ? 1 : 0);
     }
+*/
 
     private void writeLockscreenSliderT() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_HIDE_HINT, mSliderTextPref.isChecked() ? 1 : 0);
@@ -571,8 +573,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeCustomCarrierLabel();
         } else if (preference == mRotaryArrowsPref) {
             writeLockscreenArrows();
-        } else if (preference == mRotaryDownPref) {
-            writeLockscreenRotaryDown();
+//        } else if (preference == mRotaryDownPref) {
+//            writeLockscreenRotaryDown();
         } else if (preference == mSliderTextPref) {
             writeLockscreenSliderT();
         }
