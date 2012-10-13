@@ -352,6 +352,19 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private void updateLockscreenStyle() {
         mLockStylePref.setValue(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_STYLE, 0) + "");
         mLockStylePref.setOnPreferenceChangeListener(this);
+        int stylenum = Settings.System.getInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_STYLE, 0);
+        if (stylenum == 0) {
+            mRotaryArrowsPref.setEnabled(false);
+            mSliderTextPref.setEnabled(false);
+        }
+        else if (stylenum == 1) {
+            mRotaryArrowsPref.setEnabled(false);
+            mSliderTextPref.setEnabled(true);
+        }
+        else if (stylenum == 2) {
+            mRotaryArrowsPref.setEnabled(true);
+            mSliderTextPref.setEnabled(false);
+        }
     }
 
     private void updateLockscreenArrows() {
