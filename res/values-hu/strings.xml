@@ -2568,11 +2568,9 @@
     <string name="pref_lockscreen_styles_summary">Válaszd ki, melyik stílust akarod használni</string>
     <string name="pref_rotary_arrows_title">Nyilak elrejtése</string>
     <string name="pref_slider_text_title">Csúszka súgó szöveg elrejtése</string>
-    <!-- <string name="pref_rotary_down_title">Lefelé húzható forgó</string> -->
     <string name="pref_lockscreen_style_jb">Jelly Bean</string>
     <string name="pref_lockscreen_style_slider">Csúsztatás</string>
     <string name="pref_lockscreen_style_rotary">Forgó</string>
-    <!-- <string name="pref_lockscreen_style_rotary_revamp">Átalakított forgó</string> -->
 
     <string name="cat_status_bar">ÉRTESÍTÉSI SÁV</string>
     <string name="cat_hard_keys">FIZIKAI GOMBOK</string>
