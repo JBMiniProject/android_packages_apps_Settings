@@ -70,7 +70,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private static final String CENTER_CLOCK_STATUS_BAR_PROP = "pref_center_clock_status_bar";
     private static final String CLOCK_WEEKDAY_PROP = "pref_clock_weekday";
-    private static final String DISABLE_ALARM_PROP = "pref_disable_alarm";
     private static final String CLOCK_COLOR_PICKER_PROP = "pref_clock_color";
 
     private static final String BATT_BAR_PROP = "pref_battery_bar";
@@ -105,7 +104,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private CheckBoxPreference mCenterClockStatusBarPref;
     private ListPreference mClockWeekdayPref;
-    private CheckBoxPreference mDisableAlarmPref;
     private ColorPickerPreference mClockColorPicker;
 
     private CheckBoxPreference mBatteryBarPref;
@@ -152,7 +150,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mCenterClockStatusBarPref = (CheckBoxPreference) prefSet.findPreference(CENTER_CLOCK_STATUS_BAR_PROP);
         mClockWeekdayPref = (ListPreference) prefSet.findPreference(CLOCK_WEEKDAY_PROP);
         mClockWeekdayPref.setOnPreferenceChangeListener(this);
-        mDisableAlarmPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_ALARM_PROP);
         mClockColorPicker = (ColorPickerPreference) prefSet.findPreference(CLOCK_COLOR_PICKER_PROP);
         mClockColorPicker.setOnPreferenceChangeListener(this);
 
@@ -192,7 +189,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
         updateCenterClockStatusBar();
         updateClockWeekday();
-        updateDisableAlarm();
 
         updateBatteryBar();
         updateBatteryBarStyle();
@@ -241,10 +237,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private void updateClockWeekday() {
         mClockWeekdayPref.setValue(Integer.toString(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_CLOCK_WEEKDAY, 0)));
         mClockWeekdayPref.setOnPreferenceChangeListener(this);
-    }
-
-    private void updateDisableAlarm() {
-        mDisableAlarmPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_SHOW_ALARM, 1) == 1);
     }
 
     private void updateBatteryBar() {
@@ -381,10 +373,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private void writeClockWeekday(Object NewVal) {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_CLOCK_WEEKDAY, Integer.parseInt((String) NewVal));
         updateClockWeekday();
-    }
-
-    private void writeDisableAlarm() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_SHOW_ALARM, mDisableAlarmPref.isChecked() ? 1 : 0);
     }
 
     private void writeClockColorPicker(Object NewVal) {
@@ -538,8 +526,6 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mCenterClockStatusBarPref) {
             writeCenterClockStatusBar();
-        } else if (preference == mDisableAlarmPref) {
-            writeDisableAlarm();
         } else if (preference == mBatteryBarPref) {
             writeBatteryBar();
         } else if (preference == mBatteryBarChargingAnimationPref) {
