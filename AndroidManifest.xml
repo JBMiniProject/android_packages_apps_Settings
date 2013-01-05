@@ -1519,6 +1519,9 @@
         <!-- CyanogenMod activities End -->
 
         <!-- JBMiniProject activities -->
+
+        <activity android:name=".jbminiproject.ScreenshotMenu" />
+
         <activity android:name=".jbminiproject.ChangeLog" android:label="@string/changelog_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

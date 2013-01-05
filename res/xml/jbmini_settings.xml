@@ -155,6 +155,11 @@
                     android:targetClass="com.android.settings.jbminiproject.A2SDActivity" />
         </PreferenceScreen>
 
+        <PreferenceScreen
+            android:key="screenshot_menu"
+            android:fragment="com.android.settings.jbminiproject.ScreenshotMenu"
+            android:title="@string/screenshot_menu_title" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

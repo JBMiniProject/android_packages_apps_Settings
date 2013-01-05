@@ -2598,5 +2598,13 @@
     <string name="pref_battery_bar_thickness_title">Sáv vastagsága</string>
     <string name="pref_battery_bar_animate_title">Töltési animáció</string>
 
+    <!-- Screenshot Menu -->
+    <string name="screenshot_menu_title">Képernyőkép</string>
+    <string name="pref_screenshot_title">Képernyőkép</string>
+    <string name="pref_screenshot_sound_title">Képernyőkép hang</string>
+    <string name="pref_screenshot_sound_summary">Hang lejátszása kép elkészültekor</string>
+    <string name="pref_screenshot_delay_title">Várakozás</string>
+    <string name="pref_screenshot_delay_summary">Várakozási idő a kép elkészítése előtt</string>
+
     <!-- **** JBMINI PROJECT ADDITIONS END **** -->
 </resources>

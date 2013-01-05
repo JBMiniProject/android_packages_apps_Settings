@@ -5067,5 +5067,13 @@
     <string name="pref_battery_bar_animate_title">Charging animation</string>
     <string name="pref_battery_bar_animate_summary">The charging animation may result in a poor user experience. Enable at your own discretion.</string>
 
+    <!-- Screenhot Menu -->
+    <string name="screenshot_menu_title">Screenshot menu</string>
+    <string name="pref_screenshot_title">Screenshot</string>
+    <string name="pref_screenshot_sound_title">Screenshot sound</string>
+    <string name="pref_screenshot_sound_summary">Plays sound effect when screenshot is taken</string>
+    <string name="pref_screenshot_delay_title">Screenshot delay</string>
+    <string name="pref_screenshot_delay_summary">Delays shot by number of seconds specified</string>
+
     <!-- **** JBMINI PROJECT ADDITIONS END **** -->
 </resources>
