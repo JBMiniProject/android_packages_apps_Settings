@@ -1,5 +1,6 @@
 /*
 * Copyright (C) 2008 The Android Open Source Project
+* Copyright (C) 2012-2013 JBMiniProject
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -14,7 +15,7 @@
 * limitations under the License.
 */
 
-package com.android.settings;
+package com.android.settings.jbminiproject;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -41,6 +42,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.android.settings.R;
 
 public class PartitionInfo extends PreferenceActivity {
     private static final String TAG = "PartitionInfo";

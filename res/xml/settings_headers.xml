@@ -75,7 +75,7 @@
         <intent
             android:action="com.android.action.MAIN"
             android:targetPackage="com.android.settings"
-            android:targetClass="com.android.settings.PartitionInfo" />
+            android:targetClass="com.android.settings.jbminiproject.PartitionInfo" />
     </header>
 
 
