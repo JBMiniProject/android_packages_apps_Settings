@@ -1492,20 +1492,7 @@
 
         <activity android:name=".notificationlight.BatteryLightSettings" />
 
-		<activity android:name=".cyanogenmod.A2SDActivity"
-                android:label="@string/a2sd_settings_title">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-            </intent-filter>
-        </activity>
-		
-        <activity android:name=".cyanogenmod.A2SDInfo"
-                android:label="@string/a2sd_info_title">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-            </intent-filter>
-        </activity>		
-		
+
         <activity android:name=".ApnEditor" />
 
         <activity android:name=".cyanogenmod.CIDLogoActivity"
@@ -1544,6 +1531,20 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.VOICE_LAUNCH" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".jbminiproject.A2SDActivity"
+                android:label="@string/a2sd_settings_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".jbminiproject.A2SDInfo"
+                android:label="@string/a2sd_info_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
 
