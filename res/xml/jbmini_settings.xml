@@ -167,6 +167,12 @@
             android:fragment="com.android.settings.jbminiproject.ScreenshotMenu"
             android:title="@string/screenshot_menu_title" />
 
+        <CheckBoxPreference
+            android:key="pref_show_navbar"
+            android:title="@string/pref_show_navbar"
+            android:summary="@string/pref_show_navbar_reboot"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

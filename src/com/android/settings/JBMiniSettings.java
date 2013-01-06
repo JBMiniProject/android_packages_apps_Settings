@@ -84,6 +84,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String DISABLE_BOOTAUDIO_PROP = "pref_disable_bootaudio";
     private static final String DISABLE_BUGMAILER_PROP = "pref_disable_bugmailer";
     private static final String RAISED_BRIGHTNESS_PROP = "pref_raisedbrightness";
+    private static final String SHOW_NAVBAR_PROP = "pref_show_navbar";
 
     private static final String BACK_BUTTON_ENDS_CALL_PROP = "pref_back_button_ends_call";
     private static final String HOME_BUTTON_ANSWERS_CALL_PROP = "pref_home_button_answers_call";
@@ -118,6 +119,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private CheckBoxPreference mDisableBootAudioPref;
     private CheckBoxPreference mDisableBugmailerPref;
     private CheckBoxPreference mRaisedBrightnessPref;
+    private CheckBoxPreference mShowNavbarPref;
 
     private CheckBoxPreference mBackButtonEndsCallPref;
     private CheckBoxPreference mHomeButtonAnswersCallPref;
@@ -170,6 +172,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mDisableBootAudioPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTAUDIO_PROP);
         mDisableBugmailerPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BUGMAILER_PROP);
         mRaisedBrightnessPref = (CheckBoxPreference) prefSet.findPreference(RAISED_BRIGHTNESS_PROP);
+        mShowNavbarPref = (CheckBoxPreference) prefSet.findPreference(SHOW_NAVBAR_PROP);
 
         mBackButtonEndsCallPref = (CheckBoxPreference) prefSet.findPreference(BACK_BUTTON_ENDS_CALL_PROP);
         mHomeButtonAnswersCallPref = (CheckBoxPreference) prefSet.findPreference(HOME_BUTTON_ANSWERS_CALL_PROP);
@@ -204,6 +207,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         updateDisableBootAudio();
         updateDisableBugmailer();
         updateRaisedBrightness();
+        updateShowNavBar();
 
         updateBackButtonEndsCall();
         updateHomeButtonAnswersCall();
@@ -304,6 +308,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void updateRaisedBrightness() {
         mRaisedBrightnessPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SCREEN_RAISED_BRIGHTNESS, 0) == 1);
+    }
+
+    private void updateShowNavBar() {
+        mShowNavbarPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SHOW_NAVBAR, 0) == 1);
     }
 
     private void updateBackButtonEndsCall() {
@@ -458,6 +466,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         Utils.fileWriteOneLine("/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode", mRaisedBrightnessPref.isChecked() ? "i2c_pwm" : "i2c_pwm_als");
     }
 
+    private void writeShowNavBar() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SHOW_NAVBAR, mShowNavbarPref.isChecked() ? 1 : 0);
+    }
+
     private void writeBackButtonEndsCall() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.BACK_BUTTON_ENDS_CALL, mBackButtonEndsCallPref.isChecked() ? 1 : 0);
     }
@@ -552,6 +564,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeDisableBugmailer();
         } else if (preference == mRaisedBrightnessPref) {
             writeRaisedBrightness();
+        } else if (preference == mShowNavbarPref) {
+            writeShowNavBar();
         } else if (preference == mBackButtonEndsCallPref) {
             writeBackButtonEndsCall();
         } else if (preference == mHomeButtonAnswersCallPref) {
