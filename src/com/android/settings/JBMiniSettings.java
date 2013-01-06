@@ -71,6 +71,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String CENTER_CLOCK_STATUS_BAR_PROP = "pref_center_clock_status_bar";
     private static final String CLOCK_WEEKDAY_PROP = "pref_clock_weekday";
     private static final String CLOCK_COLOR_PICKER_PROP = "pref_clock_color";
+    private static final String STATUSBAR_TRANSPARENCY_PROP = "pref_statusbar_transparency";
 
     private static final String BATT_BAR_PROP = "pref_battery_bar";
     private static final String BATT_BAR_STYLE_PROP = "pref_battery_bar_style";
@@ -105,6 +106,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private CheckBoxPreference mCenterClockStatusBarPref;
     private ListPreference mClockWeekdayPref;
     private ColorPickerPreference mClockColorPicker;
+    private ListPreference mStatusbarTransparencyPref;
 
     private CheckBoxPreference mBatteryBarPref;
     private ListPreference mBatteryBarStylePref;
@@ -152,6 +154,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mClockWeekdayPref.setOnPreferenceChangeListener(this);
         mClockColorPicker = (ColorPickerPreference) prefSet.findPreference(CLOCK_COLOR_PICKER_PROP);
         mClockColorPicker.setOnPreferenceChangeListener(this);
+        mStatusbarTransparencyPref = (ListPreference) prefSet.findPreference(STATUSBAR_TRANSPARENCY_PROP);
+        mStatusbarTransparencyPref.setOnPreferenceChangeListener(this);
 
         mBatteryBarPref = (CheckBoxPreference) prefSet.findPreference(BATT_BAR_PROP);
         mBatteryBarStylePref = (ListPreference) prefSet.findPreference(BATT_BAR_STYLE_PROP);
@@ -189,6 +193,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
         updateCenterClockStatusBar();
         updateClockWeekday();
+        updateStatusbarTransparency();
 
         updateBatteryBar();
         updateBatteryBarStyle();
@@ -237,6 +242,11 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private void updateClockWeekday() {
         mClockWeekdayPref.setValue(Integer.toString(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_CLOCK_WEEKDAY, 0)));
         mClockWeekdayPref.setOnPreferenceChangeListener(this);
+    }
+
+    private void updateStatusbarTransparency() {
+        mStatusbarTransparencyPref.setValue((Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_TRANSPARENCY, 100)) + "");
+        mStatusbarTransparencyPref.setOnPreferenceChangeListener(this);
     }
 
     private void updateBatteryBar() {
@@ -380,6 +390,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mClockColorPicker.setSummary(hex);
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_CLOCK_COLOR, ColorPickerPreference.convertToColorInt(hex));
         mClockColorPicker.setOnPreferenceChangeListener(this);
+    }
+
+    private void writeStatusbarTransparency(Object NewVal) {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_TRANSPARENCY, Integer.valueOf((String) NewVal));
     }
 
     private void writeBatteryBar() {
@@ -572,6 +586,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeClockColorPicker(newValue);
         } else if (preference == mClockWeekdayPref) {
             writeClockWeekday(newValue);
+        } else if (preference == mStatusbarTransparencyPref) {
+            writeStatusbarTransparency(newValue);
         } else if (preference == mBatteryBarColor) {
             writeBatteryBarColor(newValue);
         } else if (preference == mBatteryBarStylePref) {

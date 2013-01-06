@@ -41,6 +41,13 @@
             android:title="@string/pref_clock_color_title"
             android:defaultValue="@android:color/holo_blue_light" />
 
+        <ListPreference
+            android:key="pref_statusbar_transparency"
+            android:title="@string/pref_statusbar_transparency_title"
+            android:summary="@string/pref_statusbar_transparency_summary"
+            android:entries="@array/entries_transparency"
+            android:entryValues="@array/values_transparency" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

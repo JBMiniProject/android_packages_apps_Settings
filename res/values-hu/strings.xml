@@ -2569,6 +2569,8 @@
     <string name="pref_lockscreen_style_jb">Jelly Bean</string>
     <string name="pref_lockscreen_style_slider">Csúsztatás</string>
     <string name="pref_lockscreen_style_rotary">Forgó</string>
+    <string name="pref_statusbar_transparency_title">Átlátszóság</string>
+    <string name="pref_statusbar_transparency_summary">Mennyire legyen átlátszó az értesítési sáv</string>
 
     <string name="cat_status_bar">ÉRTESÍTÉSI SÁV</string>
     <string name="cat_hard_keys">FIZIKAI GOMBOK</string>
