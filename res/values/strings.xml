@@ -5026,7 +5026,7 @@
     <string name="pref_lockscreen_style_jb">Jelly Bean</string>
     <string name="pref_lockscreen_style_slider">Slider</string>
     <string name="pref_lockscreen_style_rotary">Rotary</string>
-    <string name="pref_lockscreen_style_rotary">Honeycomb</string>
+    <string name="pref_lockscreen_style_rotary">Samsung Galaxy S III</string>
     <string name="pref_statusbar_transparency_title">Transparency</string>
     <string name="pref_statusbar_transparency_summary">Adjust status bar transparency</string>
 
