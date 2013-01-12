@@ -93,9 +93,9 @@
             android:defaultValue="false" />
 
         <CheckBoxPreference
-            android:key="pref_home_button_answers_call"
-            android:title="@string/pref_home_button_answers_call_title"
-            android:summary="@string/pref_home_button_answers_call_summary"
+            android:key="pref_menu_button_answers_call"
+            android:title="@string/pref_menu_button_answers_call_title"
+            android:summary="@string/pref_menu_button_answers_call_summary"
             android:defaultValue="false" />
 
         <CheckBoxPreference

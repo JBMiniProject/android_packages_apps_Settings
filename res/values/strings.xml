@@ -5003,8 +5003,8 @@
     <string name="pref_center_clock_status_bar_summary">On the status bar aligns the clock to center (Wait for restart SystemUI)</string>
     <string name="pref_volume_adjust_sounds_enable_title">Volume adjust sound</string>
     <string name="pref_volume_adjust_sounds_enable_summary">Play sound when adjusting volume with hard keys</string>
-    <string name="pref_home_button_answers_call_title">Home button answers call</string>
-    <string name="pref_home_button_answers_call_summary">When pressed the Home button when incoming call, the actual call answered</string>
+    <string name="pref_menu_button_answers_call_title">Menu button answers call</string>
+    <string name="pref_menu_button_answers_call_summary">When pressed the Menu button when incoming call, the actual call answered</string>
     <string name="pref_carrier_label_title">Custom carrier label</string>
     <string name="pref_carrier_label_subhead">Please enter a new one!</string>
     <string name="pref_carrier_label_notset">Custom label currently not set</string>

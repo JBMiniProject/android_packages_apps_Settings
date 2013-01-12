@@ -87,7 +87,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String SHOW_NAVBAR_PROP = "pref_show_navbar";
 
     private static final String BACK_BUTTON_ENDS_CALL_PROP = "pref_back_button_ends_call";
-    private static final String HOME_BUTTON_ANSWERS_CALL_PROP = "pref_home_button_answers_call";
+    private static final String MENU_BUTTON_ANSWERS_CALL_PROP = "pref_menu_button_answers_call";
     private static final String KEY_VOLUME_ADJUST_SOUNDS_PROP = "pref_volume_adjust_sounds";
 
     private static final String DISABLE_REBOOT_PROP = "pref_disable_reboot";
@@ -122,7 +122,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private CheckBoxPreference mShowNavbarPref;
 
     private CheckBoxPreference mBackButtonEndsCallPref;
-    private CheckBoxPreference mHomeButtonAnswersCallPref;
+    private CheckBoxPreference mMenuButtonAnswersCallPref;
     private CheckBoxPreference mVolumeAdjustSoundsPref;
 
     private CheckBoxPreference mDisableRebootPref;
@@ -175,7 +175,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mShowNavbarPref = (CheckBoxPreference) prefSet.findPreference(SHOW_NAVBAR_PROP);
 
         mBackButtonEndsCallPref = (CheckBoxPreference) prefSet.findPreference(BACK_BUTTON_ENDS_CALL_PROP);
-        mHomeButtonAnswersCallPref = (CheckBoxPreference) prefSet.findPreference(HOME_BUTTON_ANSWERS_CALL_PROP);
+        mMenuButtonAnswersCallPref = (CheckBoxPreference) prefSet.findPreference(MENU_BUTTON_ANSWERS_CALL_PROP);
         mVolumeAdjustSoundsPref = (CheckBoxPreference) prefSet.findPreference(KEY_VOLUME_ADJUST_SOUNDS_PROP);
         mVolumeAdjustSoundsPref.setPersistent(false);
 
@@ -210,7 +210,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         updateShowNavBar();
 
         updateBackButtonEndsCall();
-        updateHomeButtonAnswersCall();
+        updateMenuButtonAnswersCall();
         updateVolumeAdjustSound();
 
         updateDisableReboot();
@@ -315,7 +315,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     }
 
     private void updateBackButtonEndsCall() {
-        final int incallBackBehavior = Settings.System.getInt(getActivity().getContentResolver(), 
+        final int incallBackBehavior = Settings.System.getInt(getActivity().getContentResolver(),
             Settings.System.INCALL_BACK_BUTTON_BEHAVIOR,
             Settings.System.INCALL_BACK_BUTTON_BEHAVIOR_DEFAULT);
         final boolean backButtonEndsCall =
@@ -323,8 +323,13 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mBackButtonEndsCallPref.setChecked(backButtonEndsCall);
     }
 
-    private void updateHomeButtonAnswersCall() {
-        mHomeButtonAnswersCallPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.HOME_BUTTON_ANSWERS_CALL, 0) == 1);
+    private void updateMenuButtonAnswersCall() {
+        final int incallMenuBehavior = Settings.System.getInt(getActivity().getContentResolver(),
+            Settings.System.RING_MENU_BUTTON_BEHAVIOR,
+            Settings.System.RING_MENU_BUTTON_BEHAVIOR_DEFAULT);
+        final boolean menuButtonAnswersCall =
+            (incallMenuBehavior == Settings.System.RING_MENU_BUTTON_BEHAVIOR_ANSWER);
+        mMenuButtonAnswersCallPref.setChecked(menuButtonAnswersCall);
     }
 
     private void updateVolumeAdjustSound() {
@@ -479,8 +484,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.INCALL_BACK_BUTTON_BEHAVIOR, mBackButtonEndsCallPref.isChecked() ? Settings.System.INCALL_BACK_BUTTON_BEHAVIOR_HANGUP : Settings.System.INCALL_BACK_BUTTON_BEHAVIOR_BACK);
     }
 
-    private void writeHomeButtonAnswersCall() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.HOME_BUTTON_ANSWERS_CALL, mHomeButtonAnswersCallPref.isChecked() ? 1 : 0);
+    private void writeMenuButtonAnswersCall() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.RING_MENU_BUTTON_BEHAVIOR, mMenuButtonAnswersCallPref.isChecked() ? Settings.System.RING_MENU_BUTTON_BEHAVIOR_ANSWER : Settings.System.RING_MENU_BUTTON_BEHAVIOR_DO_NOTHING);
     }
 
     private void writeVolumeAdjustSound() {
@@ -573,8 +578,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeShowNavBar();
         } else if (preference == mBackButtonEndsCallPref) {
             writeBackButtonEndsCall();
-        } else if (preference == mHomeButtonAnswersCallPref) {
-            writeHomeButtonAnswersCall();
+        } else if (preference == mMenuButtonAnswersCallPref) {
+            writeMenuButtonAnswersCall();
         } else if (preference == mVolumeAdjustSoundsPref) {
             writeVolumeAdjustSound();
         } else if (preference == mDisableRebootPref) {
