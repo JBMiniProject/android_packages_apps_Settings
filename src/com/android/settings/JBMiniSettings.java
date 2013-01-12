@@ -315,7 +315,12 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     }
 
     private void updateBackButtonEndsCall() {
-        mBackButtonEndsCallPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.BACK_BUTTON_ENDS_CALL, 0) == 1);
+        final int incallBackBehavior = Settings.System.getInt(getActivity().getContentResolver(), 
+            Settings.System.INCALL_BACK_BUTTON_BEHAVIOR,
+            Settings.System.INCALL_BACK_BUTTON_BEHAVIOR_DEFAULT);
+        final boolean backButtonEndsCall =
+            (incallBackBehavior == Settings.System.INCALL_BACK_BUTTON_BEHAVIOR_HANGUP);
+        mBackButtonEndsCallPref.setChecked(backButtonEndsCall);
     }
 
     private void updateHomeButtonAnswersCall() {
@@ -471,7 +476,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     }
 
     private void writeBackButtonEndsCall() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.BACK_BUTTON_ENDS_CALL, mBackButtonEndsCallPref.isChecked() ? 1 : 0);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.INCALL_BACK_BUTTON_BEHAVIOR, mBackButtonEndsCallPref.isChecked() ? Settings.System.INCALL_BACK_BUTTON_BEHAVIOR_HANGUP : Settings.System.INCALL_BACK_BUTTON_BEHAVIOR_BACK);
     }
 
     private void writeHomeButtonAnswersCall() {
