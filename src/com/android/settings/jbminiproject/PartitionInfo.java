@@ -63,7 +63,6 @@ public class PartitionInfo extends PreferenceActivity {
     private Preference mDeviceName;
 
     private boolean extfsIsMounted = false;
-    private boolean recfsexists = false;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -87,24 +86,11 @@ public class PartitionInfo extends PreferenceActivity {
             Log.i(TAG, "sd: ext partition not mounted");
         }
 
-        if (fileExists("/dev/block/mtdblock3") == true) {
-            Log.i(TAG, "recovery partition exists");
-            recfsexists = true;
-        } else {
-            Log.i(TAG, "recovery partition not exists");
-        }
-
         try {
             mSystemPartSize.setSummary(ObtainFSPartSize ("/system"));
             mDataPartSize.setSummary(ObtainFSPartSize ("/data"));
             mCachePartSize.setSummary(ObtainFSPartSize ("/cache"));
             mSDCardPartFATSize.setSummary(ObtainFSPartSize ("/storage/sdcard0"));
-
-            if (recfsexists == true) {
-                mRecoveryPartSize.setSummary(ObtainFSPartSize ("/recovery"));
-            } else {
-                mRecoveryPartSize.setEnabled(false);
-            }
 
             if (extfsIsMounted == true) {
                 mSDCardPartEXTSize.setSummary(ObtainFSPartSize ("/sd-ext"));
