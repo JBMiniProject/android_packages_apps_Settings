@@ -117,7 +117,10 @@ public class PartitionInfo extends PreferenceActivity {
         retstr = "U: " + Formatter.formatFileSize(this, eUsedBlocksSize);
         retstr += " | F: " + Formatter.formatFileSize(this, eFreeBlocksSize);
         retstr += " | T: " + Formatter.formatFileSize(this, eTotalBlocksSize);
-        retstr += " (" + (eUsedBlocksSize / (eTotalBlocksSize / 100)) + "%)";
+
+        if (eFreeBlocksSize != eTotalBlocksSize) {
+            retstr += " (" + (eUsedBlocksSize / (eTotalBlocksSize / 100)) + "%)";
+        }
         return retstr;
     }
 
