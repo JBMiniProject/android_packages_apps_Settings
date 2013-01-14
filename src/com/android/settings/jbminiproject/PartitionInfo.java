@@ -91,7 +91,7 @@ public class PartitionInfo extends PreferenceActivity {
             mDataPartSize.setSummary(ObtainFSPartSize ("/data"));
             mCachePartSize.setSummary(ObtainFSPartSize ("/cache"));
             mRecoveryPartSize.setSummary(ObtainFSPartSize ("/recovery"));
-            mSDCardPartFATSize.setSummary(ObtainFSPartSize ("/sdcard"));
+            mSDCardPartFATSize.setSummary(ObtainFSPartSize ("/storage/sdcard0"));
 
             if (extfsIsMounted == true) {
                 mSDCardPartEXTSize.setSummary(ObtainFSPartSize ("/sd-ext"));
