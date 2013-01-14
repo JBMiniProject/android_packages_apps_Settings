@@ -109,9 +109,15 @@ public class PartitionInfo extends PreferenceActivity {
         StatFs extraStat = new StatFs(extraPath.getPath());
         long eBlockSize = extraStat.getBlockSize();
         long eTotalBlocks = extraStat.getBlockCount();
-        retstr = Formatter.formatFileSize(this, (eTotalBlocks * eBlockSize) - (extraStat.getAvailableBlocks() * eBlockSize));
-        retstr += " " + getResources().getString(R.string.partition_info_used_of) + " ";
-        retstr += Formatter.formatFileSize(this, eTotalBlocks * eBlockSize);
+        long eFreeBlocks = extraStat.getAvailableBlocks();
+        long eFreeBlocksSize = eFreeBlocks * eBlockSize;
+        long eUsedBlocksSize = (eTotalBlocks * eBlockSize) - (eFreeBlocks * eBlockSize);
+        long eTotalBlocksSize = eTotalBlocks * eBlockSize;
+
+        retstr = "Used: " + Formatter.formatFileSize(this, eUsedBlocksSize);
+        retstr += " | Free: " + Formatter.formatFileSize(this, eFreeBlocksSize);
+        retstr += " | Total: " + Formatter.formatFileSize(this, eTotalBlocksSize);
+        retstr += " (" + (UsedBlocksSize / (TotalBlocksSize / 100)) + "%)";
         return retstr;
     }
 
