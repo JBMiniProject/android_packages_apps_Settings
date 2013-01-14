@@ -4987,6 +4987,8 @@
     <string name="partition_info_sdcard">/sdcard (FAT)</string>
     <string name="partition_info_sdext">/sd-ext (EXT)</string>
     <string name="partition_info_used_of">/</string>
+    <string name="partition_info_signs">Signs</string>
+    <string name="partition_info_signs_summary">U -> Used | F -> Free | T -> Total</string>
 
     <string name="jbmp_settings_title">JBMini Settings</string>
     <string name="pref_disable_boot_animation_title">Disable Bootanimation</string>
