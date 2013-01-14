@@ -50,12 +50,14 @@ public class PartitionInfo extends PreferenceActivity {
     private static final String SYSTEM_PART_SIZE = "system_part_info";
     private static final String DATA_PART_SIZE = "data_part_info";
     private static final String CACHE_PART_SIZE = "cache_part_info";
+    private static final String RECOVERY_PART_SIZE = "recovery_part_info";
     private static final String SDCARDFAT_PART_SIZE = "sdcard_part_info_fat";
     private static final String SDCARDEXT_PART_SIZE = "sdcard_part_info_ext";
 
     private Preference mSystemPartSize;
     private Preference mDataPartSize;
     private Preference mCachePartSize;
+    private Preference mRecoveryPartSize;
     private Preference mSDCardPartFATSize;
     private Preference mSDCardPartEXTSize;
     private Preference mDeviceName;
@@ -73,6 +75,7 @@ public class PartitionInfo extends PreferenceActivity {
          mSystemPartSize = (Preference) prefSet.findPreference(SYSTEM_PART_SIZE);
          mDataPartSize = (Preference) prefSet.findPreference(DATA_PART_SIZE);
          mCachePartSize = (Preference) prefSet.findPreference(CACHE_PART_SIZE);
+         mRecoveryPartSize = (Preference) prefSet.findPreference(RECOVERY_PART_SIZE);
          mSDCardPartFATSize = (Preference) prefSet.findPreference(SDCARDFAT_PART_SIZE);
          mSDCardPartEXTSize = (Preference) prefSet.findPreference(SDCARDEXT_PART_SIZE);
 
@@ -87,6 +90,7 @@ public class PartitionInfo extends PreferenceActivity {
             mSystemPartSize.setSummary(ObtainFSPartSize ("/system"));
             mDataPartSize.setSummary(ObtainFSPartSize ("/data"));
             mCachePartSize.setSummary(ObtainFSPartSize ("/cache"));
+            mRecoveryPartSize.setSummary(ObtainFSPartSize ("/recovery"));
             mSDCardPartFATSize.setSummary(ObtainFSPartSize ("/sdcard"));
 
             if (extfsIsMounted == true) {

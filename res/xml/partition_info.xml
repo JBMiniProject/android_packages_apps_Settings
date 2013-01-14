@@ -34,6 +34,12 @@ limitations under the License.
         android:summary="@string/status_unavailable"
         />
 
+    <!-- /recovery info -->
+    <Preference android:key="recovery_part_info"
+        android:title="@string/partition_info_recovery"
+        android:summary="@string/status_unavailable"
+        />
+
     <!-- SDCard info (fat) -->
     <Preference android:key="sdcard_part_info_fat"
         android:title="@string/partition_info_sdcard"
