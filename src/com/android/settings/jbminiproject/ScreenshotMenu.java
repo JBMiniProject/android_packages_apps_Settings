@@ -16,30 +16,65 @@
 
 package com.android.settings.jbminiproject;
 
+import android.content.ContentResolver;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ActivityManagerNative;
+import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
+import android.os.Handler;
+import android.util.Log;
+import android.net.Uri;
+
+import android.text.Spannable;
+import android.view.IWindowManager;
+import android.os.ServiceManager;
+import android.os.IBinder;
+import android.os.IPowerManager;
+import android.widget.EditText;
+
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
-import android.util.Log;
-
+import android.os.SystemProperties;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
+import com.android.settings.util.CMDProcessor;
+import com.android.settings.util.Helpers;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 public class ScreenshotMenu extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private static final String SCREENSHOT_SOUND_PREF = "screenshot_sound_pref";
-
     private static final String SCREENSHOT_DELAY_PREF = "screenshot_delay_pref";
 
-    private CheckBoxPreference mScreenshotSound;
+    private CheckBoxPreference mScreenshotSoundPref;
+    private ListPreference mScreenshotDelayPref;
 
-    private ListPreference mScreenshotDelay;
+    private Context mContext;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,38 +84,63 @@ public class ScreenshotMenu extends SettingsPreferenceFragment implements OnPref
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
-        mScreenshotSound = (CheckBoxPreference) prefSet.findPreference(SCREENSHOT_SOUND_PREF);
-        mScreenshotDelay = (ListPreference) prefSet.findPreference(SCREENSHOT_DELAY_PREF);
+        mScreenshotSoundPref = (CheckBoxPreference) prefSet.findPreference(SCREENSHOT_SOUND_PREF);
+        mScreenshotDelayPref = (ListPreference) prefSet.findPreference(SCREENSHOT_DELAY_PREF);
 
-        mScreenshotSound.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
-                Settings.System.SCREENSHOT_SOUND, 1) == 1));
-
-        int screenshotDelay = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.SCREENSHOT_DELAY, 1000);
-        mScreenshotDelay.setValue(String.valueOf(screenshotDelay));
-        mScreenshotDelay.setOnPreferenceChangeListener(this);
+        updateScreenshotSound();
+        updateScreenshotDelay();
     }
 
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mScreenshotDelay) {
-            int screenshotDelay = Integer.valueOf((String) newValue);
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.SCREENSHOT_DELAY, screenshotDelay);
-            return true;
-        }
 
-        return true;
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+
+    /* Update functions */
+    private void updateScreenshotSound() {
+        mScreenshotSoundPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SCREENSHOT_SOUND, 1) == 1);
+    }
+
+    private void updateScreenshotDelay() {
+        mScreenshotDelayPref.setValue(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SCREENSHOT_DELAY, 1000) + "");
+        mScreenshotDelayPref.setOnPreferenceChangeListener(this);
+    }
+
+
+    /* Write functions */
+    private void writeScreenshotSound() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SCREENSHOT_SOUND, mScreenshotSoundPref.isChecked() ? 1 : 0);
+    }
+
+    private void writeScreenshotDelay(Object NewVal) {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SCREENSHOT_DELAY, Integer.parseInt((String) NewVal));
+        updateScreenshotDelay();
+    }
+
+
+    @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        boolean value;
-        if (preference == mScreenshotSound) {
-            value = mScreenshotSound.isChecked();
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.SCREENSHOT_SOUND, value ? 1 : 0);
-            return true;
+        if (preference == mScreenshotSoundPref) {
+            writeScreenshotSound();
         }
 
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
+    }
+
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (preference == mScreenshotDelayPref) {
+            writeScreenshotDelay(newValue);
+        }
         return false;
     }
 }

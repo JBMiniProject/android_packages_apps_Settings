@@ -23,13 +23,13 @@
         android:title="@string/pref_screenshot_title">
 
        <CheckBoxPreference
-            android:key="pref_screenshot_sound"
+            android:key="screenshot_sound_pref"
             android:title="@string/pref_screenshot_sound_title"
             android:summary="@string/pref_screenshot_sound_summary"
             android:defaultValue="true" />
 
         <ListPreference
-            android:key="pref_screenshot_delay"
+            android:key="screenshot_delay_pref"
             android:dialogTitle="@string/pref_screenshot_delay_title"
             android:title="@string/pref_screenshot_delay_title"
             android:summary="@string/pref_screenshot_delay_summary"
