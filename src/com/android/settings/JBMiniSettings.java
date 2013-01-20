@@ -472,8 +472,16 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     }
 
     private void writeRaisedBrightness() {
+        File f = new File("/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode");
+        String modeFile = "";
+
+        if (f.isFile() && f.canRead())
+            modeFile = "/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode";
+        else
+            modeFile = "/sys/devices/i2c-0/0-0036/mode";
+
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SCREEN_RAISED_BRIGHTNESS, mRaisedBrightnessPref.isChecked() ? 1 : 0);
-        Utils.fileWriteOneLine("/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode", mRaisedBrightnessPref.isChecked() ? "i2c_pwm" : "i2c_pwm_als");
+        Utils.fileWriteOneLine(modeFile, mRaisedBrightnessPref.isChecked() ? "i2c_pwm" : "i2c_pwm_als");
     }
 
     private void writeShowNavBar() {
