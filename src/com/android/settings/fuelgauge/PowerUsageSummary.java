@@ -54,6 +54,7 @@ import com.android.settings.fuelgauge.PowerUsageDetail.DrainType;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -90,7 +91,7 @@ public class PowerUsageSummary extends PreferenceFragment implements Runnable {
     private int mStatsType = BatteryStats.STATS_SINCE_CHARGED;
 
     private static final int MIN_POWER_THRESHOLD = 5;
-    private static final int MAX_ITEMS_TO_LIST = 10;
+    private static final int MAX_ITEMS_TO_LIST = 20;
 
     private long mStatsPeriod = 0;
     private double mMaxPower = 1;
@@ -187,8 +188,8 @@ public class PowerUsageSummary extends PreferenceFragment implements Runnable {
         BatterySipper sipper = pgp.getInfo();
         Bundle args = new Bundle();
         args.putString(PowerUsageDetail.EXTRA_TITLE, sipper.name);
-        args.putInt(PowerUsageDetail.EXTRA_PERCENT, (int)
-                Math.ceil(sipper.getSortValue() * 100 / mTotalPower));
+        args.putString(PowerUsageDetail.EXTRA_PERCENT, (int)
+                new DecimalFormat("@#").format((sipper.getSortValue() * 100 / mTotalPower)));
         args.putInt(PowerUsageDetail.EXTRA_GAUGE, (int)
                 Math.ceil(sipper.getSortValue() * 100 / mMaxPower));
         args.putLong(PowerUsageDetail.EXTRA_USAGE_DURATION, mStatsPeriod);
@@ -392,7 +393,7 @@ public class PowerUsageSummary extends PreferenceFragment implements Runnable {
         for (BatterySipper sipper : mUsageList) {
             if (sipper.getSortValue() < MIN_POWER_THRESHOLD) continue;
             final double percentOfTotal =  ((sipper.getSortValue() / mTotalPower) * 100);
-            if (percentOfTotal < 1) continue;
+            if (percentOfTotal < 0.1) continue;
             PowerGaugePreference pref = new PowerGaugePreference(getActivity(), sipper.getIcon(), sipper);
             final double percentOfMax = (sipper.getSortValue() * 100) / mMaxPower;
             sipper.percent = percentOfTotal;
