@@ -44,6 +44,14 @@ public class BootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context ctx, Intent intent) {
+        File f = new File("/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode");
+        String modeFile = "";
+
+        if (f.isFile() && f.canRead())
+            modeFile = "/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode";
+        else
+            modeFile = "/sys/devices/i2c-0/0-0036/mode";
+
         if (SystemProperties.getBoolean(CPU_SETTINGS_PROP, false) == false
                 && intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
             SystemProperties.set(CPU_SETTINGS_PROP, "true");
@@ -79,11 +87,11 @@ public class BootReceiver extends BroadcastReceiver {
         }
 
         if (getRaisedBrightness(ctx, 0) == 1) {
-            Utils.fileWriteOneLine("/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode", "i2c_pwm");
+            Utils.fileWriteOneLine(modeFile, "i2c_pwm");
             Log.d(TAG, "Brightness: Raised");
         }
         else {
-            Utils.fileWriteOneLine("/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode", "i2c_pwm_als");
+            Utils.fileWriteOneLine(modeFile, "i2c_pwm_als");
             Log.d(TAG, "Brightness: Normal");
         }
     }
