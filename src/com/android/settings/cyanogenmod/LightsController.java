@@ -103,12 +103,14 @@ public class LightsController {
 	public static void WriteDisplay(int text) {
 		try {
 			File f = new File(DISPLAY_BRIGHTNESS_PATH1);
-			FileWriter fstream;
 			if (f.isFile() && f.canRead()) {
+			FileWriter fstream;
 				fstream = new FileWriter(DISPLAY_BRIGHTNESS_PATH1);
 			} else {
+			FileWriter fstream;
 				fstream = new FileWriter(DISPLAY_BRIGHTNESS_PATH2);
 			}
+
 			BufferedWriter out = new BufferedWriter(fstream);
 			out.write(String.valueOf(text));
 			out.close();

@@ -708,7 +708,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
 
                 updateSmsSecuritySummary(smsSecurityCheck);
             } else {
-                return false;	740
+                return false;
             }
         }
         return true;

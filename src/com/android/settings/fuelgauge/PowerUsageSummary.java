@@ -188,7 +188,7 @@ public class PowerUsageSummary extends PreferenceFragment implements Runnable {
         BatterySipper sipper = pgp.getInfo();
         Bundle args = new Bundle();
         args.putString(PowerUsageDetail.EXTRA_TITLE, sipper.name);
-        args.putString(PowerUsageDetail.EXTRA_PERCENT, (int)
+        args.putString(PowerUsageDetail.EXTRA_PERCENT,
                 new DecimalFormat("@#").format((sipper.getSortValue() * 100 / mTotalPower)));
         args.putInt(PowerUsageDetail.EXTRA_GAUGE, (int)
                 Math.ceil(sipper.getSortValue() * 100 / mMaxPower));
