@@ -28,6 +28,7 @@ import android.util.Log;
 
 import com.android.settings.Utils;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
