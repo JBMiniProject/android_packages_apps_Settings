@@ -2571,6 +2571,8 @@
     <string name="pref_lockscreen_style_rotary">Forgó</string>
     <string name="pref_statusbar_transparency_title">Átlátszóság</string>
     <string name="pref_statusbar_transparency_summary">Mennyire legyen átlátszó az értesítési sáv</string>
+    <string name="pref_pick_up_to_call_title">Hívás felemelésre</string>
+    <string name="pref_pick_up_to_call_summary">Tárcsázóban és SMSnél elég a fülhöz emelni a telefont a híváshoz</string>
 
     <string name="cat_status_bar">ÉRTESÍTÉSI SÁV</string>
     <string name="cat_hard_keys">FIZIKAI GOMBOK</string>

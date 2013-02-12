@@ -89,6 +89,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private static final String BACK_BUTTON_ENDS_CALL_PROP = "pref_back_button_ends_call";
     private static final String MENU_BUTTON_ANSWERS_CALL_PROP = "pref_menu_button_answers_call";
     private static final String KEY_VOLUME_ADJUST_SOUNDS_PROP = "pref_volume_adjust_sounds";
+    private static final String PICK_UP_TO_CALL_PROP = "pref_pick_up_to_call";
 
     private static final String DISABLE_REBOOT_PROP = "pref_disable_reboot";
     private static final String DISABLE_SCREENSHOT_PROP = "pref_disable_screenshot";
@@ -124,6 +125,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
     private CheckBoxPreference mBackButtonEndsCallPref;
     private CheckBoxPreference mMenuButtonAnswersCallPref;
     private CheckBoxPreference mVolumeAdjustSoundsPref;
+    private CheckBoxPreference mPickUpToCallPref;
 
     private CheckBoxPreference mDisableRebootPref;
     private CheckBoxPreference mDisableScreenshotPref;
@@ -178,6 +180,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         mMenuButtonAnswersCallPref = (CheckBoxPreference) prefSet.findPreference(MENU_BUTTON_ANSWERS_CALL_PROP);
         mVolumeAdjustSoundsPref = (CheckBoxPreference) prefSet.findPreference(KEY_VOLUME_ADJUST_SOUNDS_PROP);
         mVolumeAdjustSoundsPref.setPersistent(false);
+        mPickUpToCallPref = (CheckBoxPreference) prefSet.findPreference(PICK_UP_TO_CALL_PROP);
 
         mDisableRebootPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_REBOOT_PROP);
         mDisableScreenshotPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_SCREENSHOT_PROP);
@@ -212,6 +215,7 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         updateBackButtonEndsCall();
         updateMenuButtonAnswersCall();
         updateVolumeAdjustSound();
+        updatePickUpToCall();
 
         updateDisableReboot();
         updateDisableScreenshot();
@@ -334,6 +338,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
 
     private void updateVolumeAdjustSound() {
         mVolumeAdjustSoundsPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 1) != 0);
+    }
+
+    private void updatePickUpToCall() {
+        mPickUpToCallPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.PICK_UP_TO_CALL, 0) == 1);
     }
 
     private void updateDisableReboot() {
@@ -500,6 +508,10 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, mVolumeAdjustSoundsPref.isChecked() ? 1 : 0);
     }
 
+    private void writePickUpToCall() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.PICK_UP_TO_CALL, mPickUpToCallPref.isChecked() ? 1 : 0);
+    }
+
     private void writeDisableReboot() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_REBOOT, mDisableRebootPref.isChecked() ? 1 : 0);
     }
@@ -590,6 +602,8 @@ public class JBMiniSettings extends SettingsPreferenceFragment implements Prefer
             writeMenuButtonAnswersCall();
         } else if (preference == mVolumeAdjustSoundsPref) {
             writeVolumeAdjustSound();
+        } else if (preference == mPickUpToCallPref) {
+            writePickUpToCall();
         } else if (preference == mDisableRebootPref) {
             writeDisableReboot();
         } else if (preference == mDisableScreenshotPref) {

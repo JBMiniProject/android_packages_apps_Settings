@@ -173,6 +173,12 @@
             android:summary="@string/pref_show_navbar_reboot"
             android:defaultValue="false" />
 
+        <CheckBoxPreference
+            android:key="pref_pick_up_to_call"
+            android:title="@string/pref_pick_up_to_call_title"
+            android:summary="@string/pref_pick_up_to_call_summary"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
