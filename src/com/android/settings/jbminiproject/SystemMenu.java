@@ -49,8 +49,6 @@ import android.os.SystemProperties;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
-import com.android.settings.util.CMDProcessor;
-import com.android.settings.util.Helpers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -60,8 +58,6 @@ import java.io.InputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class SystemMenu extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
 

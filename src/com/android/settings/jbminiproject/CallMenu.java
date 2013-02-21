@@ -29,7 +29,6 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.preference.CheckBoxPreference;
-import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.os.Handler;
@@ -49,19 +48,9 @@ import android.os.SystemProperties;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
-import com.android.settings.util.CMDProcessor;
-import com.android.settings.util.Helpers;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-
-import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class CallMenu extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
 
