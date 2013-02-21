@@ -5035,12 +5035,13 @@
     <string name="pref_pick_up_to_call_summary">Picking up the phone calls the number in dialer</string>
 
     <string name="header_category_jbmp">JB MINI PROJECT</string>
-    <string name="cat_status_bar">STATUSBAR</string>
-    <string name="cat_hard_keys">HW KEY ACTIONS</string>
-    <string name="cat_globalactions">POWER MENU</string>
-    <string name="cat_system">SYSTEM</string>
-    <string name="cat_lockscreen">LOCKSCREEN</string>
-    <string name="cat_batterybar">BATTERY BAR</string>
+    <string name="cat_status_bar">Status Bar</string>
+    <string name="cat_hard_keys">Call</string>
+    <string name="cat_globalactions">PowerMenu</string>
+    <string name="cat_system">System</string>
+    <string name="cat_lockscreen">Lockscreen</string>
+    <string name="cat_batterybar">Battery Bar</string>
+    <string name="cat_screenshot">Screenshot</string>
 
     <string name="rec_version">Recovery version</string>
     <string name="rec_version_default">Unknown</string>
@@ -5075,7 +5076,6 @@
     <string name="pref_battery_bar_animate_summary">The charging animation may result in a poor user experience. Enable at your own discretion.</string>
 
     <!-- Screenhot Menu -->
-    <string name="screenshot_menu_title">Screenshot menu</string>
     <string name="pref_screenshot_title">Screenshot</string>
     <string name="pref_screenshot_sound_title">Screenshot sound</string>
     <string name="pref_screenshot_sound_summary">Plays sound effect when screenshot is taken</string>

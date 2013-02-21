@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2011 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:title="@string/cat_lockscreen">
+
+        <Preference
+            android:key="pref_carrier_label"
+            android:title="@string/pref_carrier_label_title" />
+
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="pref_lockscreen_text_color"
+            android:title="@string/pref_lockscreen_text_color_title"
+            android:defaultValue="#ffffffff" />
+
+        <ListPreference
+            android:key="pref_lockscreen_styles"
+            android:entries="@array/lockscreen_styles_entries"
+            android:entryValues="@array/lockscreen_styles_values"
+            android:title="@string/pref_lockscreen_styles_title"
+            android:summary="@string/pref_lockscreen_styles_summary" />
+
+        <CheckBoxPreference
+            android:key="pref_rotary_arrows"
+            android:title="@string/pref_rotary_arrows_title" />
+
+        <CheckBoxPreference
+            android:key="pref_slider_text"
+            android:title="@string/pref_slider_text_title" />
+
+</PreferenceScreen>

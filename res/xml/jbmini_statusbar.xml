@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2011 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<PreferenceScreen 
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:title="@string/cat_status_bar">
+
+        <CheckBoxPreference
+            android:key="pref_center_clock_status_bar"
+            android:title="@string/pref_center_clock_status_bar_title"
+            android:summary="@string/pref_center_clock_status_bar_summary"
+            android:defaultValue="false" />
+
+        <ListPreference
+            android:key="pref_clock_weekday"
+            android:title="@string/pref_clock_weekday"
+            android:summary="@string/pref_clock_weekday_summary"
+            android:entries="@array/clock_weekday_entries"
+            android:entryValues="@array/clock_weekday_values" />
+
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="pref_clock_color"
+            android:title="@string/pref_clock_color_title"
+            android:defaultValue="@android:color/holo_blue_light" />
+
+        <ListPreference
+            android:key="pref_statusbar_transparency"
+            android:title="@string/pref_statusbar_transparency_title"
+            android:summary="@string/pref_statusbar_transparency_summary"
+            android:entries="@array/entries_transparency"
+            android:entryValues="@array/values_transparency" />
+
+</PreferenceScreen>

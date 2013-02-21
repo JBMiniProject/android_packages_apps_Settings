@@ -821,4 +821,10 @@ public class Settings extends PreferenceActivity
     public static class ApnEditorActivity extends Settings { /* empty */ }
     public static class JBMiniSettingsActivity extends Settings { /* empty */ }
     public static class ScreenshotMenuActivity extends Settings { /* empty */ }
+    public static class StatusBarMenuActivity extends Settings { /* empty */ }
+    public static class BatteryBarMenuActivity extends Settings { /* empty */ }
+    public static class CallMenuActivity extends Settings { /* empty */ }
+    public static class PowerMenuActivity extends Settings { /* empty */ }
+    public static class SystemMenuActivity extends Settings { /* empty */ }
+    public static class LockscreenMenuActivity extends Settings { /* empty */ }
 }

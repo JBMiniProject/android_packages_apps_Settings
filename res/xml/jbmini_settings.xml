@@ -19,196 +19,45 @@
         android:key="jbmini_settings"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <PreferenceCategory
-        android:key="statbar"
-        android:title="@string/cat_status_bar">
+    <PreferenceScreen
+        android:key="statusbar_menu"
+        android:fragment="com.android.settings.jbminiproject.StatusBarMenu"
+        android:title="@string/cat_status_bar" />
 
-        <CheckBoxPreference
-            android:key="pref_center_clock_status_bar"
-            android:title="@string/pref_center_clock_status_bar_title"
-            android:summary="@string/pref_center_clock_status_bar_summary"
-            android:defaultValue="false" />
+    <PreferenceScreen
+        android:key="batterybar_menu"
+        android:fragment="com.android.settings.jbminiproject.BatteryBarMenu"
+        android:title="@string/cat_batterybar" />
 
-        <ListPreference
-            android:key="pref_clock_weekday"
-            android:title="@string/pref_clock_weekday"
-            android:summary="@string/pref_clock_weekday_summary"
-            android:entries="@array/clock_weekday_entries"
-            android:entryValues="@array/clock_weekday_values" />
+    <PreferenceScreen
+        android:key="call_menu"
+        android:fragment="com.android.settings.jbminiproject.CallMenu"
+        android:title="@string/cat_hard_keys" />
 
-        <net.margaritov.preference.colorpicker.ColorPickerPreference
-            android:key="pref_clock_color"
-            android:title="@string/pref_clock_color_title"
-            android:defaultValue="@android:color/holo_blue_light" />
+    <PreferenceScreen
+        android:key="power_menu"
+        android:fragment="com.android.settings.jbminiproject.PowerMenu"
+        android:title="@string/cat_globalactions" />
 
-        <ListPreference
-            android:key="pref_statusbar_transparency"
-            android:title="@string/pref_statusbar_transparency_title"
-            android:summary="@string/pref_statusbar_transparency_summary"
-            android:entries="@array/entries_transparency"
-            android:entryValues="@array/values_transparency" />
+    <PreferenceScreen
+        android:key="system_menu"
+        android:fragment="com.android.settings.jbminiproject.SystemMenu"
+        android:title="@string/cat_system" />
 
-    </PreferenceCategory>
+    <PreferenceScreen
+        android:key="lockscreen_menu"
+        android:fragment="com.android.settings.jbminiproject.LockscreenMenu"
+        android:title="@string/cat_lockscreen" />
 
-    <PreferenceCategory
-        android:key="batterybar"
-        android:title="@string/cat_batterybar">
+    <PreferenceScreen android:key="a2sd_settings" android:title="@string/a2sd_title" android:summary="@string/a2sd_summary">
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="com.android.settings"
+            android:targetClass="com.android.settings.jbminiproject.A2SDActivity" />
+    </PreferenceScreen>
 
-        <CheckBoxPreference
-            android:key="pref_battery_bar"
-            android:title="@string/pref_battery_bar" />
-
-        <ListPreference
-            android:key="pref_battery_bar_style"
-            android:title="@string/pref_battery_bar_style_title"
-            android:entries="@array/battery_bar_style_entries"
-            android:entryValues="@array/battery_bar_style_values" />
-
-        <CheckBoxPreference
-            android:key="pref_battery_bar_animate"
-            android:title="@string/pref_battery_bar_animate_title"
-            android:summary="@string/pref_battery_bar_animate_summary" />
-
-        <net.margaritov.preference.colorpicker.ColorPickerPreference
-            android:key="pref_battery_bar_color"
-            android:title="@string/pref_battery_bar_color"
-            android:defaultValue="#33B5E5" />
-
-        <ListPreference
-            android:key="pref_battery_bar_thickness"
-            android:title="@string/pref_battery_bar_thickness_title"
-            android:entries="@array/battery_bar_thickness_entries"
-            android:entryValues="@array/battery_bar_thickness_values" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="hardkeys"
-        android:title="@string/cat_hard_keys">
-
-        <CheckBoxPreference
-            android:key="pref_back_button_ends_call"
-            android:title="@string/pref_back_button_ends_call_title"
-            android:summary="@string/pref_back_button_ends_call_summary"
-            android:defaultValue="false" />
-
-        <CheckBoxPreference
-            android:key="pref_menu_button_answers_call"
-            android:title="@string/pref_menu_button_answers_call_title"
-            android:summary="@string/pref_menu_button_answers_call_summary"
-            android:defaultValue="false" />
-
-        <CheckBoxPreference
-            android:key="pref_volume_adjust_sounds"
-            android:title="@string/pref_volume_adjust_sounds_enable_title"
-            android:summary="@string/pref_volume_adjust_sounds_enable_summary"
-            android:persistent="true" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="globalactions"
-        android:title="@string/cat_globalactions">
-
-        <CheckBoxPreference
-            android:key="pref_disable_title"
-            android:title="@string/pref_disable_title_title" />
-
-        <CheckBoxPreference
-            android:key="pref_disable_reboot"
-            android:title="@string/pref_disable_reboot_title" />
-
-        <CheckBoxPreference
-            android:key="pref_disable_screenshot"
-            android:title="@string/pref_disable_screenshot_title" />
-
-        <CheckBoxPreference
-            android:key="pref_disable_airplane"
-            android:title="@string/pref_disable_airplane_title" />
-
-        <CheckBoxPreference
-            android:key="pref_disable_ringer"
-            android:title="@string/pref_disable_ringer_title" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="system"
-        android:title="@string/cat_system">
-
-        <CheckBoxPreference
-            android:key="pref_disable_boot_animation"
-            android:title="@string/pref_disable_boot_animation_title"
-            android:summary="@string/pref_disable_boot_animation_summary"
-            android:defaultValue="false" />
-
-        <CheckBoxPreference
-            android:key="pref_disable_bootaudio"
-            android:title="@string/pref_disable_bootaudio_title" />
-
-        <CheckBoxPreference
-            android:key="pref_disable_bugmailer"
-            android:title="@string/pref_disable_bugmailer_title" />
-
-        <CheckBoxPreference
-            android:key="pref_raisedbrightness"
-            android:title="@string/pref_raised_brightness_title"
-            android:summary="@string/pref_raised_brightness_summary"
-            android:defaultValue="false" />
-
-        <PreferenceScreen android:key="a2sd_settings" android:title="@string/a2sd_title" android:summary="@string/a2sd_summary">
-            <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="com.android.settings"
-                    android:targetClass="com.android.settings.jbminiproject.A2SDActivity" />
-        </PreferenceScreen>
-
-        <PreferenceScreen
-            android:key="screenshot_menu"
-            android:fragment="com.android.settings.jbminiproject.ScreenshotMenu"
-            android:title="@string/screenshot_menu_title" />
-
-        <CheckBoxPreference
-            android:key="pref_show_navbar"
-            android:title="@string/pref_show_navbar"
-            android:summary="@string/pref_show_navbar_reboot"
-            android:defaultValue="false" />
-
-        <CheckBoxPreference
-            android:key="pref_pick_up_to_call"
-            android:title="@string/pref_pick_up_to_call_title"
-            android:summary="@string/pref_pick_up_to_call_summary"
-            android:defaultValue="false" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="lockscreen"
-        android:title="@string/cat_lockscreen">
-
-        <Preference
-            android:key="pref_carrier_label"
-            android:title="@string/pref_carrier_label_title" />
-
-        <net.margaritov.preference.colorpicker.ColorPickerPreference
-            android:key="pref_lockscreen_text_color"
-            android:title="@string/pref_lockscreen_text_color_title"
-            android:defaultValue="#ffffffff" />
-
-        <ListPreference
-            android:key="pref_lockscreen_styles"
-            android:entries="@array/lockscreen_styles_entries"
-            android:entryValues="@array/lockscreen_styles_values"
-            android:title="@string/pref_lockscreen_styles_title"
-            android:summary="@string/pref_lockscreen_styles_summary" />
-
-        <CheckBoxPreference
-            android:key="pref_rotary_arrows"
-            android:title="@string/pref_rotary_arrows_title" />
-
-        <CheckBoxPreference
-            android:key="pref_slider_text"
-            android:title="@string/pref_slider_text_title" />
-
-    </PreferenceCategory>
+    <PreferenceScreen
+        android:key="screenshot_menu"
+        android:fragment="com.android.settings.jbminiproject.ScreenshotMenu"
+        android:title="@string/cat_screenshot" />
 
 </PreferenceScreen>

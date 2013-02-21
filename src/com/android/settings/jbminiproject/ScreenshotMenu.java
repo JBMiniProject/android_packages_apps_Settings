@@ -80,7 +80,7 @@ public class ScreenshotMenu extends SettingsPreferenceFragment implements OnPref
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.screenshot_menu);
+        addPreferencesFromResource(R.xml.jbmini_screenshot);
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
