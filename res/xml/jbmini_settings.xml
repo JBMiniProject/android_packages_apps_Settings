@@ -20,44 +20,58 @@
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <PreferenceScreen
-        android:key="statusbar_menu"
-        android:fragment="com.android.settings.jbminiproject.StatusBarMenu"
-        android:title="@string/cat_status_bar" />
-
-    <PreferenceScreen
         android:key="batterybar_menu"
         android:fragment="com.android.settings.jbminiproject.BatteryBarMenu"
-        android:title="@string/cat_batterybar" />
+        android:title="@string/cat_batterybar"
+        android:icon="@drawable/ic_settings_battery" />
 
     <PreferenceScreen
         android:key="call_menu"
         android:fragment="com.android.settings.jbminiproject.CallMenu"
-        android:title="@string/cat_hard_keys" />
-
-    <PreferenceScreen
-        android:key="power_menu"
-        android:fragment="com.android.settings.jbminiproject.PowerMenu"
-        android:title="@string/cat_globalactions" />
-
-    <PreferenceScreen
-        android:key="system_menu"
-        android:fragment="com.android.settings.jbminiproject.SystemMenu"
-        android:title="@string/cat_system" />
+        android:title="@string/cat_hard_keys"
+        android:icon="@drawable/ic_settings_profiles" />
 
     <PreferenceScreen
         android:key="lockscreen_menu"
         android:fragment="com.android.settings.jbminiproject.LockscreenMenu"
-        android:title="@string/cat_lockscreen" />
+        android:title="@string/cat_lockscreen"
+        android:icon="@drawable/ic_settings_lockscreen" />
 
-    <PreferenceScreen android:key="a2sd_settings" android:title="@string/a2sd_title" android:summary="@string/a2sd_summary">
+    <PreferenceScreen
+        android:key="power_menu"
+        android:fragment="com.android.settings.jbminiproject.PowerMenu"
+        android:title="@string/cat_globalactions"
+        android:icon="@drawable/ic_settings_backup" />
+
+    <PreferenceScreen
+        android:key="screenshot_menu"
+        android:fragment="com.android.settings.jbminiproject.ScreenshotMenu"
+        android:title="@string/cat_screenshot"
+        android:icon="@drawable/ic_settings_themes" />
+
+    <PreferenceScreen
+        android:key="statusbar_menu"
+        android:fragment="com.android.settings.jbminiproject.StatusBarMenu"
+        android:title="@string/cat_status_bar"
+        android:icon="@drawable/ic_settings_accessibility" />
+
+    <PreferenceScreen
+        android:key="system_menu"
+        android:fragment="com.android.settings.jbminiproject.SystemMenu"
+        android:title="@string/cat_system"
+        android:icon="@drawable/ic_settings_system" />
+
+    <PreferenceScreen
+        android:key="a2sd_settings"
+        android:title="@string/a2sd_title"
+        android:summary="@string/a2sd_summary"
+        android:icon="@drawable/ic_settings_storage">
+
         <intent android:action="android.intent.action.MAIN"
             android:targetPackage="com.android.settings"
             android:targetClass="com.android.settings.jbminiproject.A2SDActivity" />
     </PreferenceScreen>
 
-    <PreferenceScreen
-        android:key="screenshot_menu"
-        android:fragment="com.android.settings.jbminiproject.ScreenshotMenu"
-        android:title="@string/cat_screenshot" />
+
 
 </PreferenceScreen>
