@@ -27,7 +27,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -36,24 +35,17 @@ import android.os.Handler;
 import android.util.Log;
 import android.net.Uri;
 import android.preference.Preference.OnPreferenceClickListener;
-import android.text.Spannable;
 import android.view.IWindowManager;
-import android.os.ServiceManager;
 import android.os.IBinder;
 import android.os.IPowerManager;
-import android.widget.EditText;
 
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
-import android.os.SystemProperties;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 import com.android.settings.util.CMDProcessor;
 import com.android.settings.util.Helpers;
-
-import java.io.InputStream;
-import java.io.IOException;
 
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 

@@ -84,9 +84,9 @@ public class A2SDActivity extends PreferenceActivity implements
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (newValue != null) {
             if (preference == mA2sdPref) {
-        	    setMode((String) newValue);
-        	    return true;
-        	}
+                setMode((String) newValue);
+                return true;
+            }
         }
         return false;
     }

@@ -20,31 +20,25 @@ import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ActivityManagerNative;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.os.Handler;
 import android.util.Log;
 import android.net.Uri;
-import android.preference.Preference.OnPreferenceClickListener;
-import android.text.Spannable;
 import android.view.IWindowManager;
 import android.os.ServiceManager;
 import android.os.IBinder;
 import android.os.IPowerManager;
-import android.widget.EditText;
 
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
-import android.os.SystemProperties;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
@@ -52,7 +46,7 @@ import com.android.settings.Utils;
 import java.io.InputStream;
 import java.io.IOException;
 
-public class CallMenu extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
+public class CallMenu extends SettingsPreferenceFragment {
 
     private static final String BACK_BUTTON_ENDS_CALL_PROP = "pref_back_button_ends_call";
     private static final String MENU_BUTTON_ANSWERS_CALL_PROP = "pref_menu_button_answers_call";
@@ -144,11 +138,5 @@ public class CallMenu extends SettingsPreferenceFragment implements Preference.O
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
-    }
-
-
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        return false;
     }
 }

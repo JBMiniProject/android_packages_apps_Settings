@@ -27,7 +27,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -35,13 +34,10 @@ import android.preference.PreferenceScreen;
 import android.os.Handler;
 import android.util.Log;
 import android.net.Uri;
-import android.preference.Preference.OnPreferenceClickListener;
-import android.text.Spannable;
 import android.view.IWindowManager;
 import android.os.ServiceManager;
 import android.os.IBinder;
 import android.os.IPowerManager;
-import android.widget.EditText;
 
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
@@ -49,6 +45,8 @@ import android.os.SystemProperties;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
+import com.android.settings.util.CMDProcessor;
+import com.android.settings.util.Helpers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -59,7 +57,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class SystemMenu extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
+public class SystemMenu extends SettingsPreferenceFragment {
 
     private static final String TAG = "JBMP_Settings";
     private static final boolean DEBUG = true;
@@ -227,11 +225,5 @@ public class SystemMenu extends SettingsPreferenceFragment implements Preference
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
-    }
-
-
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        return false;
     }
 }

@@ -50,9 +50,6 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
-import java.io.InputStream;
-import java.io.IOException;
-
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class BatteryBarMenu extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {

@@ -40,7 +40,7 @@ import java.io.DataInputStream;
 public class A2SDInfo extends AlertActivity {
 
     private static final String APP2SDINFO_PATH = "/data/app2sdinfo.log";
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +98,7 @@ public class A2SDInfo extends AlertActivity {
                 .show();
         finish();
     }
-    
+
     public static int runA2sd(int mode) {
         String command = "";
         if (mode == 0)

@@ -20,7 +20,6 @@ import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ActivityManagerNative;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -34,25 +33,17 @@ import android.preference.PreferenceScreen;
 import android.os.Handler;
 import android.util.Log;
 import android.net.Uri;
-import android.preference.Preference.OnPreferenceClickListener;
-import android.text.Spannable;
 import android.view.IWindowManager;
-import android.os.ServiceManager;
 import android.os.IBinder;
 import android.os.IPowerManager;
-import android.widget.EditText;
 
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
-import android.os.SystemProperties;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
-import java.io.InputStream;
-import java.io.IOException;
-
-public class PowerMenu extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
+public class PowerMenu extends SettingsPreferenceFragment {
 
     private static final String DISABLE_REBOOT_PROP = "pref_disable_reboot";
     private static final String DISABLE_SCREENSHOT_PROP = "pref_disable_screenshot";
@@ -163,11 +154,5 @@ public class PowerMenu extends SettingsPreferenceFragment implements Preference.
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
-    }
-
-
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        return false;
     }
 }
