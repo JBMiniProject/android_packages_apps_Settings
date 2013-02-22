@@ -2498,10 +2498,6 @@
     <string name="volume_key_cursor_control_on">音量上/下将会使光标左/右移动</string>
     <string name="volume_key_cursor_control_on_reverse">音量上/下将会使光标右/左移动</string>
 
-    <!-- CM Updater -->
-    <string name="cmupdate_settings_title">CyanogenMod 更新</string>
-    <string name="cmupdate_settings_summary">检查, 查看, 或安装可用的更新</string>
-
     <!--- Sms security limit -->
     <string name="app_security_title">程序安全</string>
     <string name="sms_security_check_limit_title">短信限制</string>

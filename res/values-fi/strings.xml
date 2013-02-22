@@ -2250,8 +2250,6 @@
     <string name="lockscreen_buttons_previous">Edellinen kappale</string>
     <string name="lockscreen_buttons_playpause">Play/Pause</string>
     <string name="lockscreen_buttons_toggle_sound">Äänet</string>
-    <string name="cmupdate_settings_title">CyanogenMod-päivitykset</string>
-    <string name="cmupdate_settings_summary">Tarkista, katso tai asenna saatavilla olevat päivitykset</string>
     <string name="app_security_title">Sovellusten turvallisuus</string>
     <string name="sms_security_check_limit_title">Tekstiviestirajoitus</string>
     <string name="sms_security_check_limit_summary">Näyttää ilmoitusvalikon estääkseen sovelluksia lähettämästä tekstiviestejä liian nopeasti. Nykyinen raja: %d viestiä 15 minuutissa</string>

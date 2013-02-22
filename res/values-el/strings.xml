@@ -2469,10 +2469,6 @@
     <string name="volume_key_cursor_control_on">Το πλήκ. πάνω/κάτω μετακινεί τον κέρσορα αριστερά/δεξιά</string>
     <string name="volume_key_cursor_control_on_reverse">Το πλήκ. πάνω/κάτω μετακινεί τον κέρσορα δεξιά/αριστερά</string>
 
-    <!-- CM Updater -->
-    <string name="cmupdate_settings_title">Ενημερώσεις CyanogenMod</string>
-    <string name="cmupdate_settings_summary">Έλεγχος και εγκατάσταση διαθέσιμων ενημερώσεων</string>
-
     <!--- Sms security limit -->
     <string name="app_security_title">Ασφάλεια εφαρμογών</string>
     <string name="sms_security_check_limit_title">Όριο μηνυμάτων SMS</string>
