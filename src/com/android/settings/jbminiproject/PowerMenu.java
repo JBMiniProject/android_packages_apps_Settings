@@ -46,6 +46,7 @@ import com.android.settings.Utils;
 public class PowerMenu extends SettingsPreferenceFragment {
 
     private static final String DISABLE_REBOOT_PROP = "pref_disable_reboot";
+    private static final String DISABLE_EXPANDED_DESKTOP_PROP = "pref_disable_expanded_desktop";
     private static final String DISABLE_SCREENSHOT_PROP = "pref_disable_screenshot";
     private static final String DISABLE_AIRPLANE_PROP = "pref_disable_airplane";
     private static final String DISABLE_RINGER_PROP = "pref_disable_ringer";
@@ -53,6 +54,7 @@ public class PowerMenu extends SettingsPreferenceFragment {
 
     private CheckBoxPreference mDisableRebootPref;
     private CheckBoxPreference mDisableScreenshotPref;
+    private CheckBoxPreference mExpandedDesktopPref;
     private CheckBoxPreference mDisableAirplanePref;
     private CheckBoxPreference mDisableRingerPref;
     private CheckBoxPreference mDisableTitlePref;
@@ -70,6 +72,7 @@ public class PowerMenu extends SettingsPreferenceFragment {
 
         mDisableRebootPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_REBOOT_PROP);
         mDisableScreenshotPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_SCREENSHOT_PROP);
+        mExpandedDesktopPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_EXPANDED_DESKTOP_PROP);
         mDisableAirplanePref = (CheckBoxPreference) prefSet.findPreference(DISABLE_AIRPLANE_PROP);
         mDisableRingerPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_RINGER_PROP);
         mDisableTitlePref = (CheckBoxPreference) prefSet.findPreference(DISABLE_TITLE_PROP);
@@ -77,6 +80,7 @@ public class PowerMenu extends SettingsPreferenceFragment {
 
         updateDisableReboot();
         updateDisableScreenshot();
+        updateDisableExpandedDesktop();
         updateDisableAirplane();
         updateDisableRinger();
         updateDisableTitle();
@@ -104,6 +108,10 @@ public class PowerMenu extends SettingsPreferenceFragment {
         mDisableScreenshotPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_SCREENSHOT, 1) == 1);
     }
 
+    private void updateDisableExpandedDesktop() {
+        mExpandedDesktopPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 0) == 1);
+    }
+
     private void updateDisableAirplane() {
         mDisableAirplanePref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_AIRPLANE, 1) == 1);
     }
@@ -126,6 +134,10 @@ public class PowerMenu extends SettingsPreferenceFragment {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_SCREENSHOT, mDisableScreenshotPref.isChecked() ? 1 : 0);
     }
 
+    private void writeDisableExpandedDesktop() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, mExpandedDesktopPref.isChecked() ? 1 : 0);
+    }
+
     private void writeDisableAirplane() {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_DIALOG_SHOW_AIRPLANE, mDisableAirplanePref.isChecked() ? 1 : 0);
     }
@@ -145,6 +157,8 @@ public class PowerMenu extends SettingsPreferenceFragment {
             writeDisableReboot();
         } else if (preference == mDisableScreenshotPref) {
             writeDisableScreenshot();
+        } else if (preference == mExpandedDesktopPref) {
+            writeDisableExpandedDesktop();
         } else if (preference == mDisableAirplanePref) {
             writeDisableAirplane();
         } else if (preference == mDisableRingerPref) {

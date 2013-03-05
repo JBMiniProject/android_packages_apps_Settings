@@ -31,6 +31,11 @@
             android:title="@string/pref_disable_screenshot_title" />
 
         <CheckBoxPreference
+            android:key="pref_disable_expanded_desktop"
+            android:title="@string/pref_disable_expanded_desktop_title"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
             android:key="pref_disable_airplane"
             android:title="@string/pref_disable_airplane_title" />
 
