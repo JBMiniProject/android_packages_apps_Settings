@@ -154,6 +154,8 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements Prefere
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mCenterClockStatusBarPref) {
             writeCenterClockStatusBar();
+        } else if (preference == mShowWifiNamePref) {
+            writeWifiName();
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -168,9 +170,6 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements Prefere
             writeClockWeekday(newValue);
         } else if (preference == mStatusbarTransparencyPref) {
             writeStatusbarTransparency(newValue);
-        } else if (preference == mShowWifiNamePref) {
-            writeWifiName();
-            return true;
         }
         return false;
     }
