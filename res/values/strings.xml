@@ -5034,6 +5034,8 @@
     <string name="pref_statusbar_transparency_summary">Adjust status bar transparency</string>
     <string name="pref_pick_up_to_call_title">Pick up to call</string>
     <string name="pref_pick_up_to_call_summary">Picking up the phone calls the number in dialer</string>
+    <string name="pref_notification_show_wifi_ssid_title">Show Wifi network name</string>
+    <string name="pref_notification_show_wifi_ssid_summary">Display the name of the currently connected Wifi network</string>
 
     <string name="header_category_jbmp">JB MINI PROJECT</string>
     <string name="cat_status_bar">Status Bar</string>

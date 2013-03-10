@@ -2574,6 +2574,8 @@
     <string name="pref_statusbar_transparency_summary">Mennyire legyen átlátszó az értesítési sáv</string>
     <string name="pref_pick_up_to_call_title">Hívás felemelésre</string>
     <string name="pref_pick_up_to_call_summary">Tárcsázóban és SMSnél elég a fülhöz emelni a telefont a híváshoz</string>
+    <string name="pref_notification_show_wifi_ssid_title">Wifi hálózat neve</string>
+    <string name="pref_notification_show_wifi_ssid_summary">Értesítési területen megjelenik a csatlakoztatott WIFI neve</string>
 
     <string name="cat_status_bar">Értesítési sáv</string>
     <string name="cat_hard_keys">Hívás</string>

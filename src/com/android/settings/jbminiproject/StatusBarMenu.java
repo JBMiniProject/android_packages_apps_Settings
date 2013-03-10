@@ -55,11 +55,13 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements Prefere
     private static final String CLOCK_WEEKDAY_PROP = "pref_clock_weekday";
     private static final String CLOCK_COLOR_PICKER_PROP = "pref_clock_color";
     private static final String STATUSBAR_TRANSPARENCY_PROP = "pref_statusbar_transparency";
+    private static final String NOTIFICATION_SHOW_WIFI_SSID_PROP = "pref_notification_show_wifi_ssid";
 
     private CheckBoxPreference mCenterClockStatusBarPref;
     private ListPreference mClockWeekdayPref;
     private ColorPickerPreference mClockColorPicker;
     private ListPreference mStatusbarTransparencyPref;
+    private CheckBoxPreference mShowWifiNamePref;
 
     private Context mContext;
 
@@ -79,10 +81,12 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements Prefere
         mClockColorPicker.setOnPreferenceChangeListener(this);
         mStatusbarTransparencyPref = (ListPreference) prefSet.findPreference(STATUSBAR_TRANSPARENCY_PROP);
         mStatusbarTransparencyPref.setOnPreferenceChangeListener(this);
+        mShowWifiNamePref = (CheckBoxPreference) prefSet.findPreference(NOTIFICATION_SHOW_WIFI_SSID_PROP);
 
         updateCenterClockStatusBar();
         updateClockWeekday();
         updateStatusbarTransparency();
+        updateWifiName();
     }
 
 
@@ -113,6 +117,10 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements Prefere
         mStatusbarTransparencyPref.setOnPreferenceChangeListener(this);
     }
 
+    private void updateWifiName() {
+        mShowWifiNamePref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.NOTIFICATION_SHOW_WIFI_SSID, 0) == 1);
+    }
+
 
     /* Write functions */
     private void writeCenterClockStatusBar() {
@@ -137,6 +145,10 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements Prefere
         updateStatusbarTransparency();
     }
 
+    private void writeWifiName() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.NOTIFICATION_SHOW_WIFI_SSID, mShowWifiNamePref.isChecked() ? 1 : 0);
+    }
+
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
@@ -156,6 +168,8 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements Prefere
             writeClockWeekday(newValue);
         } else if (preference == mStatusbarTransparencyPref) {
             writeStatusbarTransparency(newValue);
+        } else if (preference == mShowWifiNamePref) {
+            writeWifiName();
         }
         return false;
     }
