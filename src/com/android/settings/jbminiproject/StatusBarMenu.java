@@ -118,7 +118,7 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements Prefere
     }
 
     private void updateWifiName() {
-        mShowWifiNamePref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.NOTIFICATION_SHOW_WIFI_SSID, 0) == 1);
+        mShowWifiNamePref.setChecked(Settings.System.getBoolean(getActivity().getContentResolver(), Settings.System.NOTIFICATION_SHOW_WIFI_SSID, false));
     }
 
 
@@ -146,7 +146,7 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements Prefere
     }
 
     private void writeWifiName() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.NOTIFICATION_SHOW_WIFI_SSID, mShowWifiNamePref.isChecked() ? 1 : 0);
+        Settings.System.putBoolean(getActivity().getContentResolver(), Settings.System.NOTIFICATION_SHOW_WIFI_SSID, mShowWifiNamePref.isChecked());
     }
 
 
@@ -170,6 +170,7 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements Prefere
             writeStatusbarTransparency(newValue);
         } else if (preference == mShowWifiNamePref) {
             writeWifiName();
+            return true;
         }
         return false;
     }
