@@ -2617,5 +2617,23 @@
     <string name="pref_show_navbar">Navigációs sáv mutatása</string>
     <string name="pref_show_navbar_reboot">Újraindítás szükséges</string>
 
+    <!-- SWAP -->
+    <string name="swap_settings_title">Swap beállítások</string>
+    <string name="swap_title">Swap beállítások</string>
+    <string name="swap_summary">Swap file SD kártyára beállításai</string>
+    <string name="swap_mode_summary">%S</string>
+    <string name="swap_modes_title">Swap file SD kártyára</string>
+    <string name="swap_sizes_title">Swap méret</string>
+    <string name="swap_sizes_summary">%S MB</string>
+    <string name="swap_toast_swap_removed">Előző swap file törölve</string>
+    <string name="swap_toast_swap_created">Swap file kész</string>
+    <string name="swap_toast_swap_enabled">Swap engedélyezve</string>
+    <string name="swap_toast_swap_disabled">Swap letiltva</string>
+    <string name="swap_toast_wait">Kérlek várj...</string>
+    <string name="swap_info_title">Swap Információk</string>
+    <string name="swap_dialog">Swap Információk</string>
+    <string name="swap_loading">Swap információk betöltése\u2026</string>
+    <string name="swap_error">Swap információk nem tölthetők be\u2026</string> 
+
     <!-- **** JBMINI PROJECT ADDITIONS END **** -->
 </resources>

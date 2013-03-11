@@ -20,11 +20,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.SystemProperties;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.settings.Utils;
 
@@ -40,11 +44,18 @@ public class BootReceiver extends BroadcastReceiver {
     private static final String IOSCHED_SETTINGS_PROP = "sys.iosched.restored";
     private static final String KSM_SETTINGS_PROP = "sys.ksm.restored";
     private static final String RAISED_BRIGHTNESS_PROP = "persist.sys.raisedbrightness";
+    private static final String SWAP_FILE = "/mnt/sdcard/.JBMP.swp";
+    private static final String SWAP_FILE_STAGING = "/mnt/secure/staging/.JBMP.swp";
+    private static final String SWAP_ENABLED_PROP = "persist.sys.swap.enabled";
+    private static final String SWAP_SIZE_PROP = "persist.sys.swap.size";
+    private static Context myContext;
 
     private static Intent mBkService = null;
 
     @Override
     public void onReceive(Context ctx, Intent intent) {
+        myContext = ctx;
+
         File f = new File("/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode");
         String modeFile = "";
 
@@ -85,17 +96,86 @@ public class BootReceiver extends BroadcastReceiver {
                 mBkService = new Intent(ctx, com.android.settings.cyanogenmod.BkService.class);
                 ctx.startService(mBkService);
             }
+
+            if (getRaisedBrightness(ctx, 0) == 1) {
+                Utils.fileWriteOneLine(modeFile, "i2c_pwm");
+                Log.d(TAG, "Brightness: Raised");
+            }
+            else {
+                Utils.fileWriteOneLine(modeFile, "i2c_pwm_als");
+                Log.d(TAG, "Brightness: Normal");
+            }
         }
 
-        if (getRaisedBrightness(ctx, 0) == 1) {
-            Utils.fileWriteOneLine(modeFile, "i2c_pwm");
-            Log.d(TAG, "Brightness: Raised");
+        if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED) || intent.getAction().equals(Intent.ACTION_MEDIA_MOUNTED)) {
+            if (SystemProperties.get(SWAP_ENABLED_PROP).equals("1")) {
+                Log.d(TAG, "SWAP_ENABLED_PROP: " + SWAP_ENABLED_PROP);
+                String command = "swapon " + SWAP_FILE;
+                mrunShellCommand = new runShellCommand(command, ctx.getResources().getString(com.android.settings.R.string.swap_toast_swap_enabled));
+                mrunShellCommand.start();
+            }
         }
-        else {
-            Utils.fileWriteOneLine(modeFile, "i2c_pwm_als");
-            Log.d(TAG, "Brightness: Normal");
+
+        else if ( intent.getAction().equals(Intent.ACTION_SHUTDOWN) || intent.getAction().equals(Intent.ACTION_MEDIA_EJECT)) {
+            if (SystemProperties.get(SWAP_ENABLED_PROP).equals("1")) {
+                Log.d(TAG, "SWAP_ENABLED_PROP: " + SWAP_ENABLED_PROP);
+                String command = "swapoff " + SWAP_FILE_STAGING;
+                mrunShellCommand = new runShellCommand(command, ctx.getResources().getString(com.android.settings.R.string.swap_toast_swap_disabled));
+                mrunShellCommand.start();
+            }
         }
     }
+
+    private class runShellCommand extends Thread {
+        private String command = "";
+        private String toastMessage = "";
+
+        public runShellCommand(String command, String toastMessage) {
+            this.command = command;
+            this.toastMessage = toastMessage;
+        }
+
+        @Override
+        public void run() {
+        try {
+            if (!command.equals("")) {
+                Process process = Runtime.getRuntime().exec("su");
+                Log.d(TAG, "Executing: " + command);
+                DataOutputStream outputStream = new DataOutputStream(process.getOutputStream());
+                DataInputStream inputStream = new DataInputStream(process.getInputStream());
+                outputStream.writeBytes(command + "\n");
+                outputStream.flush();
+                outputStream.writeBytes("exit\n");
+                outputStream.flush();
+                process.waitFor();
+            }
+            } catch (IOException e) {
+                Log.e(TAG, "Thread IOException");
+            }
+            catch (InterruptedException e) {
+                Log.e(TAG, "Thread InterruptedException");
+            }
+            Message messageToThread = new Message();
+            Bundle messageData = new Bundle();
+            messageToThread.what = 0;
+            messageData.putString("toastMessage", toastMessage);
+            messageToThread.setData(messageData);
+            mrunShellCommandHandler.sendMessage(messageToThread);
+        }
+    };
+
+    private runShellCommand mrunShellCommand;
+
+    private Handler mrunShellCommandHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            CharSequence text="";
+            Bundle messageData = msg.getData();
+            text = messageData.getString("toastMessage", "");
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(myContext, text, duration);
+            toast.show();
+        }
+    };
 
     private void configureCPU(Context ctx) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);

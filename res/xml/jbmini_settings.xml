@@ -62,6 +62,17 @@
         android:icon="@drawable/ic_settings_system" />
 
     <PreferenceScreen
+        android:key="swap_settings"
+        android:title="@string/swap_title"
+        android:summary="@string/swap_summary"
+        android:icon="@drawable/ic_settings_swap">
+
+       <intent android:action="android.intent.action.MAIN"
+           android:targetPackage="com.android.settings"
+           android:targetClass="com.android.settings.jbminiproject.SWAPActivity" />
+    </PreferenceScreen> 
+
+    <PreferenceScreen
         android:key="a2sd_settings"
         android:title="@string/a2sd_title"
         android:summary="@string/a2sd_summary"
