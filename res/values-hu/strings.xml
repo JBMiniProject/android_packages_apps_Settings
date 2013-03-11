@@ -2576,6 +2576,8 @@
     <string name="pref_pick_up_to_call_summary">Tárcsázóban és SMSnél elég a fülhöz emelni a telefont a híváshoz</string>
     <string name="pref_notification_show_wifi_ssid_title">Wifi hálózat neve</string>
     <string name="pref_notification_show_wifi_ssid_summary">Értesítési területen megjelenik a csatlakoztatott WIFI neve</string>
+    <string name="cpu_undervolt">Feszültség csökkentés</string>
+    <string name="cpu_undervolt_summary">Cökkenti a CPU feszültségét (csökkenti az akku használatot, de instabilitást okozhat)</string>
 
     <string name="cat_status_bar">Értesítési sáv</string>
     <string name="cat_hard_keys">Hívás</string>
