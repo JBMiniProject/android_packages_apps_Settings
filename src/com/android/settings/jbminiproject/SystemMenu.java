@@ -69,6 +69,7 @@ public class SystemMenu extends SettingsPreferenceFragment {
     private static final String RAISED_BRIGHTNESS_PROP = "pref_raisedbrightness";
     private static final String SHOW_NAVBAR_PROP = "pref_show_navbar";
     private static final String KEY_VOLUME_ADJUST_SOUNDS_PROP = "pref_volume_adjust_sounds";
+    private static final String KEY_SWAP_VOLUME_BUTTONS_PROP = "pref_swap_volume_buttons";
 
     private CheckBoxPreference mDisableBootanimPref;
     private CheckBoxPreference mDisableBootAudioPref;
@@ -76,6 +77,7 @@ public class SystemMenu extends SettingsPreferenceFragment {
     private CheckBoxPreference mRaisedBrightnessPref;
     private CheckBoxPreference mShowNavbarPref;
     private CheckBoxPreference mVolumeAdjustSoundsPref;
+    private CheckBoxPreference mSwapVolumeButtonsPref;
 
     private Context mContext;
 
@@ -95,6 +97,7 @@ public class SystemMenu extends SettingsPreferenceFragment {
         mShowNavbarPref = (CheckBoxPreference) prefSet.findPreference(SHOW_NAVBAR_PROP);
         mVolumeAdjustSoundsPref = (CheckBoxPreference) prefSet.findPreference(KEY_VOLUME_ADJUST_SOUNDS_PROP);
         mVolumeAdjustSoundsPref.setPersistent(false);
+        mSwapVolumeButtonsPref = (CheckBoxPreference) prefSet.findPreference(KEY_SWAP_VOLUME_BUTTONS_PROP);
 
 
         updateDisableBootAnimation();
@@ -103,6 +106,7 @@ public class SystemMenu extends SettingsPreferenceFragment {
         updateRaisedBrightness();
         updateShowNavBar();
         updateVolumeAdjustSound();
+        updateSwapVolumeButtons();
     }
 
     @Override
@@ -151,6 +155,10 @@ public class SystemMenu extends SettingsPreferenceFragment {
 
     private void updateVolumeAdjustSound() {
         mVolumeAdjustSoundsPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 1) != 0);
+    }
+
+    private void updateSwapVolumeButtons() {
+        mSwapVolumeButtonsPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SWAP_VOLUME_KEYS_BY_ROTATE, 0) == 1);
     }
 
 
@@ -207,6 +215,10 @@ public class SystemMenu extends SettingsPreferenceFragment {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, mVolumeAdjustSoundsPref.isChecked() ? 1 : 0);
     }
 
+    private void writeSwapVolumeButtons() {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SWAP_VOLUME_KEYS_BY_ROTATE, mSwapVolumeButtonsPref.isChecked() ? 1 : 0);
+    }
+
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
@@ -222,6 +234,8 @@ public class SystemMenu extends SettingsPreferenceFragment {
             writeShowNavBar();
         } else if (preference == mVolumeAdjustSoundsPref) {
             writeVolumeAdjustSound();
+        } else if (preference == mSwapVolumeButtonsPref) {
+            writeSwapVolumeButtons();
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);

@@ -2578,6 +2578,8 @@
     <string name="pref_notification_show_wifi_ssid_summary">Értesítési területen megjelenik a csatlakoztatott WIFI neve</string>
     <string name="cpu_undervolt">Feszültség csökkentés</string>
     <string name="cpu_undervolt_summary">Cökkenti a CPU feszültségét (csökkenti az akku használatot, de instabilitást okozhat)</string>
+    <string name="pref_swap_volume_buttons_title">Hangerő gombok felcserélése</string>
+    <string name="pref_swap_volume_buttons_summary">Hangerő gombok felcserélése, ha a képernyő 90 vagy 180 fokban el van fordítva</string>
 
     <string name="cat_status_bar">Értesítési sáv</string>
     <string name="cat_hard_keys">Hívás</string>

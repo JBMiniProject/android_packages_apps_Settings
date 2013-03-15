@@ -5037,7 +5037,9 @@
     <string name="pref_notification_show_wifi_ssid_title">Show Wifi network name</string>
     <string name="pref_notification_show_wifi_ssid_summary">Display the name of the currently connected Wifi network</string>
     <string name="cpu_undervolt">Undervolt</string>
-    <string name="cpu_undervolt_summary">Undervolt the CPU (improves battery life but may cause instability)</string> 
+    <string name="cpu_undervolt_summary">Undervolt the CPU (improves battery life but may cause instability)</string>
+    <string name="pref_swap_volume_buttons_title">Swap volume buttons</string>
+    <string name="pref_swap_volume_buttons_summary">Swap volume buttons when the screen is rotated by 90 or 180 degrees</string>
 
     <string name="header_category_jbmp">JB MINI PROJECT</string>
     <string name="cat_status_bar">Status Bar</string>

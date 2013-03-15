@@ -25,6 +25,11 @@
             android:persistent="true" />
 
         <CheckBoxPreference
+            android:key="pref_swap_volume_buttons"
+            android:title="@string/pref_swap_volume_buttons_title"
+            android:summary="@string/pref_swap_volume_buttons_summary" />
+
+        <CheckBoxPreference
             android:key="pref_disable_boot_animation"
             android:title="@string/pref_disable_boot_animation_title"
             android:summary="@string/pref_disable_boot_animation_summary"
