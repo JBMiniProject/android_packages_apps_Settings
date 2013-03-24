@@ -124,7 +124,7 @@ public class LockscreenMenu extends SettingsPreferenceFragment implements Prefer
             mRotaryArrowsPref.setEnabled(false);
             mSliderTextPref.setEnabled(false);
         }
-        else if (stylenum == 1) {
+        else if (stylenum == 1 || stylenum == 3) {
             mRotaryArrowsPref.setEnabled(false);
             mSliderTextPref.setEnabled(true);
         }
