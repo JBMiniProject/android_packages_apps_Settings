@@ -5031,6 +5031,7 @@
     <string name="pref_lockscreen_style_slider">Slider</string>
     <string name="pref_lockscreen_style_rotary">Rotary</string>
     <string name="pref_lockscreen_style_xperias">Xperia S</string>
+    <string name="pref_lockscreen_style_sgs">Samsung Galaxy SIII</string>
     <string name="pref_statusbar_transparency_title">Transparency</string>
     <string name="pref_statusbar_transparency_summary">Adjust status bar transparency</string>
     <string name="pref_pick_up_to_call_title">Pick up to call</string>

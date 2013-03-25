@@ -1530,6 +1530,7 @@
         <item>@string/pref_lockscreen_style_slider</item>
         <item>@string/pref_lockscreen_style_rotary</item>
         <item>@string/pref_lockscreen_style_xperias</item>
+        <item>@string/pref_lockscreen_style_sgs</item>
     </string-array>
 
     <string-array name="lockscreen_styles_values">
@@ -1537,6 +1538,7 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
+        <item>4</item>
     </string-array>
 
     <string-array name="pref_screenshot_delay_entries">
