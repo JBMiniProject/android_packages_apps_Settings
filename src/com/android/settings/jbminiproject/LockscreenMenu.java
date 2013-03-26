@@ -120,7 +120,7 @@ public class LockscreenMenu extends SettingsPreferenceFragment implements Prefer
         mLockStylePref.setValue(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_STYLE, 0) + "");
         mLockStylePref.setOnPreferenceChangeListener(this);
         int stylenum = Settings.System.getInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_STYLE, 0);
-        if (stylenum == 0 || stylenum == 3 || stylenum == 4) {
+        if (stylenum == 0 || stylenum == 3 || stylenum == 4 || stylenum == 5) {
             mRotaryArrowsPref.setEnabled(false);
             mSliderTextPref.setEnabled(false);
         }
