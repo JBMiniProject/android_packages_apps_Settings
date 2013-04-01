@@ -5035,6 +5035,7 @@
     <string name="pref_lockscreen_style_sense">HTC Sense</string>
     <string name="pref_lockscreen_style_acer">Acer CloudMobile</string>
     <string name="pref_lockscreen_style_eluga">Panasonic Eluga</string>
+    <string name="pref_lockscreen_style_bb10">BlackBerry10</string>
     <string name="pref_statusbar_transparency_title">Transparency</string>
     <string name="pref_statusbar_transparency_summary">Adjust status bar transparency</string>
     <string name="pref_pick_up_to_call_title">Pick up to call</string>

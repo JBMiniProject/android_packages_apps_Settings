@@ -1534,6 +1534,7 @@
         <item>@string/pref_lockscreen_style_sense</item>
         <item>@string/pref_lockscreen_style_acer</item>
         <item>@string/pref_lockscreen_style_eluga</item>
+        <item>@string/pref_lockscreen_style_bb10</item>
     </string-array>
 
     <string-array name="lockscreen_styles_values">
@@ -1545,6 +1546,7 @@
         <item>5</item>
         <item>6</item>
         <item>7</item>
+        <item>8</item>
     </string-array>
 
     <string-array name="pref_screenshot_delay_entries">
