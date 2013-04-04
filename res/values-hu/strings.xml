@@ -2639,7 +2639,18 @@
     <string name="swap_info_title">Swap Információk</string>
     <string name="swap_dialog">Swap Információk</string>
     <string name="swap_loading">Swap információk betöltése\u2026</string>
-    <string name="swap_error">Swap információk nem tölthetők be\u2026</string> 
+    <string name="swap_error">Swap információk nem tölthetők be\u2026</string>
+
+    <!-- JB MINI ABOUT -->
+    <string name="devs">Fejlesztők</string>
+    <string name="jbmp_website_title">JBMP Weboldal</string>
+    <string name="jbmp_website_summary">http://jbminiproject.weebly.com/</string>
+    <string name="jbmp_source_title">JBMP Forráskód</string>
+    <string name="jbmp_source_summary">A JBMP egy teljesen nyílt forráskódú projekt. Bármikor megnézheted az aktuális forrást a github.com/JBMiniProject oldalon</string>
+    <string name="jbmp_irc_title">Csatlakozz IRC-n</string>
+    <string name="jbmp_version">Verzió</string>
+    <string name="jbmp_version_summary">Ismeretlen</string>
+    <string name="about_jbmp">Névjegy</string>
 
     <!-- **** JBMINI PROJECT ADDITIONS END **** -->
 </resources>
