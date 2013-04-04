@@ -55,4 +55,10 @@
             android:summary="@string/pref_show_navbar_reboot"
             android:defaultValue="false" />
 
+        <CheckBoxPreference
+            android:key="pref_disable_camera_sound"
+            android:title="@string/pref_disable_camera_sound_title"
+            android:summary="@string/pref_disable_camera_sound_summary"
+            android:defaultValue="false" />
+
 </PreferenceScreen>

@@ -70,6 +70,8 @@ public class SystemMenu extends SettingsPreferenceFragment {
     private static final String SHOW_NAVBAR_PROP = "pref_show_navbar";
     private static final String KEY_VOLUME_ADJUST_SOUNDS_PROP = "pref_volume_adjust_sounds";
     private static final String KEY_SWAP_VOLUME_BUTTONS_PROP = "pref_swap_volume_buttons";
+    private static final String DISABLE_CAMERASOUND_PROP = "pref_disable_camera_sound";
+    private static final String DISABLE_CAMERASOUND_PERSIST_PROP = "persist.camera.shutter.disable";
 
     private CheckBoxPreference mDisableBootanimPref;
     private CheckBoxPreference mDisableBootAudioPref;
@@ -78,6 +80,7 @@ public class SystemMenu extends SettingsPreferenceFragment {
     private CheckBoxPreference mShowNavbarPref;
     private CheckBoxPreference mVolumeAdjustSoundsPref;
     private CheckBoxPreference mSwapVolumeButtonsPref;
+    private CheckBoxPreference mDisableCameraSoundPref;
 
     private Context mContext;
 
@@ -98,6 +101,7 @@ public class SystemMenu extends SettingsPreferenceFragment {
         mVolumeAdjustSoundsPref = (CheckBoxPreference) prefSet.findPreference(KEY_VOLUME_ADJUST_SOUNDS_PROP);
         mVolumeAdjustSoundsPref.setPersistent(false);
         mSwapVolumeButtonsPref = (CheckBoxPreference) prefSet.findPreference(KEY_SWAP_VOLUME_BUTTONS_PROP);
+        mDisableCameraSoundPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_CAMERASOUND_PROP);
 
 
         updateDisableBootAnimation();
@@ -107,6 +111,7 @@ public class SystemMenu extends SettingsPreferenceFragment {
         updateShowNavBar();
         updateVolumeAdjustSound();
         updateSwapVolumeButtons();
+        updateDisableCameraSound();
     }
 
     @Override
@@ -161,6 +166,9 @@ public class SystemMenu extends SettingsPreferenceFragment {
         mSwapVolumeButtonsPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SWAP_VOLUME_KEYS_BY_ROTATE, 0) == 1);
     }
 
+    private void updateDisableCameraSound() {
+        mDisableCameraSoundPref.setChecked("1".equals(SystemProperties.get(DISABLE_CAMERASOUND_PERSIST_PROP, "0")));
+    }
 
     /* Write functions */
     private void writeDisableBootAnimation() {
@@ -219,6 +227,11 @@ public class SystemMenu extends SettingsPreferenceFragment {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SWAP_VOLUME_KEYS_BY_ROTATE, mSwapVolumeButtonsPref.isChecked() ? 1 : 0);
     }
 
+    private void writeDisableCameraSound() {
+        SystemProperties.set(DISABLE_CAMERASOUND_PERSIST_PROP, mDisableCameraSoundPref.isChecked() ? "1" : "0");
+        updateDisableCameraSound();
+    }
+
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
@@ -236,6 +249,8 @@ public class SystemMenu extends SettingsPreferenceFragment {
             writeVolumeAdjustSound();
         } else if (preference == mSwapVolumeButtonsPref) {
             writeSwapVolumeButtons();
+        } else if (preference == mDisableCameraSoundPref) {
+            writeDisableCameraSound();
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
