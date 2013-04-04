@@ -86,7 +86,6 @@
     <PreferenceScreen
         android:key="about_jbmp"
         android:title="@string/about_jbmp"
-        android:summary="@string/about_jbmp_summary"
         android:icon="@drawable/ic_settings_about">
 
         <intent android:action="android.intent.action.MAIN"

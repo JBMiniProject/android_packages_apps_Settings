@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2013 JB Mini Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.android.settings.urlimageviewhelper;
 
 import java.io.File;
@@ -61,7 +77,6 @@ public final class UrlImageViewHelper {
     private static BitmapDrawable loadDrawableFromStream(Context context, InputStream stream) {
         prepareResources(context);
         final Bitmap bitmap = BitmapFactory.decodeStream(stream);
-        //Log.i(LOGTAG, String.format("Loaded bitmap (%dx%d).", bitmap.getWidth(), bitmap.getHeight()));
         return new BitmapDrawable(mResources, bitmap);
     }
 
@@ -192,7 +207,6 @@ public final class UrlImageViewHelper {
         final UrlImageCache cache = UrlImageCache.getInstance();
         Drawable drawable = cache.get(url);
         if (drawable != null) {
-            //Log.i(LOGTAG, "Cache hit on: " + url);
             if (imageView != null)
                 imageView.setImageDrawable(drawable);
             if (callback != null)
@@ -206,7 +220,6 @@ public final class UrlImageViewHelper {
         if (file.exists()) {
             try {
                 if (cacheDurationMs == CACHE_DURATION_INFINITE || System.currentTimeMillis() < file.lastModified() + cacheDurationMs) {
-                    //Log.i(LOGTAG, "File Cache hit on: " + url + ". " + (System.currentTimeMillis() - file.lastModified()) + "ms old.");
                     FileInputStream  fis = context.openFileInput(filename);
                     drawable = loadDrawableFromStream(context, fis);
                     fis.close();
@@ -218,7 +231,6 @@ public final class UrlImageViewHelper {
                     return;
                 }
                 else {
-                    //Log.i(LOGTAG, "File cache has expired. Refreshing.");
                 }
             }
             catch (Exception ex) {
@@ -265,11 +277,9 @@ public final class UrlImageViewHelper {
                     HttpResponse resp = client.execute(get);
                     int status = resp.getStatusLine().getStatusCode();
                     if(status != HttpURLConnection.HTTP_OK){
-//                        Log.i(LOGTAG, "Couldn't download image from Server: " + url + " Reason: " + resp.getStatusLine().getReasonPhrase() + " / " + status);
                         return null;
                     }
                     HttpEntity entity = resp.getEntity();
-//                    Log.i(LOGTAG, url + " Image Content Length: " + entity.getContentLength());
                     InputStream is = entity.getContent();
                     FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE);
                     copyStream(is, fos);
@@ -279,7 +289,6 @@ public final class UrlImageViewHelper {
                     return loadDrawableFromStream(context, fis);
                 }
                 catch (Exception ex) {
-//                    Log.e(LOGTAG, "Exception during Image download of " + url, ex);
                     return null;
                 }
                 finally {
@@ -297,7 +306,6 @@ public final class UrlImageViewHelper {
                     // validate the url it is waiting for
                     String pendingUrl = mPendingViews.get(iv);
                     if (!url.equals(pendingUrl)) {
-                        //Log.i(LOGTAG, "Ignoring out of date request to update view for " + url);
                         continue;
                     }
                     mPendingViews.remove(iv);
