@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:jbmp="http://schemas.android.com/apk/res/com.android.settings">
+
+	<PreferenceCategory
+		android:key="devs"
+		android:title="@string/devs">
+		<com.android.settings.widget.DeveloperPreference
+			android:title="Daveee10"
+			jbmp:nameDev="Daveee10"
+			jbmp:twitterHandle="xdave10"
+			jbmp:donateLink="@string/donate_daveee10" />
+
+		<com.android.settings.widget.DeveloperPreference
+			android:title="Stelios97"
+			jbmp:nameDev="Stelios97"
+			jbmp:twitterHandle="stelios97"
+			jbmp:donateLink="@string/donate_stelios97" />
+
+	</PreferenceCategory>
+
+	<PreferenceCategory
+		android:key="jbmp"
+		android:title="@string/jbmp">
+
+		<Preference
+			android:key="jbmp_website"
+			android:title="@string/jbmp_website_title"
+			android:summary="@string/jbmp_website_summary" />
+
+		<Preference
+			android:key="jbmp_source"
+			android:title="@string/jbmp_source_title"
+			android:summary="@string/jbmp_source_summary" />
+
+		<Preference
+			android:key="jbmp_irc"
+			android:title="@string/jbmp_irc_title"
+			android:summary="@string/jbmp_irc_summary" />
+
+	</PreferenceCategory>
+
+	<PreferenceCategory
+		android:key="jbmp_version"
+		android:title="@string/jbmp_version">
+        
+		<Preference android:key="mod_version"
+            style="?android:preferenceInformationStyle"
+            android:title="@string/mod_version"
+            android:summary="@string/jbmp_version_summary" />		
+		
+        <PreferenceScreen android:key="changelog"
+                android:title="@string/changelog_title">
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="com.android.settings"
+                    android:targetClass="com.android.settings.jbminiproject.ChangeLog" />
+        </PreferenceScreen>
+
+	</PreferenceCategory>
+
+</PreferenceScreen>

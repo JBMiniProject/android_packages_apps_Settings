@@ -83,6 +83,15 @@
             android:targetClass="com.android.settings.jbminiproject.A2SDActivity" />
     </PreferenceScreen>
 
+    <PreferenceScreen
+        android:key="about_jbmp"
+        android:title="@string/about_jbmp"
+        android:summary="@string/about_jbmp_summary"
+        android:icon="@drawable/ic_settings_about">
 
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="com.android.settings"
+            android:targetClass="com.android.settings.jbminiproject.About" />
+    </PreferenceScreen>
 
 </PreferenceScreen>

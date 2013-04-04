@@ -5118,6 +5118,22 @@
     <string name="swap_dialog">Swap Information</string>
     <string name="swap_loading">Loading Swap information\u2026</string>
     <string name="swap_error">Error loading Swap information\u2026</string> 
+	
+	<!-- JB MINI ABOUT -->
+	<string name="donate_daveee10">http://forum.xda-developers.com/donatetome.php?u=4319703</string>
+	<string name="donate_stelios97">http://forum.xda-developers.com/donatetome.php?u=3672145</string>
+	<string name="devs">Developers</string>
+	<string name="jbmp">Jelly Bean Mini Project</string>
+	<string name="jbmp_website_title">JBMP Website</string>
+	<string name="jbmp_website_summary">http://jbminiproject.weebly.com/</string>
+	<string name="jbmp_source_title">JBMP Source</string>
+	<string name="jbmp_source_summary">JBMP is fully open source. You can always check out the latest source at github.com/JBMiniProject</string>
+    <string name="jbmp_irc_title">Join us on IRC</string>
+    <string name="jbmp_irc_summary">#JBMP @ irc.freenode.net</string>
+	<string name="jbmp_version">Version Info</string>
+	<string name="jbmp_version_summary">Release 4</string>
+    <string name="about_jbmp">About JB Mini Project</string>
+    <string name="about_jbmp_summary">@null</string>
 
     <!-- **** JBMINI PROJECT ADDITIONS END **** -->
 </resources>
