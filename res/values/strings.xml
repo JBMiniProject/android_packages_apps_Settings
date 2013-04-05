@@ -5046,8 +5046,12 @@
     <string name="cpu_undervolt_summary">Undervolt the CPU (improves battery life but may cause instability)</string>
     <string name="pref_swap_volume_buttons_title">Swap volume buttons</string>
     <string name="pref_swap_volume_buttons_summary">Swap volume buttons when the screen is rotated by 90 or 180 degrees</string>
-    <string name="pref_disable_camera_sound_title">Mute camera shutter</string>
-    <string name="pref_disable_camera_sound_summary">WARNING: This may be illegal!</string>
+    <string name="pref_sound_camera_shutter_disable_title">Mute camera shutter</string>
+    <string name="pref_sound_camera_shutter_disable_summary_on">Shutter sound will not be played</string>
+    <string name="pref_sound_camera_shutter_disable_summary_off">Shutter sound will be played</string>
+    <string name="pref_sound_camera_shutter_disable_warning_title">WARNING: This may be illegal!</string>
+    <string name="pref_sound_camera_shutter_disable_warning">Disabling camera shutter sound is illegal in
+some Countries and Jurisdictions. Are you sure you want to disable it?</string>
 
     <string name="header_category_jbmp">JB MINI PROJECT</string>
     <string name="cat_status_bar">Status Bar</string>

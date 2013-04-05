@@ -2580,8 +2580,11 @@
     <string name="cpu_undervolt_summary">Cökkenti a CPU feszültségét (csökkenti az akku használatot, de instabilitást okozhat)</string>
     <string name="pref_swap_volume_buttons_title">Hangerő gombok felcserélése</string>
     <string name="pref_swap_volume_buttons_summary">Hangerő gombok felcserélése, ha a képernyő 90 vagy 180 fokban el van fordítva</string>
-    <string name="pref_disable_camera_sound_title">Exponáló hang tiltása</string>
-    <string name="pref_disable_camera_sound_summary">FIGYELEM! Néhány országban illegális!</string>
+    <string name="pref_sound_camera_shutter_disable_title">Exponáló hang tiltása</string>
+    <string name="pref_sound_camera_shutter_disable_summary_on">Exponáló hang tiltva</string>
+    <string name="pref_sound_camera_shutter_disable_summary_off">Exponáló hang engedélyezve</string>
+    <string name="pref_sound_camera_shutter_disable_warning_title">FIGYELEM! Néhány országban illegális!</string>
+    <string name="pref_sound_camera_shutter_disable_warning">Az exponáló hang letiltása néhány területen, valamint intézményben tilos! Biztos le akarod tiltani?</string>
 
     <string name="cat_status_bar">Értesítési sáv</string>
     <string name="cat_hard_keys">Hívás</string>

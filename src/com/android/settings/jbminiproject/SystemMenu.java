@@ -16,6 +16,7 @@
 
 package com.android.settings.jbminiproject;
 
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -70,8 +71,8 @@ public class SystemMenu extends SettingsPreferenceFragment {
     private static final String SHOW_NAVBAR_PROP = "pref_show_navbar";
     private static final String KEY_VOLUME_ADJUST_SOUNDS_PROP = "pref_volume_adjust_sounds";
     private static final String KEY_SWAP_VOLUME_BUTTONS_PROP = "pref_swap_volume_buttons";
-    private static final String DISABLE_CAMERASOUND_PROP = "pref_disable_camera_sound";
-    private static final String DISABLE_CAMERASOUND_PERSIST_PROP = "persist.camera.shutter.disable";
+    private static final String CAMERA_SHUTTER_MUTE_PROP = "pref_camera-mute";
+    private static final String CAMERA_SHUTTER_DISABLE_PROP = "persist.sys.camera-mute";
 
     private CheckBoxPreference mDisableBootanimPref;
     private CheckBoxPreference mDisableBootAudioPref;
@@ -101,7 +102,7 @@ public class SystemMenu extends SettingsPreferenceFragment {
         mVolumeAdjustSoundsPref = (CheckBoxPreference) prefSet.findPreference(KEY_VOLUME_ADJUST_SOUNDS_PROP);
         mVolumeAdjustSoundsPref.setPersistent(false);
         mSwapVolumeButtonsPref = (CheckBoxPreference) prefSet.findPreference(KEY_SWAP_VOLUME_BUTTONS_PROP);
-        mDisableCameraSoundPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_CAMERASOUND_PROP);
+        mDisableCameraSoundPref = (CheckBoxPreference) prefSet.findPreference(CAMERA_SHUTTER_MUTE_PROP);
 
 
         updateDisableBootAnimation();
@@ -167,7 +168,7 @@ public class SystemMenu extends SettingsPreferenceFragment {
     }
 
     private void updateDisableCameraSound() {
-        mDisableCameraSoundPref.setChecked("1".equals(SystemProperties.get(DISABLE_CAMERASOUND_PERSIST_PROP, "0")));
+        mDisableCameraSoundPref.setChecked(SystemProperties.getInt(CAMERA_SHUTTER_DISABLE_PROP, 0) != 0);
     }
 
     /* Write functions */
@@ -227,11 +228,6 @@ public class SystemMenu extends SettingsPreferenceFragment {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SWAP_VOLUME_KEYS_BY_ROTATE, mSwapVolumeButtonsPref.isChecked() ? 1 : 0);
     }
 
-    private void writeDisableCameraSound() {
-        SystemProperties.set(DISABLE_CAMERASOUND_PERSIST_PROP, mDisableCameraSoundPref.isChecked() ? "1" : "0");
-        updateDisableCameraSound();
-    }
-
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
@@ -250,7 +246,29 @@ public class SystemMenu extends SettingsPreferenceFragment {
         } else if (preference == mSwapVolumeButtonsPref) {
             writeSwapVolumeButtons();
         } else if (preference == mDisableCameraSoundPref) {
-            writeDisableCameraSound();
+            if (mDisableCameraSoundPref.isChecked()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.pref_sound_camera_shutter_disable_warning_title);
+                builder.setMessage(R.string.pref_sound_camera_shutter_disable_warning);
+                builder.setPositiveButton(com.android.internal.R.string.ok,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            SystemProperties.set(CAMERA_SHUTTER_DISABLE_PROP, "1");
+                        }
+                    });
+
+                final CheckBoxPreference p = (CheckBoxPreference) preference;
+                builder.setNegativeButton(com.android.internal.R.string.cancel,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            p.setChecked(false);
+                        }
+                    });
+
+                builder.show();
+            } else{
+                SystemProperties.set(CAMERA_SHUTTER_DISABLE_PROP, "0");
+            }
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
