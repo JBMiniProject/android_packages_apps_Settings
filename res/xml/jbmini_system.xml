@@ -62,10 +62,4 @@
             android:summaryOff="@string/pref_sound_camera_shutter_disable_summary_off"
             android:persistent="false" />
 
-        <CheckBoxPreference
-            android:key="pref_disable_camera_sound"
-            android:title="@string/pref_disable_camera_sound_title"
-            android:summary="@string/pref_disable_camera_sound_summary"
-            android:defaultValue="false" />
-
 </PreferenceScreen>
