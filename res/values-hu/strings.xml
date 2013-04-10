@@ -2597,6 +2597,10 @@
     <string name="rec_version">Recovery verzió</string>
     <string name="rec_version_default">Ismeretlen</string>
 
+    <!-- Strings for uptime -->
+    <string name="day">1 nap</string>
+    <string name="days"><xliff:g id="days">%s</xliff:g> nap</string>
+
      <!-- A2SD -->
     <string name="a2sd_settings_title">A2SD (ext) beállítások</string>
     <string name="a2sd_title">A2SD (ext) beállítások</string>

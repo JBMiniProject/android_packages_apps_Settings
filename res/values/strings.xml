@@ -5065,6 +5065,10 @@ some Countries and Jurisdictions. Are you sure you want to disable it?</string>
     <string name="rec_version">Recovery version</string>
     <string name="rec_version_default">Unknown</string>
 
+    <!-- Strings for uptime -->
+    <string name="day">1 day</string>
+    <string name="days"><xliff:g id="days">%s</xliff:g> days</string>
+
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
     <string name="press_color_to_apply">Press on Color to apply</string>
