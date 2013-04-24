@@ -27,11 +27,10 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.preference.CheckBoxPreference;
+import android.preference.SwitchPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
-import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.os.Handler;
@@ -53,7 +52,7 @@ public class ScreenshotMenu extends SettingsPreferenceFragment implements OnPref
     private static final String SCREENSHOT_SOUND_PREF = "screenshot_sound_pref";
     private static final String SCREENSHOT_DELAY_PREF = "screenshot_delay_pref";
 
-    private CheckBoxPreference mScreenshotSoundPref;
+    private SwitchPreference mScreenshotSoundPref;
     private ListPreference mScreenshotDelayPref;
 
     private Context mContext;
@@ -67,7 +66,7 @@ public class ScreenshotMenu extends SettingsPreferenceFragment implements OnPref
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
-        mScreenshotSoundPref = (CheckBoxPreference) prefSet.findPreference(SCREENSHOT_SOUND_PREF);
+        mScreenshotSoundPref = (SwitchPreference) prefSet.findPreference(SCREENSHOT_SOUND_PREF);
         mScreenshotDelayPref = (ListPreference) prefSet.findPreference(SCREENSHOT_DELAY_PREF);
 
         updateScreenshotSound();
@@ -90,6 +89,7 @@ public class ScreenshotMenu extends SettingsPreferenceFragment implements OnPref
     /* Update functions */
     private void updateScreenshotSound() {
         mScreenshotSoundPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SCREENSHOT_SOUND, 1) == 1);
+        mScreenshotSoundPref.setOnPreferenceChangeListener(this);
     }
 
     private void updateScreenshotDelay() {
@@ -99,8 +99,8 @@ public class ScreenshotMenu extends SettingsPreferenceFragment implements OnPref
 
 
     /* Write functions */
-    private void writeScreenshotSound() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SCREENSHOT_SOUND, mScreenshotSoundPref.isChecked() ? 1 : 0);
+    private void writeScreenshotSound(Object NewVal) {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SCREENSHOT_SOUND, (Boolean) NewVal ? 1 : 0);
     }
 
     private void writeScreenshotDelay(Object NewVal) {
@@ -110,19 +110,13 @@ public class ScreenshotMenu extends SettingsPreferenceFragment implements OnPref
 
 
     @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mScreenshotSoundPref) {
-            writeScreenshotSound();
-        }
-
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
-    }
-
-
-    @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mScreenshotDelayPref) {
+        if (preference == mScreenshotSoundPref) {
+            writeScreenshotSound(newValue);
+            return true;
+        } else if (preference == mScreenshotDelayPref) {
             writeScreenshotDelay(newValue);
+            return true;
         }
         return false;
     }

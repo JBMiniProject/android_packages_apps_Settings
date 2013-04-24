@@ -18,7 +18,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/cat_status_bar">
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_center_clock_status_bar"
             android:title="@string/pref_center_clock_status_bar_title"
             android:summary="@string/pref_center_clock_status_bar_summary"
@@ -43,7 +43,7 @@
             android:entries="@array/entries_transparency"
             android:entryValues="@array/values_transparency" />
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_notification_show_wifi_ssid"
             android:title="@string/pref_notification_show_wifi_ssid_title"
             android:summary="@string/pref_notification_show_wifi_ssid_summary"

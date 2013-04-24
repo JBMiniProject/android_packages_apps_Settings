@@ -62,7 +62,7 @@
     <string name="pref_small">Small</string>
     <string name="pref_statusbar_transparency_title">Transparency</string>
     <string name="pref_statusbar_transparency_summary">Adjust status bar transparency</string>
-    <string name="pref_notification_show_wifi_ssid_title">Show Wifi network name</string>
+    <string name="pref_notification_show_wifi_ssid_title">Wifi name</string>
     <string name="pref_notification_show_wifi_ssid_summary">Display the name of the currently connected Wifi network</string>
 
     <!-- Lockscreen -->
@@ -150,7 +150,7 @@
 
     <!-- Screenhot Menu -->
     <string name="pref_screenshot_title">Screenshot</string>
-    <string name="pref_screenshot_sound_title">Screenshot sound</string>
+    <string name="pref_screenshot_sound_title">Sound</string>
     <string name="pref_screenshot_sound_summary">Plays sound effect when screenshot is taken</string>
     <string name="pref_screenshot_delay_title">Screenshot delay</string>
     <string name="pref_screenshot_delay_summary">Delays shot by number of seconds specified</string>

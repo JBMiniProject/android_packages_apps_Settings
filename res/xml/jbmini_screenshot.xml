@@ -22,7 +22,7 @@
     <PreferenceCategory
         android:title="@string/pref_screenshot_title">
 
-       <CheckBoxPreference
+       <SwitchPreference
             android:key="screenshot_sound_pref"
             android:title="@string/pref_screenshot_sound_title"
             android:summary="@string/pref_screenshot_sound_summary"

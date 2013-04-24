@@ -27,14 +27,14 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.preference.CheckBoxPreference;
+import android.preference.SwitchPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.os.Handler;
 import android.util.Log;
 import android.net.Uri;
-import android.preference.Preference.OnPreferenceClickListener;
 import android.view.IWindowManager;
 import android.os.IBinder;
 import android.os.IPowerManager;
@@ -49,7 +49,7 @@ import com.android.settings.util.Helpers;
 
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
-public class StatusBarMenu extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
+public class StatusBarMenu extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private static final String CENTER_CLOCK_STATUS_BAR_PROP = "pref_center_clock_status_bar";
     private static final String CLOCK_WEEKDAY_PROP = "pref_clock_weekday";
@@ -57,11 +57,11 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements Prefere
     private static final String STATUSBAR_TRANSPARENCY_PROP = "pref_statusbar_transparency";
     private static final String NOTIFICATION_SHOW_WIFI_SSID_PROP = "pref_notification_show_wifi_ssid";
 
-    private CheckBoxPreference mCenterClockStatusBarPref;
+    private SwitchPreference mCenterClockStatusBarPref;
     private ListPreference mClockWeekdayPref;
     private ColorPickerPreference mClockColorPicker;
     private ListPreference mStatusbarTransparencyPref;
-    private CheckBoxPreference mShowWifiNamePref;
+    private SwitchPreference mShowWifiNamePref;
 
     private Context mContext;
 
@@ -74,14 +74,14 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements Prefere
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
-        mCenterClockStatusBarPref = (CheckBoxPreference) prefSet.findPreference(CENTER_CLOCK_STATUS_BAR_PROP);
+        mCenterClockStatusBarPref = (SwitchPreference) prefSet.findPreference(CENTER_CLOCK_STATUS_BAR_PROP);
         mClockWeekdayPref = (ListPreference) prefSet.findPreference(CLOCK_WEEKDAY_PROP);
         mClockWeekdayPref.setOnPreferenceChangeListener(this);
         mClockColorPicker = (ColorPickerPreference) prefSet.findPreference(CLOCK_COLOR_PICKER_PROP);
         mClockColorPicker.setOnPreferenceChangeListener(this);
         mStatusbarTransparencyPref = (ListPreference) prefSet.findPreference(STATUSBAR_TRANSPARENCY_PROP);
         mStatusbarTransparencyPref.setOnPreferenceChangeListener(this);
-        mShowWifiNamePref = (CheckBoxPreference) prefSet.findPreference(NOTIFICATION_SHOW_WIFI_SSID_PROP);
+        mShowWifiNamePref = (SwitchPreference) prefSet.findPreference(NOTIFICATION_SHOW_WIFI_SSID_PROP);
 
         updateCenterClockStatusBar();
         updateClockWeekday();
@@ -105,6 +105,7 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements Prefere
     /* Update functions */
     private void updateCenterClockStatusBar() {
         mCenterClockStatusBarPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, 0) == 1);
+        mCenterClockStatusBarPref.setOnPreferenceChangeListener(this);
     }
 
     private void updateClockWeekday() {
@@ -119,12 +120,13 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements Prefere
 
     private void updateWifiName() {
         mShowWifiNamePref.setChecked(Settings.System.getBoolean(getActivity().getContentResolver(), Settings.System.NOTIFICATION_SHOW_WIFI_SSID, false));
+        mShowWifiNamePref.setOnPreferenceChangeListener(this);
     }
 
 
     /* Write functions */
-    private void writeCenterClockStatusBar() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, mCenterClockStatusBarPref.isChecked() ? 1 : 0);
+    private void writeCenterClockStatusBar(Object NewVal) {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.CENTER_CLOCK_STATUS_BAR, (Boolean) NewVal ? 1 : 0);
         Helpers.restartSystemUI();
     }
 
@@ -145,31 +147,28 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements Prefere
         updateStatusbarTransparency();
     }
 
-    private void writeWifiName() {
-        Settings.System.putBoolean(getActivity().getContentResolver(), Settings.System.NOTIFICATION_SHOW_WIFI_SSID, mShowWifiNamePref.isChecked());
-    }
-
-
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mCenterClockStatusBarPref) {
-            writeCenterClockStatusBar();
-        } else if (preference == mShowWifiNamePref) {
-            writeWifiName();
-        }
-
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
+    private void writeWifiName(Object NewVal) {
+        Settings.System.putBoolean(getActivity().getContentResolver(), Settings.System.NOTIFICATION_SHOW_WIFI_SSID, (Boolean) NewVal);
     }
 
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mClockColorPicker) {
+        if (preference == mCenterClockStatusBarPref) {
+            writeCenterClockStatusBar(newValue);
+            return true;
+        } else if (preference == mClockColorPicker) {
             writeClockColorPicker(newValue);
+            return true;
         } else if (preference == mClockWeekdayPref) {
             writeClockWeekday(newValue);
+            return true;
         } else if (preference == mStatusbarTransparencyPref) {
             writeStatusbarTransparency(newValue);
+            return true;
+        } else if (preference == mShowWifiNamePref) {
+            writeWifiName(newValue);
+            return true;
         }
         return false;
     }
