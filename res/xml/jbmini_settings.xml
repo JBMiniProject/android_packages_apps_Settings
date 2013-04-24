@@ -29,7 +29,7 @@
         android:key="call_menu"
         android:fragment="com.android.settings.jbminiproject.CallMenu"
         android:title="@string/cat_hard_keys"
-        android:icon="@drawable/ic_settings_profiles" />
+        android:icon="@drawable/ic_settings_call" />
 
     <PreferenceScreen
         android:key="lockscreen_menu"
