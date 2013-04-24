@@ -18,28 +18,28 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/cat_globalactions">
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_disable_title"
             android:title="@string/pref_disable_title_title" />
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_disable_reboot"
             android:title="@string/pref_disable_reboot_title" />
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_disable_screenshot"
             android:title="@string/pref_disable_screenshot_title" />
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_disable_expanded_desktop"
             android:title="@string/pref_disable_expanded_desktop_title"
             android:defaultValue="false" />
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_disable_airplane"
             android:title="@string/pref_disable_airplane_title" />
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_disable_ringer"
             android:title="@string/pref_disable_ringer_title" />
 
