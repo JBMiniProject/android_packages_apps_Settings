@@ -1,0 +1,165 @@
+<!--  Copyright (C) 2013 JBMini Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="jbmp_settings_title">JBMini beállítások</string>
+
+    <!-- System -->
+    <string name="pref_disable_boot_animation_title">Boot animáció tiltása</string>
+    <string name="pref_disable_boot_animation_summary">Gyorsabb bootolás</string>
+    <string name="pref_raised_brightness_title">Extra fényerő</string>
+    <string name="pref_raised_brightness_summary">Magasabb fényerőt biztosít (Nagyobb akkuhasználat)</string>
+    <string name="pref_volume_adjust_sounds_enable_title">Hangerő váltáskor hang</string>
+    <string name="pref_volume_adjust_sounds_enable_summary">Hangerő gombokkal történő váltáskor engedélyezi a pittyenést</string>
+    <string name="pref_disable_bootaudio_title">Boot audió tiltása</string>
+    <string name="pref_disable_bootaudio_summary_disabled">Az engedélyezéshez lennie kell egy boot_audio.mp3 nevű filenak a system/media könyvtárban</string>
+    <string name="pref_disable_bugmailer_title">Hibajelentő letiltása</string>
+    <string name="pref_swap_volume_buttons_title">Hangerő gombok felcserélése</string>
+    <string name="pref_swap_volume_buttons_summary">Hangerő gombok felcserélése, ha a képernyő 90 vagy 180 fokban el van fordítva</string>
+    <string name="pref_sound_camera_shutter_disable_title">Exponáló hang tiltása</string>
+    <string name="pref_sound_camera_shutter_disable_summary_on">Exponáló hang tiltva</string>
+    <string name="pref_sound_camera_shutter_disable_summary_off">Exponáló hang engedélyezve</string>
+    <string name="pref_sound_camera_shutter_disable_warning_title">FIGYELEM! Néhány országban illegális!</string>
+    <string name="pref_sound_camera_shutter_disable_warning">Az exponáló hang letiltása néhány területen, valamint intézményben tilos! Biztos le akarod tiltani</string>
+
+    <!-- Call -->
+    <string name="pref_back_button_ends_call_title">Hívás befejezés</string>
+    <string name="pref_back_button_ends_call_summary">Vissza gomb megnyomása befejezi az aktuális hívást</string>
+    <string name="pref_menu_button_answers_call_title">Hívás fogadás</string>
+    <string name="pref_menu_button_answers_call_summary">Menu gomb megnyomása fogadja a bejövő hívást</string>
+    <string name="pref_pick_up_to_call_title">Hívás felemelésre</string>
+    <string name="pref_pick_up_to_call_summary">Tárcsázóban és SMSnél elég a fülhöz emelni a telefont a híváshoz</string>
+
+    <!-- Power Menu -->
+    <string name="pref_disable_reboot_title">Újraindítás mutatása</string>
+    <string name="pref_disable_screenshot_title">Képernyőmentés mutatása</string>
+    <string name="pref_disable_expanded_desktop_title">Képernyő kiterjesztés mutatása</string>
+    <string name="pref_disable_airplane_title">Repülőgép üzemmód mutatása</string>
+    <string name="pref_disable_ringer_title">Hangerő módok mutatása</string>
+    <string name="pref_disable_title_title">Fejléc mutatása</string>
+
+    <!-- Status Bar -->
+    <string name="pref_center_clock_status_bar_title">Óra középen</string>
+    <string name="pref_center_clock_status_bar_summary">A státuszbáron középre igazítja az órát (Újraindítja a SystemUI-t)</string>
+    <string name="pref_clock_color_title">Óra színe</string>
+    <string name="pref_clock_weekday">Hét napjai</string>
+    <string name="pref_clock_weekday_summary">Megjeleníti az aktuális nap nevét az óra előtt</string>
+    <string name="pref_dont_show">Elrejtés</string>
+    <string name="pref_small">Kicsi</string>
+    <string name="pref_statusbar_transparency_title">Átlátszóság</string>
+    <string name="pref_statusbar_transparency_summary">Mennyire legyen átlátszó az értesítési sáv</string>
+    <string name="pref_notification_show_wifi_ssid_title">Wifi hálózat neve</string>
+    <string name="pref_notification_show_wifi_ssid_summary">Értesítési területen megjelenik a csatlakoztatott WIFI neve</string>
+
+    <!-- Lockscreen -->
+    <string name="pref_carrier_label_title">Egyéni szolgáltató szöveg</string>
+    <string name="pref_carrier_label_subhead">Írj be egy új szöveget!</string>
+    <string name="pref_carrier_label_notset">Nincs beállítva egyedi szöveg</string>
+    <string name="pref_lockscreen_text_color_title">Zárképernyő szöveg színe</string>
+    <string name="pref_lockscreen_styles_title">Képernyőzár stílus</string>
+    <string name="pref_lockscreen_styles_summary">Válaszd ki, melyik stílust akarod használni</string>
+    <string name="pref_rotary_arrows_title">Nyilak elrejtése</string>
+    <string name="pref_slider_text_title">Csúszka súgó szöveg elrejtése</string>
+    <string name="pref_lockscreen_style_jb">Jelly Bean</string>
+    <string name="pref_lockscreen_style_slider">Csúsztatás</string>
+    <string name="pref_lockscreen_style_rotary">Forgó</string>
+
+    <!-- Performance -->
+    <string name="cpu_undervolt">Feszültség csökkentés</string>
+    <string name="cpu_undervolt_summary">Cökkenti a CPU feszültségét (csökkenti az akku használatot, de instabilitást okozhat)</string>
+
+    <!-- Categories -->
+    <string name="cat_status_bar">Értesítési sáv</string>
+    <string name="cat_hard_keys">Hívás</string>
+    <string name="cat_globalactions">Kikapcsolás menü</string>
+    <string name="cat_system">Rendszer tuning</string>
+    <string name="cat_lockscreen">Zárképernyő</string>
+    <string name="cat_batterybar">Akkumulátor sáv</string>
+    <string name="cat_screenshot">Képernyőkép</string>
+
+    <!-- Partition Info -->
+    <string name="partition_info_title">Partítció infó</string>
+
+    <!-- About phone -->
+    <string name="rec_version">Recovery verzió</string>
+    <string name="rec_version_default">Ismeretlen</string>
+
+    <!-- Status -->
+    <string name="day">1 nap</string>
+    <string name="days"><xliff:g id="days">%s</xliff:g> nap</string>
+
+     <!-- A2SD -->
+    <string name="a2sd_settings_title">A2SD (ext) beállítások</string>
+    <string name="a2sd_title">A2SD (ext) beállítások</string>
+    <string name="a2sd_summary">App to SD card (ext) beállítások</string>
+    <string name="a2sd_mode_summary">Aktuális mód: %S\n(újraindítás szükséges változtatáskor)</string>
+    <string name="a2sd_modes_title">Elérhető módok</string>
+    <string name="a2sd_info_title">A2SD Információ</string>
+    <string name="a2sd_dialog">A2SD Információ</string>
+    <string name="a2sd_loading">A2SD információk betzöltése\u2026</string>
+    <string name="a2sd_error">Hiba az információk betöltésekor\u2026</string>
+
+    <!-- Battery Bar -->
+    <string name="pref_battery_bar">Akkumulátor sáv</string>
+    <string name="pref_battery_bar_color">Sáv színe</string>
+    <string name="pref_battery_bar_style_title">Sáv stílusa</string>
+    <string name="pref_battery_bar_thickness_title">Sáv vastagsága</string>
+    <string name="pref_battery_bar_animate_title">Töltési animáció</string>
+    <string name="pref_regular">Normál</string>
+    <string name="pref_center_mirror">Középről tükrözött</string>
+
+    <!-- Screenshot Menu -->
+    <string name="pref_screenshot_title">Képernyőkép</string>
+    <string name="pref_screenshot_sound_title">Hang</string>
+    <string name="pref_screenshot_sound_summary">Hang lejátszása kép elkészültekor</string>
+    <string name="pref_screenshot_delay_title">Várakozás</string>
+    <string name="pref_screenshot_delay_summary">Várakozási idő a kép elkészítése előtt</string>
+
+    <!-- Navbar -->
+    <string name="pref_show_navbar">Navigációs sáv mutatása</string>
+    <string name="pref_show_navbar_reboot">Újraindítás szükséges</string>
+
+    <!-- SWAP -->
+    <string name="swap_settings_title">Swap beállítások</string>
+    <string name="swap_title">Swap beállítások</string>
+    <string name="swap_summary">Swap file SD kártyára beállításai</string>
+    <string name="swap_mode_summary">%S</string>
+    <string name="swap_modes_title">Swap file SD kártyára</string>
+    <string name="swap_sizes_title">Swap méret</string>
+    <string name="swap_sizes_summary">%S MB</string>
+    <string name="swap_toast_swap_removed">Előző swap file törölve</string>
+    <string name="swap_toast_swap_created">Swap file kész</string>
+    <string name="swap_toast_swap_enabled">Swap engedélyezve</string>
+    <string name="swap_toast_swap_disabled">Swap letiltva</string>
+    <string name="swap_toast_wait">Kérlek várj\u2026</string>
+    <string name="swap_info_title">Swap Információk</string>
+    <string name="swap_dialog">Swap Információk</string>
+    <string name="swap_loading">Swap információk betöltése\u2026</string>
+    <string name="swap_error">Swap információk nem tölthetők be\u2026</string>
+
+    <!-- JB MINI ABOUT -->
+    <string name="devs">Fejlesztők</string>
+    <string name="jbmp_website_title">JBMP Weboldal</string>
+    <string name="jbmp_website_summary">http://jbminiproject.weebly.com/</string>
+    <string name="jbmp_source_title">JBMP Forráskód</string>
+    <string name="jbmp_source_summary">A JBMP egy teljesen nyílt forráskódú projekt. Bármikor megnézheted az aktuális forrást a github.com/JBMiniProject oldon</string>
+    <string name="jbmp_irc_title">Csatlakozz IRC-n</string>
+    <string name="jbmp_version">Verzió</string>
+    <string name="jbmp_version_summary">Ismeretlen</string>
+    <string name="about_jbmp">Névjegy</string>
+
+</resources>
