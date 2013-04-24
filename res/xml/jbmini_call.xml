@@ -18,19 +18,19 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/cat_hard_keys">
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_back_button_ends_call"
             android:title="@string/pref_back_button_ends_call_title"
             android:summary="@string/pref_back_button_ends_call_summary"
             android:defaultValue="false" />
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_menu_button_answers_call"
             android:title="@string/pref_menu_button_answers_call_title"
             android:summary="@string/pref_menu_button_answers_call_summary"
             android:defaultValue="false" />
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_pick_up_to_call"
             android:title="@string/pref_pick_up_to_call_title"
             android:summary="@string/pref_pick_up_to_call_summary"

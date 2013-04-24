@@ -39,11 +39,11 @@
     <string name="pref_sound_camera_shutter_disable_warning">Disabling camera shutter sound is illegal in some Countries and Jurisdictions. Are you sure you want to disable it?</string>
 
     <!-- Call -->
-    <string name="pref_back_button_ends_call_title">Back button ends call</string>
+    <string name="pref_back_button_ends_call_title">End button</string>
     <string name="pref_back_button_ends_call_summary">When pressed the Back button, the actual call ends</string>
-    <string name="pref_menu_button_answers_call_title">Menu button answers call</string>
+    <string name="pref_menu_button_answers_call_title">Answers button</string>
     <string name="pref_menu_button_answers_call_summary">When pressed the Menu button when incoming call, the actual call answered</string>
-    <string name="pref_pick_up_to_call_title">Pick up to call</string>
+    <string name="pref_pick_up_to_call_title">Direct Call</string>
     <string name="pref_pick_up_to_call_summary">Picking up the phone calls the number in dialer</string>
 
     <!-- Power Menu -->

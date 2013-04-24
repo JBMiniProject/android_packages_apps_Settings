@@ -26,9 +26,10 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.preference.CheckBoxPreference;
+import android.preference.SwitchPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.os.Handler;
 import android.util.Log;
 import android.net.Uri;
@@ -46,15 +47,15 @@ import com.android.settings.Utils;
 import java.io.InputStream;
 import java.io.IOException;
 
-public class CallMenu extends SettingsPreferenceFragment {
+public class CallMenu extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private static final String BACK_BUTTON_ENDS_CALL_PROP = "pref_back_button_ends_call";
     private static final String MENU_BUTTON_ANSWERS_CALL_PROP = "pref_menu_button_answers_call";
     private static final String PICK_UP_TO_CALL_PROP = "pref_pick_up_to_call";
 
-    private CheckBoxPreference mBackButtonEndsCallPref;
-    private CheckBoxPreference mMenuButtonAnswersCallPref;
-    private CheckBoxPreference mPickUpToCallPref;
+    private SwitchPreference mBackButtonEndsCallPref;
+    private SwitchPreference mMenuButtonAnswersCallPref;
+    private SwitchPreference mPickUpToCallPref;
 
     private Context mContext;
 
@@ -67,9 +68,9 @@ public class CallMenu extends SettingsPreferenceFragment {
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
-        mBackButtonEndsCallPref = (CheckBoxPreference) prefSet.findPreference(BACK_BUTTON_ENDS_CALL_PROP);
-        mMenuButtonAnswersCallPref = (CheckBoxPreference) prefSet.findPreference(MENU_BUTTON_ANSWERS_CALL_PROP);
-        mPickUpToCallPref = (CheckBoxPreference) prefSet.findPreference(PICK_UP_TO_CALL_PROP);
+        mBackButtonEndsCallPref = (SwitchPreference) prefSet.findPreference(BACK_BUTTON_ENDS_CALL_PROP);
+        mMenuButtonAnswersCallPref = (SwitchPreference) prefSet.findPreference(MENU_BUTTON_ANSWERS_CALL_PROP);
+        mPickUpToCallPref = (SwitchPreference) prefSet.findPreference(PICK_UP_TO_CALL_PROP);
 
         updateBackButtonEndsCall();
         updateMenuButtonAnswersCall();
@@ -97,6 +98,7 @@ public class CallMenu extends SettingsPreferenceFragment {
         final boolean backButtonEndsCall =
             (incallBackBehavior == Settings.System.INCALL_BACK_BUTTON_BEHAVIOR_HANGUP);
         mBackButtonEndsCallPref.setChecked(backButtonEndsCall);
+        mBackButtonEndsCallPref.setOnPreferenceChangeListener(this);
     }
 
     private void updateMenuButtonAnswersCall() {
@@ -106,37 +108,41 @@ public class CallMenu extends SettingsPreferenceFragment {
         final boolean menuButtonAnswersCall =
             (incallMenuBehavior == Settings.System.RING_MENU_BUTTON_BEHAVIOR_ANSWER);
         mMenuButtonAnswersCallPref.setChecked(menuButtonAnswersCall);
+        mMenuButtonAnswersCallPref.setOnPreferenceChangeListener(this);
     }
 
     private void updatePickUpToCall() {
         mPickUpToCallPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.PICK_UP_TO_CALL, 0) == 1);
+        mPickUpToCallPref.setOnPreferenceChangeListener(this);
     }
 
 
     /* Write functions */
-    private void writeBackButtonEndsCall() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.INCALL_BACK_BUTTON_BEHAVIOR, mBackButtonEndsCallPref.isChecked() ? Settings.System.INCALL_BACK_BUTTON_BEHAVIOR_HANGUP : Settings.System.INCALL_BACK_BUTTON_BEHAVIOR_BACK);
+    private void writeBackButtonEndsCall(Object NewVal) {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.INCALL_BACK_BUTTON_BEHAVIOR, (Boolean) NewVal ? Settings.System.INCALL_BACK_BUTTON_BEHAVIOR_HANGUP : Settings.System.INCALL_BACK_BUTTON_BEHAVIOR_BACK);
     }
 
-    private void writeMenuButtonAnswersCall() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.RING_MENU_BUTTON_BEHAVIOR, mMenuButtonAnswersCallPref.isChecked() ? Settings.System.RING_MENU_BUTTON_BEHAVIOR_ANSWER : Settings.System.RING_MENU_BUTTON_BEHAVIOR_DO_NOTHING);
+    private void writeMenuButtonAnswersCall(Object NewVal) {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.RING_MENU_BUTTON_BEHAVIOR, (Boolean) NewVal ? Settings.System.RING_MENU_BUTTON_BEHAVIOR_ANSWER : Settings.System.RING_MENU_BUTTON_BEHAVIOR_DO_NOTHING);
     }
 
-    private void writePickUpToCall() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.PICK_UP_TO_CALL, mPickUpToCallPref.isChecked() ? 1 : 0);
+    private void writePickUpToCall(Object NewVal) {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.PICK_UP_TO_CALL, (Boolean) NewVal ? 1 : 0);
     }
 
 
     @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+    public boolean onPreferenceChange(Preference preference, Object value) {
         if (preference == mBackButtonEndsCallPref) {
-            writeBackButtonEndsCall();
+            writeBackButtonEndsCall(value);
+            return true;
         } else if (preference == mMenuButtonAnswersCallPref) {
-            writeMenuButtonAnswersCall();
+            writeMenuButtonAnswersCall(value);
+            return true;
         } else if (preference == mPickUpToCallPref) {
-            writePickUpToCall();
+            writePickUpToCall(value);
+            return true;
         }
-
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
+        return false;
     }
 }
