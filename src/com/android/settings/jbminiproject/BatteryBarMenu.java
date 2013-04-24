@@ -28,10 +28,11 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.preference.CheckBoxPreference;
+import android.preference.SwitchPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.os.Handler;
 import android.util.Log;
 import android.net.Uri;
@@ -52,7 +53,7 @@ import com.android.settings.Utils;
 
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
-public class BatteryBarMenu extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
+public class BatteryBarMenu extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private static final String BATT_BAR_PROP = "pref_battery_bar";
     private static final String BATT_BAR_STYLE_PROP = "pref_battery_bar_style";
@@ -60,10 +61,10 @@ public class BatteryBarMenu extends SettingsPreferenceFragment implements Prefer
     private static final String BATT_BAR_WIDTH_PROP = "pref_battery_bar_thickness";
     private static final String BATT_ANIMATE_PROP = "pref_battery_bar_animate";
 
-    private CheckBoxPreference mBatteryBarPref;
+    private SwitchPreference mBatteryBarPref;
     private ListPreference mBatteryBarStylePref;
     private ListPreference mBatteryBarThicknessPref;
-    private CheckBoxPreference mBatteryBarChargingAnimationPref;
+    private SwitchPreference mBatteryBarChargingAnimationPref;
     private ColorPickerPreference mBatteryBarColor;
 
     private Context mContext;
@@ -77,12 +78,12 @@ public class BatteryBarMenu extends SettingsPreferenceFragment implements Prefer
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
-        mBatteryBarPref = (CheckBoxPreference) prefSet.findPreference(BATT_BAR_PROP);
+        mBatteryBarPref = (SwitchPreference) prefSet.findPreference(BATT_BAR_PROP);
         mBatteryBarStylePref = (ListPreference) prefSet.findPreference(BATT_BAR_STYLE_PROP);
         mBatteryBarStylePref.setOnPreferenceChangeListener(this);
         mBatteryBarColor = (ColorPickerPreference) prefSet.findPreference(BATT_BAR_COLOR_PROP);
         mBatteryBarColor.setOnPreferenceChangeListener(this);
-        mBatteryBarChargingAnimationPref = (CheckBoxPreference) findPreference(BATT_ANIMATE_PROP);
+        mBatteryBarChargingAnimationPref = (SwitchPreference) prefSet.findPreference(BATT_ANIMATE_PROP);
         mBatteryBarThicknessPref = (ListPreference) prefSet.findPreference(BATT_BAR_WIDTH_PROP);
         mBatteryBarThicknessPref.setOnPreferenceChangeListener(this);
 
@@ -120,6 +121,7 @@ public class BatteryBarMenu extends SettingsPreferenceFragment implements Prefer
             mBatteryBarThicknessPref.setEnabled(false);
             mBatteryBarColor.setEnabled(false);
         }
+        mBatteryBarPref.setOnPreferenceChangeListener(this);
     }
 
     private void updateBatteryBarStyle() {
@@ -129,6 +131,7 @@ public class BatteryBarMenu extends SettingsPreferenceFragment implements Prefer
 
     private void updateBatteryBarChargAnim() {
         mBatteryBarChargingAnimationPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE, 0) == 1);
+        mBatteryBarChargingAnimationPref.setOnPreferenceChangeListener(this);
     }
 
     private void updateBatteryBarThickness() {
@@ -138,8 +141,8 @@ public class BatteryBarMenu extends SettingsPreferenceFragment implements Prefer
 
 
     /* Write functions */
-    private void writeBatteryBar() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR, mBatteryBarPref.isChecked() ? 1 : 0);
+    private void writeBatteryBar(Object NewVal) {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR, (Boolean) NewVal ? 1 : 0);
         updateBatteryBar();
     }
 
@@ -155,8 +158,8 @@ public class BatteryBarMenu extends SettingsPreferenceFragment implements Prefer
         mBatteryBarColor.setOnPreferenceChangeListener(this);
     }
 
-    private void writeBatteryBarChargAnim() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE, mBatteryBarChargingAnimationPref.isChecked() ? 1 : 0);
+    private void writeBatteryBarChargAnim(Object NewVal) {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE, (Boolean) NewVal ? 1 : 0);
     }
 
     private void writeBatteryBarThickness(Object NewVal) {
@@ -166,27 +169,23 @@ public class BatteryBarMenu extends SettingsPreferenceFragment implements Prefer
 
 
     @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mBatteryBarPref) {
-            writeBatteryBar();
-        } else if (preference == mBatteryBarChargingAnimationPref) {
-            writeBatteryBarChargAnim();
-        }
-
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
-    }
-
-
-    @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mBatteryBarColor) {
+        if (preference == mBatteryBarPref) {
+            writeBatteryBar(newValue);
+            return true;
+        } else if (preference == mBatteryBarColor) {
             writeBatteryBarColor(newValue);
+            return true;
         } else if (preference == mBatteryBarStylePref) {
             writeBatteryBarStyle(newValue);
+            return true;
+        } else if (preference == mBatteryBarChargingAnimationPref) {
+            writeBatteryBarChargAnim(newValue);
+            return true;
         } else if (preference == mBatteryBarThicknessPref) {
             writeBatteryBarThickness(newValue);
+            return true;
         }
-
         return false;
     }
 }
