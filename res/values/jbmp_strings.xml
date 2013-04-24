@@ -23,14 +23,16 @@
     <string name="pref_disable_boot_animation_summary">For faster boot</string>
     <string name="pref_raised_brightness_title">Raised brightness</string>
     <string name="pref_raised_brightness_summary">Increases the brightness level (may increase battery consumption)</string>
-    <string name="pref_volume_adjust_sounds_enable_title">Volume adjust sound</string>
-    <string name="pref_volume_adjust_sounds_enable_summary">Play sound when adjusting volume with hard keys</string>
     <string name="pref_disable_bootaudio_title">Disable boot audio</string>
     <string name="pref_disable_bootaudio_summary_disabled">To enable boot audio, you must have an MP3 file at \n/system/media/boot_audio.mp3</string>
     <string name="pref_disable_bugmailer_title">Disable bugmailer</string>
-    <string name="pref_swap_volume_buttons_title">Swap volume buttons</string>
+
+    <!-- Sound -->
+    <string name="pref_volume_adjust_sounds_enable_title">Adjust sound</string>
+    <string name="pref_volume_adjust_sounds_enable_summary">Play sound when adjusting volume with hard keys</string>
+    <string name="pref_swap_volume_buttons_title">Swap buttons</string>
     <string name="pref_swap_volume_buttons_summary">Swap volume buttons when the screen is rotated by 90 or 180 degrees</string>
-    <string name="pref_sound_camera_shutter_disable_title">Mute camera shutter</string>
+    <string name="pref_sound_camera_shutter_disable_title">Mute shutter</string>
     <string name="pref_sound_camera_shutter_disable_summary_on">Shutter sound will not be played</string>
     <string name="pref_sound_camera_shutter_disable_summary_off">Shutter sound will be played</string>
     <string name="pref_sound_camera_shutter_disable_warning_title">WARNING: This may be illegal!</string>
@@ -97,6 +99,7 @@
     <string name="cat_lockscreen">Lockscreen</string>
     <string name="cat_batterybar">Battery Bar</string>
     <string name="cat_screenshot">Screenshot</string>
+    <string name="cat_sound">Sound</string>
 
     <!-- Partition Info -->
     <string name="partition_info_title">Partition info</string>

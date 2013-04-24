@@ -69,19 +69,12 @@ public class SystemMenu extends SettingsPreferenceFragment {
     private static final String DISABLE_BUGMAILER_PROP = "pref_disable_bugmailer";
     private static final String RAISED_BRIGHTNESS_PROP = "pref_raisedbrightness";
     private static final String SHOW_NAVBAR_PROP = "pref_show_navbar";
-    private static final String KEY_VOLUME_ADJUST_SOUNDS_PROP = "pref_volume_adjust_sounds";
-    private static final String KEY_SWAP_VOLUME_BUTTONS_PROP = "pref_swap_volume_buttons";
-    private static final String CAMERA_SHUTTER_MUTE_PROP = "pref_camera-mute";
-    private static final String CAMERA_SHUTTER_DISABLE_PROP = "persist.sys.camera-mute";
 
     private CheckBoxPreference mDisableBootanimPref;
     private CheckBoxPreference mDisableBootAudioPref;
     private CheckBoxPreference mDisableBugmailerPref;
     private CheckBoxPreference mRaisedBrightnessPref;
     private CheckBoxPreference mShowNavbarPref;
-    private CheckBoxPreference mVolumeAdjustSoundsPref;
-    private CheckBoxPreference mSwapVolumeButtonsPref;
-    private CheckBoxPreference mDisableCameraSoundPref;
 
     private Context mContext;
 
@@ -99,10 +92,6 @@ public class SystemMenu extends SettingsPreferenceFragment {
         mDisableBugmailerPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BUGMAILER_PROP);
         mRaisedBrightnessPref = (CheckBoxPreference) prefSet.findPreference(RAISED_BRIGHTNESS_PROP);
         mShowNavbarPref = (CheckBoxPreference) prefSet.findPreference(SHOW_NAVBAR_PROP);
-        mVolumeAdjustSoundsPref = (CheckBoxPreference) prefSet.findPreference(KEY_VOLUME_ADJUST_SOUNDS_PROP);
-        mVolumeAdjustSoundsPref.setPersistent(false);
-        mSwapVolumeButtonsPref = (CheckBoxPreference) prefSet.findPreference(KEY_SWAP_VOLUME_BUTTONS_PROP);
-        mDisableCameraSoundPref = (CheckBoxPreference) prefSet.findPreference(CAMERA_SHUTTER_MUTE_PROP);
 
 
         updateDisableBootAnimation();
@@ -110,9 +99,6 @@ public class SystemMenu extends SettingsPreferenceFragment {
         updateDisableBugmailer();
         updateRaisedBrightness();
         updateShowNavBar();
-        updateVolumeAdjustSound();
-        updateSwapVolumeButtons();
-        updateDisableCameraSound();
     }
 
     @Override
@@ -157,18 +143,6 @@ public class SystemMenu extends SettingsPreferenceFragment {
 
     private void updateShowNavBar() {
         mShowNavbarPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SHOW_NAVBAR, 0) == 1);
-    }
-
-    private void updateVolumeAdjustSound() {
-        mVolumeAdjustSoundsPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 1) != 0);
-    }
-
-    private void updateSwapVolumeButtons() {
-        mSwapVolumeButtonsPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SWAP_VOLUME_KEYS_BY_ROTATE, 0) == 1);
-    }
-
-    private void updateDisableCameraSound() {
-        mDisableCameraSoundPref.setChecked(SystemProperties.getInt(CAMERA_SHUTTER_DISABLE_PROP, 0) != 0);
     }
 
     /* Write functions */
@@ -220,14 +194,6 @@ public class SystemMenu extends SettingsPreferenceFragment {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SHOW_NAVBAR, mShowNavbarPref.isChecked() ? 1 : 0);
     }
 
-    private void writeVolumeAdjustSound() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, mVolumeAdjustSoundsPref.isChecked() ? 1 : 0);
-    }
-
-    private void writeSwapVolumeButtons() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SWAP_VOLUME_KEYS_BY_ROTATE, mSwapVolumeButtonsPref.isChecked() ? 1 : 0);
-    }
-
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
@@ -241,36 +207,7 @@ public class SystemMenu extends SettingsPreferenceFragment {
             writeRaisedBrightness();
         } else if (preference == mShowNavbarPref) {
             writeShowNavBar();
-        } else if (preference == mVolumeAdjustSoundsPref) {
-            writeVolumeAdjustSound();
-        } else if (preference == mSwapVolumeButtonsPref) {
-            writeSwapVolumeButtons();
-        } else if (preference == mDisableCameraSoundPref) {
-            if (mDisableCameraSoundPref.isChecked()) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle(R.string.pref_sound_camera_shutter_disable_warning_title);
-                builder.setMessage(R.string.pref_sound_camera_shutter_disable_warning);
-                builder.setPositiveButton(com.android.internal.R.string.ok,
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            SystemProperties.set(CAMERA_SHUTTER_DISABLE_PROP, "1");
-                        }
-                    });
-
-                final CheckBoxPreference p = (CheckBoxPreference) preference;
-                builder.setNegativeButton(com.android.internal.R.string.cancel,
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            p.setChecked(false);
-                        }
-                    });
-
-                builder.show();
-            } else{
-                SystemProperties.set(CAMERA_SHUTTER_DISABLE_PROP, "0");
-            }
         }
-
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 }

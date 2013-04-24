@@ -23,12 +23,14 @@
     <string name="pref_disable_boot_animation_summary">Gyorsabb bootolás</string>
     <string name="pref_raised_brightness_title">Extra fényerő</string>
     <string name="pref_raised_brightness_summary">Magasabb fényerőt biztosít (Nagyobb akkuhasználat)</string>
-    <string name="pref_volume_adjust_sounds_enable_title">Hangerő váltáskor hang</string>
-    <string name="pref_volume_adjust_sounds_enable_summary">Hangerő gombokkal történő váltáskor engedélyezi a pittyenést</string>
     <string name="pref_disable_bootaudio_title">Boot audió tiltása</string>
     <string name="pref_disable_bootaudio_summary_disabled">Az engedélyezéshez lennie kell egy boot_audio.mp3 nevű filenak a system/media könyvtárban</string>
     <string name="pref_disable_bugmailer_title">Hibajelentő letiltása</string>
-    <string name="pref_swap_volume_buttons_title">Hangerő gombok felcserélése</string>
+
+    <!-- Sound -->
+    <string name="pref_volume_adjust_sounds_enable_title">Hangerő hang</string>
+    <string name="pref_volume_adjust_sounds_enable_summary">Hangerő gombokkal történő váltáskor engedélyezi a pittyenést</string>
+    <string name="pref_swap_volume_buttons_title">Gombok cseréje</string>
     <string name="pref_swap_volume_buttons_summary">Hangerő gombok felcserélése, ha a képernyő 90 vagy 180 fokban el van fordítva</string>
     <string name="pref_sound_camera_shutter_disable_title">Exponáló hang tiltása</string>
     <string name="pref_sound_camera_shutter_disable_summary_on">Exponáló hang tiltva</string>
@@ -90,6 +92,7 @@
     <string name="cat_lockscreen">Zárképernyő</string>
     <string name="cat_batterybar">Akkumulátor sáv</string>
     <string name="cat_screenshot">Képernyőkép</string>
+    <string name="cat_sound">Hang</string>
 
     <!-- Partition Info -->
     <string name="partition_info_title">Partítció infó</string>

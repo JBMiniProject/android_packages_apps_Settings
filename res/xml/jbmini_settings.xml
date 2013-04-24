@@ -56,6 +56,12 @@
         android:icon="@drawable/ic_settings_accessibility" />
 
     <PreferenceScreen
+        android:key="sound_menu"
+        android:fragment="com.android.settings.jbminiproject.SoundMenu"
+        android:title="@string/cat_sound"
+        android:icon="@drawable/ic_settings_sound" />
+
+    <PreferenceScreen
         android:key="system_menu"
         android:fragment="com.android.settings.jbminiproject.SystemMenu"
         android:title="@string/cat_system"
