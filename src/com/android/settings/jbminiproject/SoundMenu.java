@@ -132,6 +132,32 @@ public class SoundMenu extends SettingsPreferenceFragment implements OnPreferenc
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SWAP_VOLUME_KEYS_BY_ROTATE, (Boolean) NewVal ? 1 : 0);
     }
 
+    private void writeDisableCameraSound(Object NewVal) {
+        if ((Boolean) NewVal) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle(R.string.pref_sound_camera_shutter_disable_warning_title);
+            builder.setMessage(R.string.pref_sound_camera_shutter_disable_warning);
+            builder.setPositiveButton(com.android.internal.R.string.ok,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        SystemProperties.set(CAMERA_SHUTTER_DISABLE_PROP, "1");
+                    }
+                });
+
+            final SwitchPreference p = (SwitchPreference) mDisableCameraSoundPref;
+            builder.setNegativeButton(com.android.internal.R.string.cancel,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        p.setChecked(false);
+                    }
+                });
+
+            builder.show();
+        } else{
+            SystemProperties.set(CAMERA_SHUTTER_DISABLE_PROP, "0");
+        }
+    }
+
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -142,29 +168,7 @@ public class SoundMenu extends SettingsPreferenceFragment implements OnPreferenc
             writeSwapVolumeButtons(newValue);
             return true;
         } else if (preference == mDisableCameraSoundPref) {
-            if ((Boolean) newValue) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle(R.string.pref_sound_camera_shutter_disable_warning_title);
-                builder.setMessage(R.string.pref_sound_camera_shutter_disable_warning);
-                builder.setPositiveButton(com.android.internal.R.string.ok,
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            SystemProperties.set(CAMERA_SHUTTER_DISABLE_PROP, "1");
-                        }
-                    });
-
-                final SwitchPreference p = (SwitchPreference) preference;
-                builder.setNegativeButton(com.android.internal.R.string.cancel,
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            p.setChecked(false);
-                        }
-                    });
-
-                builder.show();
-            } else{
-                SystemProperties.set(CAMERA_SHUTTER_DISABLE_PROP, "0");
-            }
+            writeDisableCameraSound(newValue);
             return true;
         }
         return false;
