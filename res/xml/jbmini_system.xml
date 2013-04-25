@@ -18,27 +18,27 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/cat_system">
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_disable_boot_animation"
             android:title="@string/pref_disable_boot_animation_title"
             android:summary="@string/pref_disable_boot_animation_summary"
             android:defaultValue="false" />
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_disable_bootaudio"
             android:title="@string/pref_disable_bootaudio_title" />
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_disable_bugmailer"
             android:title="@string/pref_disable_bugmailer_title" />
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_raisedbrightness"
             android:title="@string/pref_raised_brightness_title"
             android:summary="@string/pref_raised_brightness_summary"
             android:defaultValue="false" />
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_show_navbar"
             android:title="@string/pref_show_navbar"
             android:summary="@string/pref_show_navbar_reboot"

@@ -133,7 +133,7 @@
     <string name="pref_screenshot_delay_summary">Várakozási idő a kép elkészítése előtt</string>
 
     <!-- Navbar -->
-    <string name="pref_show_navbar">Navigációs sáv mutatása</string>
+    <string name="pref_show_navbar">Navigációs sáv</string>
     <string name="pref_show_navbar_reboot">Újraindítás szükséges</string>
 
     <!-- SWAP -->

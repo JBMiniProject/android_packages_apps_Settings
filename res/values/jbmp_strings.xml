@@ -159,7 +159,7 @@
     <string name="pref_screenshot_delay_summary">Delays shot by number of seconds specified</string>
 
     <!-- Navbar -->
-    <string name="pref_show_navbar">Show navigation bar</string>
+    <string name="pref_show_navbar">Navigation bar</string>
     <string name="pref_show_navbar_reboot">Requires reboot</string>
 
     <!-- SWAP -->

@@ -28,10 +28,11 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.preference.CheckBoxPreference;
+import android.preference.SwitchPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.os.Handler;
 import android.util.Log;
 import android.net.Uri;
@@ -58,7 +59,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class SystemMenu extends SettingsPreferenceFragment {
+public class SystemMenu extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private static final String TAG = "JBMP_Settings";
     private static final boolean DEBUG = true;
@@ -70,11 +71,11 @@ public class SystemMenu extends SettingsPreferenceFragment {
     private static final String RAISED_BRIGHTNESS_PROP = "pref_raisedbrightness";
     private static final String SHOW_NAVBAR_PROP = "pref_show_navbar";
 
-    private CheckBoxPreference mDisableBootanimPref;
-    private CheckBoxPreference mDisableBootAudioPref;
-    private CheckBoxPreference mDisableBugmailerPref;
-    private CheckBoxPreference mRaisedBrightnessPref;
-    private CheckBoxPreference mShowNavbarPref;
+    private SwitchPreference mDisableBootanimPref;
+    private SwitchPreference mDisableBootAudioPref;
+    private SwitchPreference mDisableBugmailerPref;
+    private SwitchPreference mRaisedBrightnessPref;
+    private SwitchPreference mShowNavbarPref;
 
     private Context mContext;
 
@@ -87,11 +88,11 @@ public class SystemMenu extends SettingsPreferenceFragment {
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
-        mDisableBootanimPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
-        mDisableBootAudioPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BOOTAUDIO_PROP);
-        mDisableBugmailerPref = (CheckBoxPreference) prefSet.findPreference(DISABLE_BUGMAILER_PROP);
-        mRaisedBrightnessPref = (CheckBoxPreference) prefSet.findPreference(RAISED_BRIGHTNESS_PROP);
-        mShowNavbarPref = (CheckBoxPreference) prefSet.findPreference(SHOW_NAVBAR_PROP);
+        mDisableBootanimPref = (SwitchPreference) prefSet.findPreference(DISABLE_BOOTANIMATION_PREF);
+        mDisableBootAudioPref = (SwitchPreference) prefSet.findPreference(DISABLE_BOOTAUDIO_PROP);
+        mDisableBugmailerPref = (SwitchPreference) prefSet.findPreference(DISABLE_BUGMAILER_PROP);
+        mRaisedBrightnessPref = (SwitchPreference) prefSet.findPreference(RAISED_BRIGHTNESS_PROP);
+        mShowNavbarPref = (SwitchPreference) prefSet.findPreference(SHOW_NAVBAR_PROP);
 
 
         updateDisableBootAnimation();
@@ -122,6 +123,7 @@ public class SystemMenu extends SettingsPreferenceFragment {
         } else {
             mDisableBootAudioPref.setEnabled(true);
         }
+        mDisableBootanimPref.setOnPreferenceChangeListener(this);
     }
 
     private void updateDisableBootAudio() {
@@ -131,29 +133,32 @@ public class SystemMenu extends SettingsPreferenceFragment {
         } else {
             mDisableBootAudioPref.setChecked(!new File("/system/media/boot_audio.mp3").exists());
         }
+        mDisableBootAudioPref.setOnPreferenceChangeListener(this);
     }
 
     private void updateDisableBugmailer() {
         mDisableBugmailerPref.setChecked(!new File("/system/bin/bugmailer.sh").exists());
+        mDisableBugmailerPref.setOnPreferenceChangeListener(this);
     }
 
     private void updateRaisedBrightness() {
         mRaisedBrightnessPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SCREEN_RAISED_BRIGHTNESS, 0) == 1);
+        mRaisedBrightnessPref.setOnPreferenceChangeListener(this);
     }
 
     private void updateShowNavBar() {
         mShowNavbarPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SHOW_NAVBAR, 0) == 1);
+        mShowNavbarPref.setOnPreferenceChangeListener(this);
     }
 
     /* Write functions */
-    private void writeDisableBootAnimation() {
-        SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, mDisableBootanimPref.isChecked() ? "1" : "0");
+    private void writeDisableBootAnimation(Object NewVal) {
+        SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, (Boolean) NewVal ? "1" : "0");
         updateDisableBootAnimation();
     }
 
-    private void writeDisableBootAudio() {
-        boolean status = mDisableBootAudioPref.isChecked();
-        if (status) {
+    private void writeDisableBootAudio(Object NewVal) {
+        if ((Boolean) NewVal) {
             Helpers.getMount("rw");
             new CMDProcessor().su.runWaitFor("mv /system/media/boot_audio.mp3 /system/media/boot_audio.jbmp");
             Helpers.getMount("ro");
@@ -164,9 +169,8 @@ public class SystemMenu extends SettingsPreferenceFragment {
         }
     }
 
-    private void writeDisableBugmailer() {
-        boolean status = mDisableBugmailerPref.isChecked();
-        if (status) {
+    private void writeDisableBugmailer(Object NewVal) {
+        if ((Boolean) NewVal) {
             Helpers.getMount("rw");
             new CMDProcessor().su.runWaitFor("mv /system/bin/bugmailer.sh /system/bin/bugmailer.jbmp");
             Helpers.getMount("ro");
@@ -177,7 +181,7 @@ public class SystemMenu extends SettingsPreferenceFragment {
         }
     }
 
-    private void writeRaisedBrightness() {
+    private void writeRaisedBrightness(Object NewVal) {
         File f = new File("/sys/devices/platform/i2c-adapter/i2c-0/0-0036/mode");
         String modeFile = "";
 
@@ -186,28 +190,33 @@ public class SystemMenu extends SettingsPreferenceFragment {
         else
             modeFile = "/sys/devices/i2c-0/0-0036/mode";
 
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SCREEN_RAISED_BRIGHTNESS, mRaisedBrightnessPref.isChecked() ? 1 : 0);
-        Utils.fileWriteOneLine(modeFile, mRaisedBrightnessPref.isChecked() ? "i2c_pwm" : "i2c_pwm_als");
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SCREEN_RAISED_BRIGHTNESS, (Boolean) NewVal ? 1 : 0);
+        Utils.fileWriteOneLine(modeFile, (Boolean) NewVal ? "i2c_pwm" : "i2c_pwm_als");
     }
 
-    private void writeShowNavBar() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SHOW_NAVBAR, mShowNavbarPref.isChecked() ? 1 : 0);
+    private void writeShowNavBar(Object NewVal) {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SHOW_NAVBAR, (Boolean) NewVal ? 1 : 0);
     }
 
 
     @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference == mDisableBootanimPref) {
-            writeDisableBootAnimation();
+            writeDisableBootAnimation(newValue);
+            return true;
         } else if (preference == mDisableBootAudioPref) {
-            writeDisableBootAudio();
+            writeDisableBootAudio(newValue);
+            return true;
         } else if (preference == mDisableBugmailerPref) {
-            writeDisableBugmailer();
+            writeDisableBugmailer(newValue);
+            return true;
         } else if (preference == mRaisedBrightnessPref) {
-            writeRaisedBrightness();
+            writeRaisedBrightness(newValue);
+            return true;
         } else if (preference == mShowNavbarPref) {
-            writeShowNavBar();
+            writeShowNavBar(newValue);
+            return true;
         }
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
+        return false;
     }
 }
