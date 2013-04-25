@@ -34,11 +34,11 @@
             android:title="@string/pref_lockscreen_styles_title"
             android:summary="@string/pref_lockscreen_styles_summary" />
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_rotary_arrows"
             android:title="@string/pref_rotary_arrows_title" />
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:key="pref_slider_text"
             android:title="@string/pref_slider_text_title" />
 

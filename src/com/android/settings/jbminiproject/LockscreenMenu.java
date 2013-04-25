@@ -28,14 +28,15 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.preference.CheckBoxPreference;
+import android.preference.SwitchPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
+import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.os.Handler;
 import android.util.Log;
 import android.net.Uri;
-import android.preference.Preference.OnPreferenceClickListener;
 import android.text.Spannable;
 import android.view.IWindowManager;
 import android.os.ServiceManager;
@@ -52,7 +53,7 @@ import com.android.settings.Utils;
 
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
-public class LockscreenMenu extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
+public class LockscreenMenu extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private static final String CUSTOM_CARRIER_LABEL_PROP = "pref_carrier_label";
     private static final String LOCKSCREEN_TEXT_COLOR_PROP = "pref_lockscreen_text_color";
@@ -64,8 +65,8 @@ public class LockscreenMenu extends SettingsPreferenceFragment implements Prefer
     private String mCustomCarrierLabelSummary = null;
     private ColorPickerPreference mLockscreenTextColor;
     private ListPreference mLockStylePref;
-    private CheckBoxPreference mRotaryArrowsPref;
-    private CheckBoxPreference mSliderTextPref;
+    private SwitchPreference mRotaryArrowsPref;
+    private SwitchPreference mSliderTextPref;
 
     private Context mContext;
 
@@ -83,8 +84,8 @@ public class LockscreenMenu extends SettingsPreferenceFragment implements Prefer
         mLockscreenTextColor.setOnPreferenceChangeListener(this);
         mLockStylePref = (ListPreference) prefSet.findPreference(LOCKSCREEN_STYLES_PROP);
         mLockStylePref.setOnPreferenceChangeListener(this);
-        mRotaryArrowsPref = (CheckBoxPreference) prefSet.findPreference(ROTARY_ARROWS_PROP);
-        mSliderTextPref = (CheckBoxPreference) prefSet.findPreference(SLIDER_TEXT_PROP);
+        mRotaryArrowsPref = (SwitchPreference) prefSet.findPreference(ROTARY_ARROWS_PROP);
+        mSliderTextPref = (SwitchPreference) prefSet.findPreference(SLIDER_TEXT_PROP);
 
 
         updateCustomCarrierLabel();
@@ -135,11 +136,13 @@ public class LockscreenMenu extends SettingsPreferenceFragment implements Prefer
     }
 
     private void updateLockscreenArrows() {
-        mRotaryArrowsPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_HIDE_ARROWS, 0) == 1);
+        mRotaryArrowsPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_HIDE_ARROWS, 0) == 0);
+        mRotaryArrowsPref.setOnPreferenceChangeListener(this);
     }
 
     private void updateLockscreenSliderT() {
-        mSliderTextPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_HIDE_HINT, 0) == 1);
+        mSliderTextPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_HIDE_HINT, 0) == 0);
+        mSliderTextPref.setOnPreferenceChangeListener(this);
     }
 
 
@@ -181,12 +184,12 @@ public class LockscreenMenu extends SettingsPreferenceFragment implements Prefer
         updateLockscreenStyle();
     }
 
-    private void writeLockscreenArrows() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_HIDE_ARROWS, mRotaryArrowsPref.isChecked() ? 1 : 0);
+    private void writeLockscreenArrows(Object NewVal) {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_HIDE_ARROWS, (Boolean) NewVal ? 0 : 1);
     }
 
-    private void writeLockscreenSliderT() {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_HIDE_HINT, mSliderTextPref.isChecked() ? 1 : 0);
+    private void writeLockscreenSliderT(Object NewVal) {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_HIDE_HINT, (Boolean) NewVal ? 0 : 1);
     }
 
 
@@ -194,10 +197,6 @@ public class LockscreenMenu extends SettingsPreferenceFragment implements Prefer
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mCustomCarrierLabel) {
             writeCustomCarrierLabel();
-        } else if (preference == mRotaryArrowsPref) {
-            writeLockscreenArrows();
-        } else if (preference == mSliderTextPref) {
-            writeLockscreenSliderT();
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -208,10 +207,17 @@ public class LockscreenMenu extends SettingsPreferenceFragment implements Prefer
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference == mLockscreenTextColor) {
             writeLockscreenTextColor(newValue);
+            return true;
         } else if (preference == mLockStylePref) {
             writeLockscreenStyle(newValue);
+            return true;
+        } else if (preference == mRotaryArrowsPref) {
+            writeLockscreenArrows(newValue);
+            return true;
+        } else if (preference == mSliderTextPref) {
+            writeLockscreenSliderT(newValue);
+            return true;
         }
-
         return false;
     }
 }
