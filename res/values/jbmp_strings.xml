@@ -26,6 +26,7 @@
     <string name="pref_disable_bootaudio_title">Disable boot audio</string>
     <string name="pref_disable_bootaudio_summary_disabled">To enable boot audio, you must have an MP3 file at \n/system/media/boot_audio.mp3</string>
     <string name="pref_disable_bugmailer_title">Disable bugmailer</string>
+    <string name="pref_sense4_style_recents">Sense 4.0 Recents</string>
 
     <!-- Sound -->
     <string name="pref_volume_adjust_sounds_enable_title">Adjust sound</string>

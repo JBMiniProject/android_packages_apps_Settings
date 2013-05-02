@@ -70,12 +70,14 @@ public class SystemMenu extends SettingsPreferenceFragment implements OnPreferen
     private static final String DISABLE_BUGMAILER_PROP = "pref_disable_bugmailer";
     private static final String RAISED_BRIGHTNESS_PROP = "pref_raisedbrightness";
     private static final String SHOW_NAVBAR_PROP = "pref_show_navbar";
+    private static final String SENSE4_STYLE_RECENTS_PROP = "pref_sense4_style_recents";
 
     private SwitchPreference mDisableBootanimPref;
     private SwitchPreference mDisableBootAudioPref;
     private SwitchPreference mDisableBugmailerPref;
     private SwitchPreference mRaisedBrightnessPref;
     private SwitchPreference mShowNavbarPref;
+    private SwitchPreference mSense4RecentsPref;
 
     private Context mContext;
 
@@ -93,6 +95,7 @@ public class SystemMenu extends SettingsPreferenceFragment implements OnPreferen
         mDisableBugmailerPref = (SwitchPreference) prefSet.findPreference(DISABLE_BUGMAILER_PROP);
         mRaisedBrightnessPref = (SwitchPreference) prefSet.findPreference(RAISED_BRIGHTNESS_PROP);
         mShowNavbarPref = (SwitchPreference) prefSet.findPreference(SHOW_NAVBAR_PROP);
+        mSense4RecentsPref = (SwitchPreference) prefSet.findPreference(SENSE4_STYLE_RECENTS_PROP);
 
 
         updateDisableBootAnimation();
@@ -100,6 +103,7 @@ public class SystemMenu extends SettingsPreferenceFragment implements OnPreferen
         updateDisableBugmailer();
         updateRaisedBrightness();
         updateShowNavBar();
+        updateSense4Recents();
     }
 
     @Override
@@ -151,6 +155,12 @@ public class SystemMenu extends SettingsPreferenceFragment implements OnPreferen
         mShowNavbarPref.setOnPreferenceChangeListener(this);
     }
 
+    private void updateSense4Recents() {
+        mSense4RecentsPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SENSE4_RECENT_APPS, 0) == 1);
+        mSense4RecentsPref.setOnPreferenceChangeListener(this);
+    }
+
+
     /* Write functions */
     private void writeDisableBootAnimation(Object NewVal) {
         SystemProperties.set(DISABLE_BOOTANIMATION_PERSIST_PROP, (Boolean) NewVal ? "1" : "0");
@@ -198,6 +208,11 @@ public class SystemMenu extends SettingsPreferenceFragment implements OnPreferen
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SHOW_NAVBAR, (Boolean) NewVal ? 1 : 0);
     }
 
+    private void writeSense4Recents(Object NewVal) {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SENSE4_RECENT_APPS, (Boolean) NewVal ? 1 : 0);
+        Helpers.restartSystemUI();
+    }
+
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -215,6 +230,9 @@ public class SystemMenu extends SettingsPreferenceFragment implements OnPreferen
             return true;
         } else if (preference == mShowNavbarPref) {
             writeShowNavBar(newValue);
+            return true;
+        } else if (preference == mSense4RecentsPref) {
+            writeSense4Recents(newValue);
             return true;
         }
         return false;

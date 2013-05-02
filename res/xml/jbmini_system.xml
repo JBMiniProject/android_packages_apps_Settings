@@ -44,4 +44,9 @@
             android:summary="@string/pref_show_navbar_reboot"
             android:defaultValue="false" />
 
+        <SwitchPreference
+            android:key="pref_sense4_style_recents"
+            android:title="@string/pref_sense4_style_recents"
+            android:defaultValue="false" />
+
 </PreferenceScreen>
