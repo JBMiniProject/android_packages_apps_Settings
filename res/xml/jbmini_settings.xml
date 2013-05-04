@@ -44,6 +44,12 @@
         android:icon="@drawable/ic_settings_backup" />
 
     <PreferenceScreen
+        android:key="recents_menu"
+        android:fragment="com.android.settings.jbminiproject.RecentsMenu"
+        android:title="@string/cat_recents"
+        android:icon="@drawable/ic_settings_recents" />
+
+    <PreferenceScreen
         android:key="screenshot_menu"
         android:fragment="com.android.settings.jbminiproject.ScreenshotMenu"
         android:title="@string/cat_screenshot"

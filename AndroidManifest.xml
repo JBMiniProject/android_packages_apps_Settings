@@ -1539,7 +1539,8 @@
         <activity android:name=".jbminiproject.PowerMenu" />
         <activity android:name=".jbminiproject.SystemMenu" />
         <activity android:name=".jbminiproject.LockscreenMenu" />
-		<activity android:name=".jbminiproject.About" />
+        <activity android:name=".jbminiproject.RecentsMenu" />
+        <activity android:name=".jbminiproject.About" />
 
         <activity android:name=".jbminiproject.ChangeLog" android:label="@string/changelog_title">
             <intent-filter>

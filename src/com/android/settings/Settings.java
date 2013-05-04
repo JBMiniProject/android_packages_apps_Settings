@@ -828,4 +828,5 @@ public class Settings extends PreferenceActivity
     public static class SystemMenuActivity extends Settings { /* empty */ }
     public static class LockscreenMenuActivity extends Settings { /* empty */ }
     public static class SoundMenuActivity extends Settings { /* empty */ }
+    public static class RecentsMenuActivity extends Settings { /* empty */ }
 }

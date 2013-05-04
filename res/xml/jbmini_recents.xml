@@ -16,21 +16,17 @@
 
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/cat_screenshot">
+    android:title="@string/cat_recents">
 
-   <SwitchPreference
-        android:key="screenshot_sound_pref"
-        android:title="@string/pref_screenshot_sound_title"
-        android:summary="@string/pref_screenshot_sound_summary"
-        android:defaultValue="true" />
+    <SwitchPreference
+        android:key="pref_sense4_style_recents"
+        android:title="@string/pref_sense4_style_recents"
+        android:defaultValue="false" />
 
-    <ListPreference
-        android:key="screenshot_delay_pref"
-        android:dialogTitle="@string/pref_screenshot_delay_title"
-        android:title="@string/pref_screenshot_delay_title"
-        android:summary="@string/pref_screenshot_delay_summary"
-        android:entries="@array/pref_screenshot_delay_entries"
-        android:entryValues="@array/pref_screenshot_delay_values"
-        android:defaultValue="1000" />
+    <SwitchPreference
+        android:key="pref_recents_ram_bar"
+        android:title="@string/pref_ram_bar"
+        android:summary="@string/pref_ram_bar_summary"
+        android:defaultValue="false" />
 
 </PreferenceScreen>

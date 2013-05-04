@@ -26,7 +26,6 @@
     <string name="pref_disable_bootaudio_title">Boot audió tiltása</string>
     <string name="pref_disable_bootaudio_summary_disabled">Az engedélyezéshez lennie kell egy boot_audio.mp3 nevű filenak a system/media könyvtárban</string>
     <string name="pref_disable_bugmailer_title">Hibajelentő letiltása</string>
-    <string name="pref_sense4_style_recents">Sense 4.0 alkalmazás kezelő</string>
 
     <!-- Sound -->
     <string name="pref_volume_adjust_sounds_enable_title">Hangerő hang</string>
@@ -94,6 +93,7 @@
     <string name="cat_batterybar">Akkumulátor sáv</string>
     <string name="cat_screenshot">Képernyőkép</string>
     <string name="cat_sound">Hang</string>
+    <string name="cat_recents">Futó alkalmazások</string>
 
     <!-- Partition Info -->
     <string name="partition_info_title">Partítció infó</string>
@@ -181,5 +181,10 @@
 
     <!-- Menu option to delete all Wi-Fi networks -->
     <string name="wifi_menu_forget_all">Összes hálózat törlése</string>
+
+    <!-- Recent apps -->
+    <string name="pref_sense4_style_recents">Sense 4.0 alkalmazás kezelő</string>
+    <string name="pref_ram_bar">Memória sáv</string>
+    <string name="pref_ram_bar_summary">Megjeleníti a memória állapotát</string>
 
 </resources>
