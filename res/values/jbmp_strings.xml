@@ -213,7 +213,16 @@
 
     <!-- Recent apps -->
     <string name="pref_sense4_style_recents">Sense 4.0 Recents</string>
-    <string name="pref_ram_bar">RAM Bar</string>
-    <string name="pref_ram_bar_summary">Shows RAM usage in the recents menu</string>
+    <string name="ram_bar">RAM Bar</string>
+    <string name="ram_bar_mode_title">Recents RAM bar mode</string>
+    <string name="ram_bar_mode_dialog_title">Show on recents RAM bar</string>
+    <string name="ram_bar_none">None</string>
+    <string name="ram_bar_apps">Applications</string>
+    <string name="ram_bar_cache">Applications and cache</string>
+    <string name="ram_bar_other">Applications, cache and other</string>
+    <string name="ram_bar_style_cat">Recents RAM bar style</string>
+    <string name="ram_bar_color_app_mem_color">Applications RAM color</string>
+    <string name="ram_bar_color_cache_mem_color">Cache RAM color</string>
+    <string name="ram_bar_color_total_mem_color">Other RAM color</string>
 
 </resources>

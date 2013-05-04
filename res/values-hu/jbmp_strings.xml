@@ -184,7 +184,16 @@
 
     <!-- Recent apps -->
     <string name="pref_sense4_style_recents">Sense 4.0 alkalmazás kezelő</string>
-    <string name="pref_ram_bar">Memória sáv</string>
-    <string name="pref_ram_bar_summary">Megjeleníti a memória állapotát</string>
+    <string name="ram_bar">Memória sáv</string>
+    <string name="ram_bar_mode_title">Memória sáv mód</string>
+    <string name="ram_bar_mode_dialog_title">Memória sávon megjelenik</string>
+    <string name="ram_bar_none">Semmi</string>
+    <string name="ram_bar_apps">Alkalmazások</string>
+    <string name="ram_bar_cache">Alkalmazások és Cache</string>
+    <string name="ram_bar_other">Alkalmazások, Cache és egyebek</string>
+    <string name="ram_bar_style_cat">Memória sáv stílus</string>
+    <string name="ram_bar_color_app_mem_color">Alkalmazás szín</string>
+    <string name="ram_bar_color_cache_mem_color">Cache szín</string>
+    <string name="ram_bar_color_total_mem_color">Egyebek színe</string>
 
 </resources>
