@@ -61,6 +61,8 @@ public class LockscreenMenu extends SettingsPreferenceFragment implements OnPref
     private static final String ROTARY_ARROWS_PROP = "pref_rotary_arrows";
     private static final String SLIDER_TEXT_PROP = "pref_slider_text";
 
+    private static final int DEFAULT_COLOR = 0xffffffff;
+
     private Preference mCustomCarrierLabel;
     private String mCustomCarrierLabelSummary = null;
     private ColorPickerPreference mLockscreenTextColor;
@@ -89,6 +91,7 @@ public class LockscreenMenu extends SettingsPreferenceFragment implements OnPref
 
 
         updateCustomCarrierLabel();
+        updateLockscreenTextColor();
         updateLockscreenStyle();
         updateLockscreenArrows();
         updateLockscreenSliderT();
@@ -115,6 +118,15 @@ public class LockscreenMenu extends SettingsPreferenceFragment implements OnPref
         } else {
             mCustomCarrierLabel.setSummary(mCustomCarrierLabelSummary);
         }
+    }
+
+    private void updateLockscreenTextColor() {
+        int intColor;
+        intColor = Settings.System.getInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_CUSTOM_TEXT_COLOR, DEFAULT_COLOR);
+        String hexColor;
+        hexColor = String.format("#%08x", (0xffffffff & intColor));
+        mLockscreenTextColor.setSummary(hexColor);
+        mLockscreenTextColor.setNewPreviewColor(intColor);
     }
 
     private void updateLockscreenStyle() {

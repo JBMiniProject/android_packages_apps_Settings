@@ -36,7 +36,7 @@
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="pref_battery_bar_color"
             android:title="@string/pref_battery_bar_color"
-            android:defaultValue="#33B5E5" />
+            android:defaultValue="0xff33b5e5" />
 
         <ListPreference
             android:key="pref_battery_bar_thickness"

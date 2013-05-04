@@ -25,7 +25,7 @@
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="pref_lockscreen_text_color"
             android:title="@string/pref_lockscreen_text_color_title"
-            android:defaultValue="#ffffffff" />
+            android:defaultValue="0xffffffff" />
 
         <ListPreference
             android:key="pref_lockscreen_styles"

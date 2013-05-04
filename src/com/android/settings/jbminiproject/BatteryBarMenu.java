@@ -61,6 +61,8 @@ public class BatteryBarMenu extends SettingsPreferenceFragment implements OnPref
     private static final String BATT_BAR_WIDTH_PROP = "pref_battery_bar_thickness";
     private static final String BATT_ANIMATE_PROP = "pref_battery_bar_animate";
 
+    private static final int DEFAULT_COLOR = 0xff33b5e5;
+
     private SwitchPreference mBatteryBarPref;
     private ListPreference mBatteryBarStylePref;
     private ListPreference mBatteryBarThicknessPref;
@@ -89,6 +91,7 @@ public class BatteryBarMenu extends SettingsPreferenceFragment implements OnPref
 
         updateBatteryBar();
         updateBatteryBarStyle();
+        updateBatteryBarColor();
         updateBatteryBarChargAnim();
         updateBatteryBarThickness();
     }
@@ -127,6 +130,15 @@ public class BatteryBarMenu extends SettingsPreferenceFragment implements OnPref
     private void updateBatteryBarStyle() {
         mBatteryBarStylePref.setValue((Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_STYLE, 0)) + "");
         mBatteryBarStylePref.setOnPreferenceChangeListener(this);
+    }
+
+    private void updateBatteryBarColor() {
+        int intColor;
+        intColor = Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_BATTERY_BAR_COLOR, DEFAULT_COLOR);
+        String hexColor;
+        hexColor = String.format("#%08x", (0xffffffff & intColor));
+        mBatteryBarColor.setSummary(hexColor);
+        mBatteryBarColor.setNewPreviewColor(intColor);
     }
 
     private void updateBatteryBarChargAnim() {

@@ -57,6 +57,8 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements OnPrefe
     private static final String STATUSBAR_TRANSPARENCY_PROP = "pref_statusbar_transparency";
     private static final String NOTIFICATION_SHOW_WIFI_SSID_PROP = "pref_notification_show_wifi_ssid";
 
+    private static final int DEFAULT_COLOR = 0xff33b5e5;
+
     private SwitchPreference mCenterClockStatusBarPref;
     private ListPreference mClockWeekdayPref;
     private ColorPickerPreference mClockColorPicker;
@@ -85,6 +87,7 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements OnPrefe
 
         updateCenterClockStatusBar();
         updateClockWeekday();
+        updateClockColorPicker();
         updateStatusbarTransparency();
         updateWifiName();
     }
@@ -111,6 +114,15 @@ public class StatusBarMenu extends SettingsPreferenceFragment implements OnPrefe
     private void updateClockWeekday() {
         mClockWeekdayPref.setValue(Integer.toString(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_CLOCK_WEEKDAY, 0)));
         mClockWeekdayPref.setOnPreferenceChangeListener(this);
+    }
+
+    private void updateClockColorPicker() {
+        int intColor;
+        intColor = Settings.System.getInt(getActivity().getContentResolver(), Settings.System.STATUSBAR_CLOCK_COLOR, DEFAULT_COLOR);
+        String hexColor;
+        hexColor = String.format("#%08x", (0xffffffff & intColor));
+        mClockColorPicker.setSummary(hexColor);
+        mClockColorPicker.setNewPreviewColor(intColor);
     }
 
     private void updateStatusbarTransparency() {
