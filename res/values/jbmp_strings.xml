@@ -209,4 +209,7 @@
     <!-- Sound settings, power notifications label for ringtone == none -->
     <string name="power_notifications_ringtone_silent">Silent</string>
 
+    <!-- Menu option to delete all Wi-Fi networks -->
+    <string name="wifi_menu_forget_all">Forget all networks</string>
+
 </resources>
