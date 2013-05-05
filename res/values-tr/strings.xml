@@ -2260,7 +2260,6 @@
     <string name="display_rotation_enabled">Etkin.</string>
     <string name="display_rotation_disabled">Pasif.</string>
     <string name="display_rotation_unit">derece</string>
-    <string name="display_lockscreen_rotation_title">Kilit ekranına da uygula</string>
     <string name="display_rotation_category_title">Döndürme açıları</string>
     <string name="display_rotation_0_title">0 derece</string>
     <string name="display_rotation_90_title">90 derece</string>

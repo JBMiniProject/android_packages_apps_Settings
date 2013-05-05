@@ -2163,7 +2163,6 @@
     <string name="display_rotation_enabled">"Attiva"</string>
     <string name="display_rotation_disabled">"Disattiva"</string>
     <string name="display_rotation_unit">"gradi"</string>
-    <string name="display_lockscreen_rotation_title">Includi schermata di sblocco</string>
     <string name="display_rotation_category_title">"Modalità rotazione schermo"</string>
     <string name="display_rotation_0_title">"0 gradi"</string>
     <string name="display_rotation_90_title">"90 gradi"</string>

@@ -2174,7 +2174,6 @@
     <string name="display_rotation_enabled">"Activată."</string>
     <string name="display_rotation_disabled">"Dezactivată."</string>
     <string name="display_rotation_unit">"grade"</string>
-    <string name="display_lockscreen_rotation_title">"Include ecranul de blocare"</string>
     <string name="display_rotation_category_title">"Moduri rotire"</string>
     <string name="display_rotation_0_title">"0 grade"</string>
     <string name="display_rotation_90_title">"90 de grade"</string>

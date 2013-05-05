@@ -2096,7 +2096,6 @@
     <string name="display_rotation_enabled">Habilitada</string>
     <string name="display_rotation_disabled">Desabilitada</string>
     <string name="display_rotation_unit">graus</string>
-    <string name="display_lockscreen_rotation_title">Incluir tela de bloqueio</string>
     <string name="display_rotation_category_title">Modos de rotação</string>
     <string name="display_rotation_0_title">0 graus</string>
     <string name="display_rotation_90_title">90 graus</string>

@@ -2221,7 +2221,6 @@ Schakel het scherm uit om de geselecteerde melding in actie te zien of annuleer 
     <string name="display_rotation_enabled">Ingeschakeld</string>
     <string name="display_rotation_disabled">Uitgeschakeld</string>
     <string name="display_rotation_unit">graden</string>
-    <string name="display_lockscreen_rotation_title">Ook voor vergrendelscherm</string>
     <string name="display_rotation_category_title">Rotatiestanden</string>
     <string name="display_rotation_0_title">0 graden</string>
     <string name="display_rotation_90_title">90 graden</string>

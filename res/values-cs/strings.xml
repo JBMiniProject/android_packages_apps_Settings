@@ -1746,7 +1746,6 @@
     <string name="io_sched_set_on_boot_summary">Obnovit nastavení I/O plánovače při startu</string>
     <string name="dithering_color_banding">Oprava barevných pruhů (výchozí)</string>
     <string name="dithering_blur_effect">Oprava barevných pruhů a blur effectu</string>
-    <string name="display_lockscreen_rotation_title">Zahrnout zámek obrazovky</string>
     <string name="icon_picker_chrome">Chrome</string>
     <string name="icon_picker_google_small">Google (malý)</string>
     <string name="icon_picker_search">Hledat</string>

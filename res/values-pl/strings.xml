@@ -2189,7 +2189,6 @@
     <string name="display_rotation_enabled">Włączony</string>
     <string name="display_rotation_disabled">Wyłączony</string>
     <string name="display_rotation_unit">stopni</string>
-    <string name="display_lockscreen_rotation_title">Włącz obracanie ekranu blokady</string>
     <string name="display_rotation_category_title">Stopnie obrotu</string>
     <string name="display_rotation_0_title">0 stopni</string>
     <string name="display_rotation_90_title">90 stopni</string>

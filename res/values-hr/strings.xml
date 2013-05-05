@@ -2285,7 +2285,6 @@
     <string name="display_rotation_enabled">Uključena.</string>
     <string name="display_rotation_disabled">Isključena.</string>
     <string name="display_rotation_unit">stupnjeva</string>
-    <string name="display_lockscreen_rotation_title">S ekranom zaključavanja</string>
     <string name="display_rotation_category_title">Tipovi Rotacije</string>
     <string name="display_rotation_0_title">0 stupnjeva</string>
     <string name="display_rotation_90_title">90 stupnjeva</string>
