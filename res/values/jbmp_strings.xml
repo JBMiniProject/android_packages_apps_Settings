@@ -45,6 +45,8 @@
     <string name="pref_menu_button_answers_call_summary">When pressed the Menu button when incoming call, the actual call answered</string>
     <string name="pref_pick_up_to_call_title">Direct Call</string>
     <string name="pref_pick_up_to_call_summary">Picking up the phone calls the number in dialer</string>
+    <string name="pref_natural_motion_title">Motion answer</string>
+    <string name="pref_natural_motion_summary">Picking up the phone to answer the incoming call</string>
 
     <!-- Power Menu -->
     <string name="pref_disable_title_title">Title</string>

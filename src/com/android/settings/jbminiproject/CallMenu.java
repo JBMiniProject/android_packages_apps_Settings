@@ -52,10 +52,12 @@ public class CallMenu extends SettingsPreferenceFragment implements OnPreference
     private static final String BACK_BUTTON_ENDS_CALL_PROP = "pref_back_button_ends_call";
     private static final String MENU_BUTTON_ANSWERS_CALL_PROP = "pref_menu_button_answers_call";
     private static final String PICK_UP_TO_CALL_PROP = "pref_pick_up_to_call";
+    private static final String NATURAL_MOTION_TO_ANSWER_PROP = "pref_natural_motion";
 
     private SwitchPreference mBackButtonEndsCallPref;
     private SwitchPreference mMenuButtonAnswersCallPref;
     private SwitchPreference mPickUpToCallPref;
+    private SwitchPreference mNaturalMotionAnswerPref;
 
     private Context mContext;
 
@@ -71,10 +73,12 @@ public class CallMenu extends SettingsPreferenceFragment implements OnPreference
         mBackButtonEndsCallPref = (SwitchPreference) prefSet.findPreference(BACK_BUTTON_ENDS_CALL_PROP);
         mMenuButtonAnswersCallPref = (SwitchPreference) prefSet.findPreference(MENU_BUTTON_ANSWERS_CALL_PROP);
         mPickUpToCallPref = (SwitchPreference) prefSet.findPreference(PICK_UP_TO_CALL_PROP);
+        mNaturalMotionAnswerPref = (SwitchPreference) prefSet.findPreference(NATURAL_MOTION_TO_ANSWER_PROP);
 
         updateBackButtonEndsCall();
         updateMenuButtonAnswersCall();
         updatePickUpToCall();
+        updateNaturalMotionAnswer();
     }
 
 
@@ -116,6 +120,11 @@ public class CallMenu extends SettingsPreferenceFragment implements OnPreference
         mPickUpToCallPref.setOnPreferenceChangeListener(this);
     }
 
+    private void updateNaturalMotionAnswer() {
+        mNaturalMotionAnswerPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.NATURAL_MOTION, 0) == 1);
+        mNaturalMotionAnswerPref.setOnPreferenceChangeListener(this);
+    }
+
 
     /* Write functions */
     private void writeBackButtonEndsCall(Object NewVal) {
@@ -130,6 +139,10 @@ public class CallMenu extends SettingsPreferenceFragment implements OnPreference
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.PICK_UP_TO_CALL, (Boolean) NewVal ? 1 : 0);
     }
 
+    private void writeNaturalMotionAnswer(Object NewVal) {
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.NATURAL_MOTION, (Boolean) NewVal ? 1 : 0);
+    }
+
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object value) {
@@ -141,6 +154,9 @@ public class CallMenu extends SettingsPreferenceFragment implements OnPreference
             return true;
         } else if (preference == mPickUpToCallPref) {
             writePickUpToCall(value);
+            return true;
+        } else if (preference == mNaturalMotionAnswerPref) {
+            writeNaturalMotionAnswer(value);
             return true;
         }
         return false;

@@ -36,4 +36,10 @@
             android:summary="@string/pref_pick_up_to_call_summary"
             android:defaultValue="false" />
 
+        <SwitchPreference
+            android:key="pref_natural_motion"
+            android:title="@string/pref_natural_motion_title"
+            android:summary="@string/pref_natural_motion_summary"
+            android:defaultValue="false" />
+
 </PreferenceScreen>
