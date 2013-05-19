@@ -62,6 +62,11 @@
         android:icon="@drawable/ic_settings_accessibility" />
 
     <PreferenceScreen
+        android:key="quicksettings_panel"
+        android:fragment="com.android.settings.jbminiproject.TileView"
+        android:title="@string/notification_drawer_title" />
+
+    <PreferenceScreen
         android:key="sound_menu"
         android:fragment="com.android.settings.jbminiproject.SoundMenu"
         android:title="@string/cat_sound"
