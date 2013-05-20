@@ -36,8 +36,8 @@
             android:dialogTitle="@string/pref_brightness_mode_title"
             android:title="@string/pref_brightness_mode_title"
             android:summary="@string/pref_brightness_mode_summary"
-            android:entries="@array/entries_brightness_widget"
-            android:entryValues="@array/values_brightness_widget"
+            android:entries="@array/entries_brightness_widget_qs"
+            android:entryValues="@array/values_brightness_widget_qs"
             android:persistent="false" />
 
         <ListPreference
