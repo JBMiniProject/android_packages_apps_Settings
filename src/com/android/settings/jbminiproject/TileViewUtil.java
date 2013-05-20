@@ -50,6 +50,7 @@ public class TileViewUtil {
     public static final String TILE_AIRPLANE = "toggleAirplane";
     public static final String TILE_TORCH = "toggleFlashlight";  // Keep old string for compatibility
     public static final String TILE_LOCKSCREEN = "toggleLockscreen";
+    public static final String TILE_USER = "toggleUser";
 
     public static final HashMap<String, TileInfo> TILES = new HashMap<String, TileInfo>();
     static {
@@ -89,10 +90,13 @@ public class TileViewUtil {
                 TILE_TIME, R.string.title_toggle_time, "com.android.systemui:drawable/stat_notify_alarm"));
         TILES.put(TILE_BATTERY, new TileViewUtil.TileInfo(
                 TILE_BATTERY, R.string.title_toggle_battery, "com.android.systemui:drawable/stat_sys_battery_unknown"));
+        TILES.put(TILE_USER, new TileViewUtil.TileInfo(
+                TILE_USER, R.string.title_toggle_user, "com.android.systemui:drawable/ic_qs_default_user"));
     }
 
     private static final String TILE_DELIMITER = "|";
-    private static final String TILES_DEFAULT = TILE_WIFI
+    private static final String TILES_DEFAULT = TILE_USER
+            + TILE_DELIMITER + TILE_WIFI
             + TILE_DELIMITER + TILE_BATTERY
             + TILE_DELIMITER + TILE_MOBILEDATA
             + TILE_DELIMITER + TILE_NETWORKMODE

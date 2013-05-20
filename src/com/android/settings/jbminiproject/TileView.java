@@ -25,25 +25,33 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListFragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
+import android.text.InputFilter;
+import android.text.InputFilter.LengthFilter;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -135,6 +143,7 @@ public class TileView extends SettingsPreferenceFragment {
         private static final String EXP_SCREENTIMEOUT_MODE = "pref_screentimeout_mode";
         private static final String EXP_RING_MODE = "pref_ring_mode";
         private static final String EXP_FLASH_MODE = "pref_flash_mode";
+        private static final String PREF_USER_WIDGETS = "pref_user_widgets";
 
         private HashMap<CheckBoxPreference, String> mCheckBoxPrefs = new HashMap<CheckBoxPreference, String>();
 
@@ -143,6 +152,7 @@ public class TileView extends SettingsPreferenceFragment {
         ListPreference mScreenTimeoutMode;
         MultiSelectListPreference mRingMode;
         ListPreference mFlashMode;
+        EditTextPreference mUserNumbers;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -160,6 +170,26 @@ public class TileView extends SettingsPreferenceFragment {
             if (getActivity().getApplicationContext() == null) {
                 return;
             }
+
+            mUserNumbers = (EditTextPreference) prefSet.findPreference(PREF_USER_WIDGETS);
+            if (mUserNumbers != null) {
+                EditText numberEditText = mUserNumbers.getEditText();
+
+                if (numberEditText != null) {
+                    InputFilter lengthFilter = new InputFilter.LengthFilter(25);
+                    numberEditText.setFilters(new InputFilter[]{lengthFilter});
+                    numberEditText.setSingleLine(true);
+                }
+            }
+
+            String userNumber = Settings.System.getString(getActivity().getApplicationContext().getContentResolver(), Settings.System.USER_MY_NUMBERS);
+
+            if (userNumber == null || userNumber.equals("") || TextUtils.isEmpty(userNumber)) {
+                userNumber = "000000000";
+                Settings.System.putString(getActivity().getApplicationContext().getContentResolver(), Settings.System.USER_MY_NUMBERS, userNumber);
+            }
+            mUserNumbers.setText(userNumber);
+            mUserNumbers.setOnPreferenceChangeListener(this);
 
             mBrightnessMode = (MultiSelectListPreference) prefSet.findPreference(EXP_BRIGHTNESS_MODE);
             String storedBrightnessMode = Settings.System.getString(getActivity().getApplicationContext().getContentResolver(), Settings.System.EXPANDED_BRIGHTNESS_MODE);
@@ -208,7 +238,7 @@ public class TileView extends SettingsPreferenceFragment {
                 TileViewUtil.TILES.remove(TileViewUtil.TILE_MOBILEDATA);
                 TileViewUtil.TILES.remove(TileViewUtil.TILE_NETWORKMODE);
                 TileViewUtil.TILES.remove(TileViewUtil.TILE_WIFIAP);
-                prefTilesModes.removePreference(mNetworkMode);
+                prefTiles.removePreference(mNetworkMode);
             }
 
             // fill that checkbox map!
@@ -265,6 +295,19 @@ public class TileView extends SettingsPreferenceFragment {
                 // add to the category
                 prefTiles.addPreference(cb);
             }
+        }
+
+        private void usersWidgets() {
+            AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+            alert.setTitle("User Tile Notice");
+            alert.setMessage(getResources().getString(R.string.userwidgets_message));
+            alert.setPositiveButton(com.android.internal.R.string.ok,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            return;
+                        }
+                    });
+            alert.show();
         }
 
         public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
@@ -341,6 +384,15 @@ public class TileView extends SettingsPreferenceFragment {
                 Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                         Settings.System.EXPANDED_FLASH_MODE, value);
                 mFlashMode.setSummary(mFlashMode.getEntries()[index]);
+            } else if (preference == mUserNumbers) {
+                String userNumbers = String.valueOf(newValue);
+                if (userNumbers == null || userNumbers.equals("")|| TextUtils.isEmpty(userNumbers)) {
+                    userNumbers = "000000000";
+                }
+                Settings.System.putString(getActivity().getApplicationContext().getContentResolver(),
+                            Settings.System.USER_MY_NUMBERS, userNumbers);
+                mUserNumbers.setSummary(userNumbers);
+                usersWidgets();
             }
             return true;
         }

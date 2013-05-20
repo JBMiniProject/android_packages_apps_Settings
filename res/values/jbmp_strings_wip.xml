@@ -26,5 +26,9 @@
     <string name="title_toggle_setting">Toggle Setting</string>
     <string name="title_toggle_time">Toggle Clock and Date</string>
     <string name="title_tileview_modes">TileView modes</string>
+    <string name="title_toggle_user">Toggle User</string>
+    <string name="user_widgets_title">Set MyNumbers</string>
+    <string name="user_widgets_summary">Setup your mobile numbers, and this will showup in User TileView</string>
+    <string name="userwidgets_message">Please click User tileview to reload your picture.\nIf not update automatically.</string>
 
 </resources>
