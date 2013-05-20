@@ -24,7 +24,7 @@
     <string name="title_tiles">Tiles</string>
     <string name="title_toggle_battery">Toggle Battery</string>
     <string name="title_toggle_setting">Toggle Setting</string>
-    <string name="title_toggle_time">Toggle Clock and Date</string>
+    <string name="title_toggle_time">Toggle Analog Clock</string>
     <string name="title_tileview_modes">TileView modes</string>
     <string name="title_toggle_user">Toggle User</string>
     <string name="user_widgets_title">Set MyNumbers</string>

@@ -22,15 +22,15 @@
        android:title="@string/power_widget_title">
         <PreferenceScreen
             android:key="widget_picker"
-            android:title="@string/title_widget_picker"
-            android:summary="@string/summary_widget_picker"
+            android:title="@string/title_tileview_picker"
+            android:summary="@string/summary_tileview_picker"
             android:fragment="com.android.settings.jbminiproject.TileView$TileViewChooser">
         </PreferenceScreen>
 
         <PreferenceScreen
             android:key="widget_order"
-            android:title="@string/title_widget_order"
-            android:summary="@string/summary_widget_order"
+            android:title="@string/title_tileview_order"
+            android:summary="@string/summary_tileview_order"
             android:fragment="com.android.settings.jbminiproject.TileView$TileViewOrder">
         </PreferenceScreen>
 

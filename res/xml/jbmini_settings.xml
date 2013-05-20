@@ -64,7 +64,8 @@
     <PreferenceScreen
         android:key="quicksettings_panel"
         android:fragment="com.android.settings.jbminiproject.TileView"
-        android:title="@string/notification_drawer_title" />
+        android:title="@string/title_tiles"
+        android:icon="@drawable/ic_quicksettings" />
 
     <PreferenceScreen
         android:key="sound_menu"
