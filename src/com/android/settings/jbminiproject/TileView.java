@@ -30,7 +30,6 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.net.wimax.WimaxHelper;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -203,19 +202,13 @@ public class TileView extends SettingsPreferenceFragment {
             // get our list of tiles
             ArrayList<String> tileList = TileViewUtil.getTileListFromString(TileViewUtil.getCurrentTiles(getActivity().getApplicationContext()));
 
-            // Don't show WiMAX option if not supported
-            boolean isWimaxEnabled = WimaxHelper.isWimaxSupported(getActivity());
-            if (!isWimaxEnabled) {
-                TileViewUtil.TILES.remove(TileViewUtil.TILE_WIMAX);
-            }
-
             // Don't show mobile data options if not supported
             boolean isMobileData = pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
             if (!isMobileData) {
                 TileViewUtil.TILES.remove(TileViewUtil.TILE_MOBILEDATA);
                 TileViewUtil.TILES.remove(TileViewUtil.TILE_NETWORKMODE);
                 TileViewUtil.TILES.remove(TileViewUtil.TILE_WIFIAP);
-//                prefTilesModes.removePreference(mNetworkMode);
+                prefTilesModes.removePreference(mNetworkMode);
             }
 
             // fill that checkbox map!
@@ -266,10 +259,6 @@ public class TileView extends SettingsPreferenceFragment {
                         default:
                             cb.setEnabled(false);
                             break;
-                    }
-                } else if (TileViewUtil.TILE_WIMAX.equals(tile.getId())) {
-                    if (!isWimaxEnabled) {
-                        cb.setEnabled(false);
                     }
                 }
 

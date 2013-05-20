@@ -20,7 +20,6 @@ import com.android.internal.telephony.Phone;
 import com.android.settings.R;
 
 import android.content.Context;
-import android.net.wimax.WimaxHelper;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
@@ -50,7 +49,6 @@ public class TileViewUtil {
     public static final String TILE_AUTOROTATE = "toggleAutoRotate";
     public static final String TILE_AIRPLANE = "toggleAirplane";
     public static final String TILE_TORCH = "toggleFlashlight";  // Keep old string for compatibility
-    public static final String TILE_WIMAX = "toggleWimax";
     public static final String TILE_LOCKSCREEN = "toggleLockscreen";
 
     public static final HashMap<String, TileInfo> TILES = new HashMap<String, TileInfo>();
@@ -91,8 +89,6 @@ public class TileViewUtil {
                 TILE_TIME, R.string.title_toggle_time, "com.android.systemui:drawable/stat_notify_alarm"));
         TILES.put(TILE_BATTERY, new TileViewUtil.TileInfo(
                 TILE_BATTERY, R.string.title_toggle_battery, "com.android.systemui:drawable/stat_sys_battery_unknown"));
-        TILES.put(TILE_WIMAX, new TileViewUtil.TileInfo(
-                TILE_WIMAX, R.string.title_toggle_wimax, "com.android.systemui:drawable/stat_wimax_on"));
     }
 
     private static final String TILE_DELIMITER = "|";
@@ -119,11 +115,7 @@ public class TileViewUtil {
                 Settings.System.QUICK_SETTINGS_TILES);
         if (tiles == null) {
             tiles = TILES_DEFAULT;
-            // Add the WiMAX button if it's supported
-            if (WimaxHelper.isWimaxSupported(context)) {
-                tiles += TILE_DELIMITER + TILE_WIMAX;
-            }
-            // And the flashlight too if available
+            // Add the flashlight if available
             if (context.getResources().getBoolean(R.bool.has_led_flash)) {
                 tiles += TILE_DELIMITER + TILE_TORCH;
             }
