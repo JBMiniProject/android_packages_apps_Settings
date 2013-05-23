@@ -56,41 +56,41 @@ public class TileViewUtil {
     public static final HashMap<String, TileInfo> TILES = new HashMap<String, TileInfo>();
     static {
         TILES.put(TILE_AIRPLANE, new TileViewUtil.TileInfo(
-                TILE_AIRPLANE, R.string.title_toggle_airplane, "com.android.systemui:drawable/stat_airplane_on"));
+                TILE_AIRPLANE, R.string.title_toggle_airplane, "com.android.systemui:drawable/ic_qs_airplane_off"));
         TILES.put(TILE_AUTOROTATE, new TileViewUtil.TileInfo(
-                TILE_AUTOROTATE, R.string.title_toggle_autorotate, "com.android.systemui:drawable/stat_orientation_on"));
+                TILE_AUTOROTATE, R.string.title_toggle_autorotate, "com.android.systemui:drawable/ic_qs_auto_rotate"));
         TILES.put(TILE_BLUETOOTH, new TileViewUtil.TileInfo(
-                TILE_BLUETOOTH, R.string.title_toggle_bluetooth, "com.android.systemui:drawable/stat_bluetooth_on"));
+                TILE_BLUETOOTH, R.string.title_toggle_bluetooth, "com.android.systemui:drawable/ic_qs_bluetooth_neutral"));
         TILES.put(TILE_BRIGHTNESS, new TileViewUtil.TileInfo(
-                TILE_BRIGHTNESS, R.string.title_toggle_brightness, "com.android.systemui:drawable/stat_brightness_on"));
+                TILE_BRIGHTNESS, R.string.title_toggle_brightness, "com.android.systemui:drawable/ic_qs_brightness_auto_off"));
         TILES.put(TILE_TORCH, new TileViewUtil.TileInfo(
-                TILE_TORCH, R.string.title_toggle_flashlight, "com.android.systemui:drawable/stat_flashlight_on"));
+                TILE_TORCH, R.string.title_toggle_flashlight, "com.android.systemui:drawable/ic_qs_torch_off"));
         TILES.put(TILE_GPS, new TileViewUtil.TileInfo(
-                TILE_GPS, R.string.title_toggle_gps, "com.android.systemui:drawable/stat_gps_on"));
+                TILE_GPS, R.string.title_toggle_gps, "com.android.systemui:drawable/ic_qs_gps_neutral"));
         TILES.put(TILE_LOCKSCREEN, new TileViewUtil.TileInfo(
-                TILE_LOCKSCREEN, R.string.title_toggle_lockscreen, "com.android.systemui:drawable/stat_lock_screen_on"));
+                TILE_LOCKSCREEN, R.string.title_toggle_lockscreen, "com.android.systemui:drawable/ic_qs_lock_screen_on"));
         TILES.put(TILE_MOBILEDATA, new TileViewUtil.TileInfo(
-                TILE_MOBILEDATA, R.string.title_toggle_mobiledata, "com.android.systemui:drawable/stat_data_on"));
+                TILE_MOBILEDATA, R.string.title_toggle_mobiledata, "com.android.systemui:drawable/ic_qs_signal_4"));
         TILES.put(TILE_NETWORKMODE, new TileViewUtil.TileInfo(
-                TILE_NETWORKMODE, R.string.title_toggle_networkmode, "com.android.systemui:drawable/stat_2g3g_on"));
+                TILE_NETWORKMODE, R.string.title_toggle_networkmode, "com.android.systemui:drawable/ic_qs_2g3g_on"));
         TILES.put(TILE_SCREENTIME, new TileViewUtil.TileInfo(
-                TILE_SCREENTIME, R.string.title_toggle_screentimeout, "com.android.systemui:drawable/stat_screen_timeout_on"));
+                TILE_SCREENTIME, R.string.title_toggle_screentimeout, "com.android.systemui:drawable/ic_qs_screen_timeout_off"));
         TILES.put(TILE_SLEEP, new TileViewUtil.TileInfo(
-                TILE_SLEEP, R.string.title_toggle_sleep, "com.android.systemui:drawable/stat_sleep"));
+                TILE_SLEEP, R.string.title_toggle_sleep, "com.android.systemui:drawable/ic_qs_sleep"));
         TILES.put(TILE_RINGER, new TileViewUtil.TileInfo(
-                TILE_RINGER, R.string.title_toggle_sound, "com.android.systemui:drawable/stat_ring_on"));
+                TILE_RINGER, R.string.title_toggle_sound, "com.android.systemui:drawable/ic_qs_ring_on"));
         TILES.put(TILE_SYNC, new TileViewUtil.TileInfo(
-                TILE_SYNC, R.string.title_toggle_sync, "com.android.systemui:drawable/stat_sync_on"));
+                TILE_SYNC, R.string.title_toggle_sync, "com.android.systemui:drawable/ic_qs_sync_off"));
         TILES.put(TILE_WIFI, new TileViewUtil.TileInfo(
-                TILE_WIFI, R.string.title_toggle_wifi, "com.android.systemui:drawable/stat_wifi_on"));
+                TILE_WIFI, R.string.title_toggle_wifi, "com.android.systemui:drawable/ic_qs_wifi_4"));
         TILES.put(TILE_WIFIAP, new TileViewUtil.TileInfo(
-                TILE_WIFIAP, R.string.title_toggle_wifiap, "com.android.systemui:drawable/stat_wifi_ap_on"));
+                TILE_WIFIAP, R.string.title_toggle_wifiap, "com.android.systemui:drawable/ic_qs_wifi_ap_neutral"));
         TILES.put(TILE_SETTING, new TileViewUtil.TileInfo(
-                TILE_SETTING, R.string.title_toggle_setting, "com.android.systemui:drawable/ic_sysbar_set"));
+                TILE_SETTING, R.string.title_toggle_setting, "com.android.systemui:drawable/ic_qs_settings"));
         TILES.put(TILE_TIME, new TileViewUtil.TileInfo(
-                TILE_TIME, R.string.title_toggle_time, "com.android.systemui:drawable/stat_notify_alarm"));
+                TILE_TIME, R.string.title_toggle_time, "com.android.systemui:drawable/ic_qs_alarm_on"));
         TILES.put(TILE_BATTERY, new TileViewUtil.TileInfo(
-                TILE_BATTERY, R.string.title_toggle_battery, "com.android.systemui:drawable/stat_sys_battery_unknown"));
+                TILE_BATTERY, R.string.title_toggle_battery, "com.android.systemui:drawable/ic_qs_battery_neutral"));
         TILES.put(TILE_USER, new TileViewUtil.TileInfo(
                 TILE_USER, R.string.title_toggle_user, "com.android.systemui:drawable/ic_qs_default_user"));
         TILES.put(TILE_ALARM, new TileViewUtil.TileInfo(
@@ -99,18 +99,18 @@ public class TileViewUtil {
 
     private static final String TILE_DELIMITER = "|";
     private static final String TILES_DEFAULT = TILE_USER
-            + TILE_DELIMITER + TILE_WIFI
-            + TILE_DELIMITER + TILE_BATTERY
-            + TILE_DELIMITER + TILE_MOBILEDATA
-            + TILE_DELIMITER + TILE_NETWORKMODE
-            + TILE_DELIMITER + TILE_TIME
-            + TILE_DELIMITER + TILE_SETTING
-            + TILE_DELIMITER + TILE_BLUETOOTH
             + TILE_DELIMITER + TILE_BRIGHTNESS
+            + TILE_DELIMITER + TILE_SETTING
+            + TILE_DELIMITER + TILE_WIFI
+            + TILE_DELIMITER + TILE_MOBILEDATA
+            + TILE_DELIMITER + TILE_BATTERY
+            + TILE_DELIMITER + TILE_AIRPLANE
+            + TILE_DELIMITER + TILE_BLUETOOTH
+            + TILE_DELIMITER + TILE_TIME
+            + TILE_DELIMITER + TILE_NETWORKMODE
             + TILE_DELIMITER + TILE_GPS
             + TILE_DELIMITER + TILE_SYNC
             + TILE_DELIMITER + TILE_RINGER
-            + TILE_DELIMITER + TILE_AIRPLANE
             + TILE_DELIMITER + TILE_AUTOROTATE
             + TILE_DELIMITER + TILE_SCREENTIME
             + TILE_DELIMITER + TILE_SLEEP
