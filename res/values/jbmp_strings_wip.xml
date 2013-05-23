@@ -30,5 +30,6 @@
     <string name="user_widgets_title">Set MyNumbers</string>
     <string name="user_widgets_summary">Setup your mobile numbers, and this will showup in User TileView</string>
     <string name="userwidgets_message">Please click User tileview to reload your picture.\nIf not update automatically.</string>
+    <string name="title_toggle_alarm">Toggle Alarm</string>
 
 </resources>

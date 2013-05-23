@@ -30,5 +30,6 @@
     <string name="user_widgets_title">Telefonszám</string>
     <string name="user_widgets_summary">Állítsd be a telefonszámodat és a felhasználó neve képe ez alapján jelenik meg a telefonkönyvből</string>
     <string name="userwidgets_message">Kattints a Felhasználó csempére a kép újratöltéséhez,\nha nem frissülne automatikusan.</string>
+    <string name="title_toggle_alarm">Ébresztés</string>
 
 </resources>

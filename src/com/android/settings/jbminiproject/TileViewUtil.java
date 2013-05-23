@@ -51,6 +51,7 @@ public class TileViewUtil {
     public static final String TILE_TORCH = "toggleFlashlight";  // Keep old string for compatibility
     public static final String TILE_LOCKSCREEN = "toggleLockscreen";
     public static final String TILE_USER = "toggleUser";
+    public static final String TILE_ALARM = "toggleAlarm";
 
     public static final HashMap<String, TileInfo> TILES = new HashMap<String, TileInfo>();
     static {
@@ -92,6 +93,8 @@ public class TileViewUtil {
                 TILE_BATTERY, R.string.title_toggle_battery, "com.android.systemui:drawable/stat_sys_battery_unknown"));
         TILES.put(TILE_USER, new TileViewUtil.TileInfo(
                 TILE_USER, R.string.title_toggle_user, "com.android.systemui:drawable/ic_qs_default_user"));
+        TILES.put(TILE_ALARM, new TileViewUtil.TileInfo(
+                TILE_ALARM, R.string.title_toggle_alarm, "com.android.systemui:drawable/ic_qs_alarm_on"));
     }
 
     private static final String TILE_DELIMITER = "|";
