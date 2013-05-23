@@ -23,8 +23,8 @@ import android.widget.Switch;
 
 import com.android.settings.cyanogenmod.SwitchWidget;
 
-public class TileViewEnabler extends SwitchWidget {
-    public TileViewEnabler(Context context, Switch switch_) {
+public class QuickSettingsEnabler extends SwitchWidget {
+    public QuickSettingsEnabler(Context context, Switch switch_) {
         mContext = context;
         mSwitch = switch_;
     }
@@ -38,9 +38,9 @@ public class TileViewEnabler extends SwitchWidget {
     }
 
     public void setState(Switch switch_) {
-        int isEnabled = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.EXPANDED_VIEW_WIDGET, 1);
-        mSwitch.setChecked(isEnabled == 1 ? true : false);
+        boolean isEnabled = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.EXPANDED_VIEW_WIDGET, 0) == 1;
+        mSwitch.setChecked(isEnabled);
         return;
     }
 

@@ -62,9 +62,9 @@
         android:icon="@drawable/ic_settings_accessibility" />
 
     <PreferenceScreen
-        android:key="quicksettings_panel"
-        android:fragment="com.android.settings.jbminiproject.TileView"
-        android:title="@string/title_tiles"
+        android:key="quick_settings_panel"
+        android:fragment="com.android.settings.jbminiproject.QuickSettings"
+        android:title="@string/quick_settings_panel_title" 
         android:icon="@drawable/ic_quicksettings" />
 
     <PreferenceScreen
