@@ -153,7 +153,6 @@ public class RecentsMenu extends SettingsPreferenceFragment implements OnPrefere
     /* Write functions */
     private void writeSense4Recents(Object NewVal) {
         Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SENSE4_RECENT_APPS, (Boolean) NewVal ? 1 : 0);
-        Helpers.restartSystemUI();
     }
 
     private void writeRamBarMode(Object NewVal) {
