@@ -68,6 +68,13 @@
         android:title="@string/jbmp_settings_title"
         android:icon="@drawable/ic_settings_jbmp" />
 
+    <!-- Superuser -->
+    <header
+        android:id="@+id/superuser"
+        android:fragment="com.android.settings.jbminiproject.superuser.PolicyNativeFragment"
+        android:icon="@drawable/ic_action_permission"
+        android:title="@string/superuser" />
+
     <!-- Partition info -->
     <header
         android:icon="@drawable/ic_settings_partition"
