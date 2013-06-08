@@ -102,6 +102,12 @@
     </PreferenceScreen>
 
     <PreferenceScreen
+        android:key="cpustat_menu"
+        android:fragment="com.android.settings.jbminiproject.cpustats.TimeInState"
+        android:title="@string/cat_cpustates"
+        android:icon="@drawable/ic_settings_cpustates" />
+
+    <PreferenceScreen
         android:key="about_jbmp"
         android:title="@string/about_jbmp"
         android:icon="@drawable/ic_settings_about">

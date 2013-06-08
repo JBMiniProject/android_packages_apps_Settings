@@ -96,6 +96,7 @@
     <string name="cat_screenshot">Képernyőkép</string>
     <string name="cat_sound">Hang</string>
     <string name="cat_recents">Futó alkalmazások</string>
+    <string name="cat_cpustates">CPU használat</string>
 
     <!-- Partition Info -->
     <string name="partition_info_title">Partítció infó</string>
@@ -197,5 +198,15 @@
     <string name="ram_bar_color_app_mem_color">Alkalmazás szín</string>
     <string name="ram_bar_color_cache_mem_color">Cache szín</string>
     <string name="ram_bar_color_total_mem_color">Egyebek színe</string>
+
+    <!-- CPU Time in States -->
+    <string name="mt_refresh">Frissítés</string>
+    <string name="mt_reset">Nullázás</string>
+    <string name="mt_restore">Visszaállítás</string>
+    <string name="time_in_state">IDŐK</string>
+    <string name="unused_cpu_states">NEM HASZNÁLT FREKVENCIÁK</string>
+    <string name="total_state_time">FUTÁS IDŐ</string>
+    <string name="no_states_file_found">Nincs használati statisztika file. Biztos támogatja a telefon ezt a funkciót?\n\nHa custom ROMot vagy kernelt használsz, jelezd a fejlesztő felő, hogy a CPU statisztika file nem olvasható.</string>
+    <string name="deep_sleep">"Mély alvás"</string>
 
 </resources>
