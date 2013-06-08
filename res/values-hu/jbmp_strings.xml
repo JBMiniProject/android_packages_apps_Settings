@@ -209,4 +209,60 @@
     <string name="no_states_file_found">Nincs használati statisztika file. Biztos támogatja a telefon ezt a funkciót?\n\nHa custom ROMot vagy kernelt használsz, jelezd a fejlesztő felő, hogy a CPU statisztika file nem olvasható.</string>
     <string name="deep_sleep">"Mély alvás"</string>
 
+    <!-- Quick settings panel  -->
+    <string name="quick_settings_panel_title">Gyorsbeállítások panel</string>
+    <string name="quick_settings_title">Gyorsbeállítások</string>
+    <string name="title_static_tiles">Statikus lapok</string>
+    <string name="tile_picker_title">Lapok és elrendezés</string>
+    <string name="tile_picker_summary">Lapok megtekintése, kiválasztása vagy módosítása</string>
+    <string name="tile_choose_title">Válasszon lapot</string>
+
+    <string name="title_tile_airplane">Repülőgép üzemmód</string>
+    <string name="title_tile_battery">Akkumulátor állapota</string>
+    <string name="title_tile_bluetooth">Bluetooth</string>
+    <string name="title_tile_brightness">Fényerő</string>
+    <string name="title_tile_sleep">Alvó mód</string>
+    <string name="title_tile_gps">GPS</string>
+    <string name="title_tile_torch">Zseblámpa</string>
+    <string name="title_tile_lockscreen">Képernyőzár</string>
+    <string name="title_tile_lte">LTE</string>
+    <string name="title_tile_mobiledata">Mobilinternet</string>
+    <string name="title_tile_profile">Profil</string>
+    <string name="title_tile_autorotate">Kijelző tájolás</string>
+    <string name="title_tile_settings">Beállítások</string>
+    <string name="title_tile_sound">Hang</string>
+    <string name="title_tile_sync">Szinkronizálás</string>
+    <string name="title_tile_wifiap">Wi-Fi AP</string>
+    <string name="title_tile_wifi">Wi-Fi</string>
+    <string name="title_tile_user">Felhasználóváltás</string>
+    <string name="title_tile_time">Analóg óra</string>
+    <string name="title_tile_networkmode">2G/3G</string>
+    <string name="title_tile_nfc">NFC</string>
+    <string name="title_tile_screen_timeout">Képernyő időkorlátja</string>
+    <string name="title_tile_usb_tether">USB megosztás</string>
+    <string name="title_tile_quiet_hours">Csendes órák</string>
+    <string name="title_tile_volume">Hangerő</string>
+    <string name="title_tile_expanded_desktop">Képernyő kiterjesztés</string>
+
+    <string name="title_dynamic_tiles">Dinamikus lapok</string>
+    <string name="dynamic_tiles_note_title">Megjegyzés</string>
+    <string name="dynamic_tiles_note_summary">Dinamikus lapok csak akkor láthatóak, ha egy rendszeresemény azt kíváltja</string>
+    <string name="title_dynamic_alarm">Ébresztés</string>
+    <string name="title_dynamic_ime">IME változás</string>
+    <string name="title_dynamic_usbtether">USB internetmegosztás</string>
+
+    <string name="title_general">Általános</string>
+    <string name="title_quick_pulldown">Gyors legördítés</string>
+    <string name="summary_quick_pulldown">Lapok megjelenítése az értesítési sáv %1$s oldalán történő legörgetéskor</string>
+    <string name="quick_pulldown_summary_left">bal</string>
+    <string name="quick_pulldown_summary_right">jobb</string>
+    <string name="quick_pulldown_off">Kikapcsolva</string>
+    <string name="quick_pulldown_left">Bal</string>
+    <string name="quick_pulldown_right">Jobb</string>
+    <string name="title_collapse_panel">Panel automatikus bezárása</string>
+    <string name="summary_collapse_panel">Elrejtés lap kiválasztásakor</string>
+
+    <string name="tiles_reset_title">Visszaállítás</string>
+    <string name="tiles_reset_message">Biztosan vissza kívánja állítani alaphelyzetbe a lapok beállításait?</string>
+
 </resources>
