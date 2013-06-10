@@ -93,7 +93,6 @@
     <string name="cpu_undervolt_summary">Undervolt the CPU (improves battery life but may cause instability)</string>
 
     <!-- Categories -->
-    <string name="header_category_jbmp">JB MINI PROJECT</string>
     <string name="cat_status_bar">Status Bar</string>
     <string name="cat_hard_keys">Call</string>
     <string name="cat_globalactions">PowerMenu</string>
@@ -104,6 +103,16 @@
     <string name="cat_sound">Sound</string>
     <string name="cat_recents">Recent apps</string>
     <string name="cat_cpustates">CPU Time in States</string>
+
+    <!-- Headers -->
+    <string name="header_category_jbmp">JB MINI PROJECT</string>
+    <string name="header_networks">Network connections</string>
+    <string name="header_my_accounts">My accounts</string>
+    <string name="header_backup_opts">Backup options</string>
+    <string name="header_permissions">Permissions</string>
+    <string name="header_device_manager">Device manager</string>
+    <string name="header_personal">Personalization</string>
+    <string name="header_input">Input and control</string>
 
     <!-- Partition Info -->
     <string name="partition_info_title">Partition info</string>
@@ -293,5 +302,14 @@
 
     <string name="tiles_reset_title">Reset</string>
     <string name="tiles_reset_message">Restore the default displayed tiles and layout?</string>
+
+    <!-- Tabs -->
+    <string name="tab_account">Accounts</string>
+    <string name="tab_connection">Connection</string>
+    <string name="tab_device">My device</string>
+    <string name="tab_more">More</string>
+
+    <!-- Other -->
+    <string name="more_network">More networks</string>
 
 </resources>

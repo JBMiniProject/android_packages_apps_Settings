@@ -98,6 +98,15 @@
     <string name="cat_recents">Futó alkalmazások</string>
     <string name="cat_cpustates">CPU használat</string>
 
+    <!-- Headers -->
+    <string name="header_networks">Hálózati kapcsolatok</string>
+    <string name="header_my_accounts">Saját fiókok</string>
+    <string name="header_backup_opts">Biztonsági mentés</string>
+    <string name="header_permissions">Engedélyek</string>
+    <string name="header_device_manager">Eszköz kezelés</string>
+    <string name="header_personal">Testreszabás</string>
+    <string name="header_input">Bevitel és vezérlés</string>
+
     <!-- Partition Info -->
     <string name="partition_info_title">Partítció infó</string>
 
@@ -223,7 +232,7 @@
     <string name="title_tile_brightness">Fényerő</string>
     <string name="title_tile_sleep">Alvó mód</string>
     <string name="title_tile_gps">GPS</string>
-    <string name="title_tile_torch">Zseblámpa</string>
+    <string name="title_tile_flashlight">Zseblámpa</string>
     <string name="title_tile_lockscreen">Képernyőzár</string>
     <string name="title_tile_lte">LTE</string>
     <string name="title_tile_mobiledata">Mobilinternet</string>
@@ -264,5 +273,14 @@
 
     <string name="tiles_reset_title">Visszaállítás</string>
     <string name="tiles_reset_message">Biztosan vissza kívánja állítani alaphelyzetbe a lapok beállításait?</string>
+
+    <!-- Tabs -->
+    <string name="tab_account">Fiókok</string>
+    <string name="tab_connection">Kapcsolatok</string>
+    <string name="tab_device">Saját eszk.</string>
+    <string name="tab_more">Egyebek</string>
+
+    <!-- Other -->
+    <string name="more_network">További hálózatok</string>
 
 </resources>
