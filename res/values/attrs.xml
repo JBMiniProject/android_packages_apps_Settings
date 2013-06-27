@@ -16,14 +16,15 @@
 
 <resources>
     <declare-styleable name="ListPreferenceMultiSelect">
-    	<attr format="string" name="checkAll" />
-    	<attr format="string" name="separator" />
+        <attr format="string" name="checkAll" />
+        <attr format="string" name="separator" />
     </declare-styleable>
-    
+
     <declare-styleable name="DeveloperPreference">
         <attr name="twitterHandle" format="string" />
         <attr name="nameDev" format="string"/>
         <attr name="donateLink" format="string" />
+        <attr name="emailDev" format="string" />
     </declare-styleable>
 
     <declare-styleable name="ImageListPreference">
@@ -37,7 +38,7 @@
     <declare-styleable name="IconPreferenceScreen">
         <attr name="icon" format="reference" />
     </declare-styleable>
-    
+
     <declare-styleable name="BatteryHistoryChart">
         <!-- Base text color, typeface, size, and style. -->
         <attr name="android:textAppearance" />

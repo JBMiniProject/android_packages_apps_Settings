@@ -29,13 +29,15 @@
             android:title="Daveee10"
             jbmp:nameDev="Daveee10"
             jbmp:twitterHandle="xdave10"
-            jbmp:donateLink="@string/donate_daveee10" />
+            jbmp:donateLink="@string/donate_daveee10"
+            jbmp:emailDev="dave666.david@gmail.com" />
 
         <com.android.settings.widget.DeveloperPreference
             android:title="Stelios97"
             jbmp:nameDev="Stelios97"
             jbmp:twitterHandle="stelios97"
-            jbmp:donateLink="@string/donate_stelios97" />
+            jbmp:donateLink="@string/donate_stelios97"
+            jbmp:emailDev="stilianos1000@gmail.com" />
 
     </PreferenceCategory>
 
