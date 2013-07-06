@@ -27,6 +27,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.preference.ListPreference;
 import android.preference.SwitchPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
@@ -55,7 +56,7 @@ public class PowerMenu extends SettingsPreferenceFragment implements OnPreferenc
 
     private SwitchPreference mDisableRebootPref;
     private SwitchPreference mDisableScreenshotPref;
-    private SwitchPreference mExpandedDesktopPref;
+    private ListPreference mExpandedDesktopPref;
     private SwitchPreference mDisableAirplanePref;
     private SwitchPreference mDisableRingerPref;
     private SwitchPreference mDisableTitlePref;
@@ -73,7 +74,8 @@ public class PowerMenu extends SettingsPreferenceFragment implements OnPreferenc
 
         mDisableRebootPref = (SwitchPreference) prefSet.findPreference(DISABLE_REBOOT_PROP);
         mDisableScreenshotPref = (SwitchPreference) prefSet.findPreference(DISABLE_SCREENSHOT_PROP);
-        mExpandedDesktopPref = (SwitchPreference) prefSet.findPreference(DISABLE_EXPANDED_DESKTOP_PROP);
+        mExpandedDesktopPref = (ListPreference) prefSet.findPreference(DISABLE_EXPANDED_DESKTOP_PROP);
+        mExpandedDesktopPref.setOnPreferenceChangeListener(this);
         mDisableAirplanePref = (SwitchPreference) prefSet.findPreference(DISABLE_AIRPLANE_PROP);
         mDisableRingerPref = (SwitchPreference) prefSet.findPreference(DISABLE_RINGER_PROP);
         mDisableTitlePref = (SwitchPreference) prefSet.findPreference(DISABLE_TITLE_PROP);
@@ -112,7 +114,9 @@ public class PowerMenu extends SettingsPreferenceFragment implements OnPreferenc
     }
 
     private void updateDisableExpandedDesktop() {
-        mExpandedDesktopPref.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 0) == 1);
+        int expandedDesktopValue = Settings.System.getInt(getActivity().getContentResolver(), Settings.System.EXPANDED_DESKTOP_STYLE, 0);
+        mExpandedDesktopPref.setValue(String.valueOf(expandedDesktopValue));
+        updateExpandedDesktopSummary(expandedDesktopValue);
         mExpandedDesktopPref.setOnPreferenceChangeListener(this);
     }
 
@@ -142,7 +146,9 @@ public class PowerMenu extends SettingsPreferenceFragment implements OnPreferenc
     }
 
     private void writeDisableExpandedDesktop(Object value) {
-        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, (Boolean) value ? 1 : 0);
+        int expandedDesktopValue = Integer.valueOf((String) value);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.EXPANDED_DESKTOP_STYLE, expandedDesktopValue);
+        updateExpandedDesktopSummary(expandedDesktopValue);
     }
 
     private void writeDisableAirplane(Object value) {
@@ -180,5 +186,21 @@ public class PowerMenu extends SettingsPreferenceFragment implements OnPreferenc
             return true;
         }
         return false;
+    }
+
+    private void updateExpandedDesktopSummary(int value) {
+        Resources res = getResources();
+
+        if (value == 0) {
+            /* expanded desktop deactivated */
+            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 0);
+            mExpandedDesktopPref.setSummary(res.getString(R.string.expanded_desktop_disabled));
+        } else if (value == 1) {
+            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 1);
+            mExpandedDesktopPref.setSummary(res.getString(R.string.expanded_desktop_status_bar));
+        } else if (value == 2) {
+            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 1);
+            mExpandedDesktopPref.setSummary(res.getString(R.string.expanded_desktop_no_status_bar));
+        }
     }
 }

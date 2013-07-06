@@ -53,6 +53,9 @@
     <string name="pref_disable_reboot_title">Reboot</string>
     <string name="pref_disable_screenshot_title">Screenshot</string>
     <string name="pref_disable_expanded_desktop_title">Expanded desktop</string>
+    <string name="expanded_desktop_disabled">Disabled</string>
+    <string name="expanded_desktop_status_bar">Status bar visible</string>
+    <string name="expanded_desktop_no_status_bar">Status bar hidden</string>
     <string name="pref_disable_airplane_title">Airplane Mode</string>
     <string name="pref_disable_ringer_title">Ringer Mode</string>
 
